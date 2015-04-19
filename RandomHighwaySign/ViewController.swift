@@ -16,9 +16,6 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     
         randomSignRequest();
-        let url = NSURL(string: "http://highwaysign.s3.amazonaws.com/2238726485/2238726485_m.jpg");
-        let data = NSData(contentsOfURL: url!);
-        mainImage.image = UIImage(data:data!);
         
     }
 
@@ -29,10 +26,19 @@ class ViewController: UIViewController {
 
     func randomSignRequest(){
         Alamofire.request(.GET, "http://www.sagebrushgis.com/random/?format=json")
-            .responseJSON{(_,_,JSON,_)in
-                    println(JSON["signs"]);
+            .responseJSON{(_,_,data,_)in
+                let jsonRes = JSON(data!);
+                if let imageUrl = jsonRes["signs"][0]["largeimage"].string{
+                    self.setImageData(imageUrl);
+                }
                 
         }
+    }
+    
+    func setImageData(imageUrl:String){
+        let url = NSURL(string: imageUrl);
+        let data = NSData(contentsOfURL: url!);
+        mainImage.image = UIImage(data:data!);
     }
 
 }
