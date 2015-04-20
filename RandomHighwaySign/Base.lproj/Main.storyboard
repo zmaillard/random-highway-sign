@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -16,14 +17,28 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" restorationIdentifier="mainImage" translatesAutoresizingMaskIntoConstraints="NO" id="b5B-wQ-swR">
-                                <rect key="frame" x="30" y="20" width="600" height="600"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" restorationIdentifier="mainImage" translatesAutoresizingMaskIntoConstraints="NO" id="b5B-wQ-swR">
+                                <rect key="frame" x="16" y="20" width="568" height="560"/>
                             </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="JKa-t3-ShB">
+                                <rect key="frame" x="290" y="290" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="b5B-wQ-swR" secondAttribute="bottom" id="3jw-zE-eDA"/>
+                            <constraint firstItem="b5B-wQ-swR" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="EcX-3E-ieG"/>
+                            <constraint firstItem="JKa-t3-ShB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Ikt-U5-DOX"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="JKa-t3-ShB" secondAttribute="trailing" id="Jrt-ha-vl8"/>
+                            <constraint firstItem="b5B-wQ-swR" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Q0t-Ws-Vqh"/>
+                            <constraint firstItem="JKa-t3-ShB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Tno-VY-g88"/>
+                            <constraint firstItem="b5B-wQ-swR" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Xpp-tV-hn0"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="JKa-t3-ShB" secondAttribute="bottom" id="owB-od-wBV"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="mainImage" destination="b5B-wQ-swR" id="YGM-Ht-7pd"/>
+                        <outlet property="spinner" destination="JKa-t3-ShB" id="q9z-Jd-LVg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
