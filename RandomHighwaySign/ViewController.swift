@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var mainImage: UIImageView!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
+    @IBOutlet weak var label: UILabel!;
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +45,10 @@ class ViewController: UIViewController {
                 let jsonRes = JSON(data!);
                 if let imageUrl = jsonRes["signs"][0]["largeimage"].string{
                     self.setImageData(imageUrl);
+                }
+                
+                if let signName = jsonRes["signs"][0]["title"].string{
+                    self.label.text = signName;
                 }
                 
         }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5209C18B1AE48CFE0078D43A /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5209C18A1AE48CFE0078D43A /* Config.swift */; };
+		5209C18D1AE5C6870078D43A /* Sign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5209C18C1AE5C6870078D43A /* Sign.swift */; };
 		5228AB391AE4574800A664D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5228AB381AE4574800A664D4 /* AppDelegate.swift */; };
 		5228AB3C1AE4574800A664D4 /* RandomHighwaySign.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5228AB3A1AE4574800A664D4 /* RandomHighwaySign.xcdatamodeld */; };
 		5228AB3E1AE4574800A664D4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5228AB3D1AE4574800A664D4 /* ViewController.swift */; };
@@ -30,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		5209C18A1AE48CFE0078D43A /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		5209C18C1AE5C6870078D43A /* Sign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sign.swift; sourceTree = "<group>"; };
 		5228AB331AE4574800A664D4 /* RandomHighwaySign.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RandomHighwaySign.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5228AB371AE4574800A664D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5228AB381AE4574800A664D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 				5228AB3A1AE4574800A664D4 /* RandomHighwaySign.xcdatamodeld */,
 				5228AB361AE4574800A664D4 /* Supporting Files */,
 				5209C18A1AE48CFE0078D43A /* Config.swift */,
+				5209C18C1AE5C6870078D43A /* Sign.swift */,
 			);
 			path = RandomHighwaySign;
 			sourceTree = "<group>";
@@ -194,6 +197,7 @@
 				TargetAttributes = {
 					5228AB321AE4574800A664D4 = {
 						CreatedOnToolsVersion = 6.3;
+						DevelopmentTeam = 66YLYEUCDM;
 					};
 					5228AB4A1AE4574800A664D4 = {
 						CreatedOnToolsVersion = 6.3;
@@ -295,6 +299,7 @@
 			files = (
 				5228AB3E1AE4574800A664D4 /* ViewController.swift in Sources */,
 				5209C18B1AE48CFE0078D43A /* Config.swift in Sources */,
+				5209C18D1AE5C6870078D43A /* Sign.swift in Sources */,
 				5228AB391AE4574800A664D4 /* AppDelegate.swift in Sources */,
 				5228AB3C1AE4574800A664D4 /* RandomHighwaySign.xcdatamodeld in Sources */,
 			);
@@ -426,9 +431,12 @@
 			baseConfigurationReference = FB44D173F8F0EB6C3562B704 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = RandomHighwaySign/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -437,9 +445,12 @@
 			baseConfigurationReference = B8A894FCFC6B704603F97F17 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = RandomHighwaySign/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
