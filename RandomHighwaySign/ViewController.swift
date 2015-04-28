@@ -10,10 +10,10 @@ import Alamofire;
 import SwiftyJSON;
 
 class ViewController: UIViewController {
-    
-    @IBOutlet weak var mainImage: UIImageView!
+
     @IBOutlet weak var spinner: UIActivityIndicatorView!
-    @IBOutlet weak var label: UILabel!;
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,15 +23,8 @@ class ViewController: UIViewController {
         
     }
 
-    override func canBecomeFirstResponder() -> Bool {
-        return true
-    }
-    
-    override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent) {
-        if motion == .MotionShake{
-            self.randomSignRequest()
-        }
-    }
+
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -48,20 +41,25 @@ class ViewController: UIViewController {
                 }
                 
                 if let signName = jsonRes["signs"][0]["title"].string{
-                    self.label.text = signName;
+                    self.titleLabel.text = signName;
                 }
                 
         }
     }
     
+
     func setImageData(imageUrl:String){
         let url = NSURL(string: imageUrl)
         let data = NSData(contentsOfURL: url!)
         
         let image = UIImage(data:data!)
-        mainImage.image = image
+        imageView.image = image
         spinner.stopAnimating()
         spinner.hidden = true
     }
 
+    @IBAction func randomTapped(sender : AnyObject) {
+        self.randomSignRequest()
+    }
+    
 }
