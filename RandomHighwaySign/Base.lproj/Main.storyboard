@@ -49,7 +49,7 @@
                     <navigationItem key="navigationItem" title="Highway Signs" id="CGh-Fb-FPq">
                         <barButtonItem key="rightBarButtonItem" title="Details" id="nbT-UR-27v">
                             <connections>
-                                <segue destination="yQw-7v-Utx" kind="presentation" identifier="OpenDetail" id="yq8-tA-y38"/>
+                                <segue destination="yQw-7v-Utx" kind="show" identifier="OpenDetail" id="yq8-tA-y38"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -113,6 +113,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yQw-7v-Utx" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="Yog-SC-JU0"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="E0e-ro-z1y">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

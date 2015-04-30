@@ -58,8 +58,9 @@ class ViewController: UIViewController {
     }
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == "OpenDetail"){
-            if let signDetailsViewController = segue.destinationViewController as? SignDetailsViewController{
+        if segue.identifier == "OpenDetail"{
+            println("segue.destinationViewController is \(segue.destinationViewController)")
+            if let signDetailsViewController = segue.destinationViewController.topViewController as? SignDetailsViewController{
                 signDetailsViewController.signTitle = titleLabel.text
             }
         }
