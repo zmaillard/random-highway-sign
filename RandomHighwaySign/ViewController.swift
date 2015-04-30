@@ -24,7 +24,6 @@ class ViewController: UIViewController {
     }
 
 
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -58,8 +57,24 @@ class ViewController: UIViewController {
         spinner.hidden = true
     }
 
-    @IBAction func randomTapped(sender : AnyObject) {
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if (segue.identifier == "OpenDetail"){
+            if let signDetailsViewController = segue.destinationViewController as? SignDetailsViewController{
+                signDetailsViewController.signTitle = titleLabel.text
+            }
+        }
+    }
+    
+    @IBAction func getNewTapped(sender : AnyObject) {
         self.randomSignRequest()
+    }
+    
+    @IBAction func loadDetailsPage(segue : UIStoryboardSegue){
+        
+    }
+    
+    @IBAction func backToMainController (segue : UIStoryboardSegue){
+        
     }
     
 }
