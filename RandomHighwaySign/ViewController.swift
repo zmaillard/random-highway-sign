@@ -15,6 +15,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     
+    var sign : Sign!;
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -34,14 +36,30 @@ class ViewController: UIViewController {
         spinner.startAnimating()
         Alamofire.request(.GET, Config.RandomSignEndpoint)
             .responseJSON{(_,_,data,_)in
+                self.sign = Sign();
                 let jsonRes = JSON(data!);
                 if let imageUrl = jsonRes["signs"][0]["largeimage"].string{
-                    self.setImageData(imageUrl);
+                    self.sign.imagePath = imageUrl
+                    self.setImageData(imageUrl)
                 }
                 
                 if let signName = jsonRes["signs"][0]["title"].string{
+                    self.sign.title = signName
                     self.titleLabel.text = signName;
                 }
+
+                if let latitude = jsonRes["signs"][0]["latitude"].double{
+                    self.sign.latitude = latitude
+                }
+
+                if let longitude = jsonRes["signs"][0]["longitude"].double{
+                    self.sign.longitude = longitude
+                }
+
+                if let description = jsonRes["signs"][0]["description"].string{
+                    self.sign.description = description
+                }
+                
                 
         }
     }
@@ -61,7 +79,7 @@ class ViewController: UIViewController {
         if segue.identifier == "OpenDetail"{
             println("segue.destinationViewController is \(segue.destinationViewController)")
             if let signDetailsViewController = segue.destinationViewController.topViewController as? SignDetailsViewController{
-                signDetailsViewController.signTitle = titleLabel.text
+                signDetailsViewController.sign = self.sign
             }
         }
     }

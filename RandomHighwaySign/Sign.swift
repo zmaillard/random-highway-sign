@@ -9,5 +9,13 @@
 import Foundation
 
 class Sign{
+    var title : String = "";
     
+    var imagePath : String = "";
+    
+    var latitude : Double = 0.0;
+    
+    var longitude : Double = 0.0;
+    
+    var description : String = "";
 }
