@@ -12,8 +12,8 @@ import SwiftyJSON;
 class ViewController: UIViewController {
 
     @IBOutlet weak var spinner: UIActivityIndicatorView!
-    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
     
     var sign : Sign!;
     
