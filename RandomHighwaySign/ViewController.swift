@@ -9,11 +9,11 @@ import UIKit
 import Alamofire;
 import SwiftyJSON;
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var spinner: UIActivityIndicatorView!
-    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var navItem: UINavigationItem!
     
     var sign : Sign!;
     
@@ -21,6 +21,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     
+        
         randomSignRequest();
         
     }
@@ -45,7 +46,7 @@ class ViewController: UIViewController {
                 
                 if let signName = jsonRes["signs"][0]["title"].string{
                     self.sign.title = signName
-                    self.titleLabel.text = signName;
+                    self.navItem.title = signName;
                 }
 
                 if let latitude = jsonRes["signs"][0]["latitude"].double{
@@ -63,7 +64,7 @@ class ViewController: UIViewController {
                 
         }
     }
-    
+
 
     func setImageData(imageUrl:String){
         let url = NSURL(string: imageUrl)
@@ -77,14 +78,13 @@ class ViewController: UIViewController {
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "OpenDetail"{
-            println("segue.destinationViewController is \(segue.destinationViewController)")
             if let signDetailsViewController = segue.destinationViewController.topViewController as? SignDetailsViewController{
                 signDetailsViewController.sign = self.sign
             }
         }
     }
     
-    @IBAction func getNewTapped(sender : AnyObject) {
+    @IBAction func getDetailsTapped(sender : AnyObject) {
         self.randomSignRequest()
     }
     
