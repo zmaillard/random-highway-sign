@@ -12,18 +12,17 @@ import SwiftyJSON;
 class ViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var spinner: UIActivityIndicatorView!
-    @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var navItem: UINavigationItem!
     
     var sign : Sign!;
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-    
-        
-        randomSignRequest();
+
+        randomSignRequest()
         
     }
 
@@ -38,31 +37,10 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         spinner.startAnimating()
         Alamofire.request(.GET, Config.RandomSignEndpoint)
             .responseJSON{(_,_,data,_)in
-                self.sign = Sign();
                 let jsonRes = JSON(data!);
-                if let imageUrl = jsonRes["signs"][0]["largeimage"].string{
-                    self.sign.imagePath = imageUrl
-                    self.setImageData(imageUrl)
-                }
-                
-                if let signName = jsonRes["signs"][0]["title"].string{
-                    self.sign.title = signName
-                    self.navItem.title = signName;
-                }
-
-                if let latitude = jsonRes["signs"][0]["latitude"].double{
-                    self.sign.latitude = latitude
-                }
-
-                if let longitude = jsonRes["signs"][0]["longitude"].double{
-                    self.sign.longitude = longitude
-                }
-
-                if let description = jsonRes["signs"][0]["description"].string{
-                    self.sign.description = description
-                }
-                
-                
+                self.sign = Sign.fromJson(jsonRes["signs"][0]);
+                self.setImageData(self.sign.largeImage)
+                self.navItem.title = self.sign.title
         }
     }
 
