@@ -8,7 +8,7 @@
         <!--Title-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="RandomHighwaySign" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="randomSign" id="BYZ-38-t0r" customClass="ViewController" customModule="RandomHighwaySign" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -84,7 +84,7 @@
         <!--Random-->
         <scene sceneID="2fx-nT-JUf">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="h45-Ch-pYC" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="randomSignNav" automaticallyAdjustsScrollViewInsets="NO" toolbarHidden="NO" id="h45-Ch-pYC" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Random" id="r2E-ok-5Dk"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Xqc-DZ-mIf">
@@ -101,7 +101,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tzf-Le-36j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="779" y="-574"/>
+            <point key="canvasLocation" x="871" y="-592"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wRj-uM-cmp">
@@ -256,12 +256,31 @@
                     </tabBar>
                     <connections>
                         <segue destination="Nvf-f1-Vpv" kind="relationship" relationship="viewControllers" id="mHr-Zw-GSk"/>
-                        <segue destination="h45-Ch-pYC" kind="relationship" relationship="viewControllers" id="tXN-lx-kyr"/>
+                        <segue destination="OX7-XL-aMA" kind="relationship" relationship="viewControllers" id="tnA-Vs-N4n"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FgF-wx-tKx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-33" y="-574"/>
+            <point key="canvasLocation" x="-555" y="-556"/>
+        </scene>
+        <!--RandomTab-->
+        <scene sceneID="dt3-3I-X3h">
+            <objects>
+                <viewController title="RandomTab" id="OX7-XL-aMA" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Aq1-jN-RVL"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ecn-gR-caA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Tjf-Nm-CWj">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Random" id="hKl-zV-8aR"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8mF-hN-2Ze" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="153" y="-550"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="qol-E2-SSo">

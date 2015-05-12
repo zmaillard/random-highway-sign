@@ -11,7 +11,7 @@ import CoreLocation
 import Alamofire;
 import SwiftyJSON;
 
-class GetCurrentController: UITableViewController, CLLocationManagerDelegate {
+class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UITabBarControllerDelegate {
 
     //Url for Sign Query
     let locationManager = CLLocationManager()
@@ -24,6 +24,8 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.tabBarController?.delegate = self
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -103,6 +105,14 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate {
         }
     }
     
+    func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
+        if (viewController.title == "RandomTab"){
+            let modalViewController = storyboard!.instantiateViewControllerWithIdentifier("randomSignNav") as! UIViewController
+            self.presentViewController(modalViewController, animated: true, completion:nil)
+            return true
+        }
+        return false
+    }
     
     func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .AuthorizedWhenInUse{
