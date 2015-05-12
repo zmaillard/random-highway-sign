@@ -131,6 +131,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         }
     }
     
+    
     @IBAction func getDetailsTapped(sender : AnyObject) {
         self.randomSignRequest()
     }

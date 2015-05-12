@@ -18,6 +18,7 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     let baseUrl = "http://www.sagebrushgis.com/query"
     
     var currentPage = 0;
+    var modal : UIViewController!
     
     var signs : Array<Sign> = [Sign]()
     
@@ -107,8 +108,8 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     
     func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
         if (viewController.title == "RandomTab"){
-            let modalViewController = storyboard!.instantiateViewControllerWithIdentifier("randomSignNav") as! UIViewController
-            self.presentViewController(modalViewController, animated: true, completion:nil)
+            self.modal = storyboard!.instantiateViewControllerWithIdentifier("randomSignNav") as! UIViewController
+            self.presentViewController(modal, animated: true, completion:nil)
             return true
         }
         return false
@@ -122,6 +123,10 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     
     @IBAction func refreshLocation(sender : AnyObject) {
         locationManager.startUpdatingLocation()
+    }
+    
+    @IBAction func closeRandomSignView(segue: UIStoryboardSegue){
+        self.tabBarController!.selectedIndex = 0;
     }
     
     /*

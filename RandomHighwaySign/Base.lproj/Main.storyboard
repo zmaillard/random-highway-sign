@@ -65,7 +65,7 @@
                     <navigationItem key="navigationItem" title="Title" id="kGH-xH-S0y">
                         <barButtonItem key="leftBarButtonItem" style="done" systemItem="done" id="xoN-02-uGS">
                             <connections>
-                                <segue destination="c2s-GX-qol" kind="unwind" unwindAction="backToMainController:" id="oOw-9z-2HX"/>
+                                <segue destination="c2s-GX-qol" kind="unwind" unwindAction="closeRandomSignView:" id="jIa-l5-jUE"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
