@@ -15,13 +15,13 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var navItem: UINavigationItem!
+    @IBOutlet weak var detailsButton: UIBarButtonItem!
     
     var sign : Sign!;
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-
+        
         randomSignRequest()
         
     }
