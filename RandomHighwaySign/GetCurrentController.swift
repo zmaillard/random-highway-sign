@@ -105,16 +105,7 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
                 
         }
     }
-    
-    func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
-        if (viewController.title == "RandomTab"){
-            self.modal = storyboard!.instantiateViewControllerWithIdentifier("randomSignNav") as! UIViewController
-            self.presentViewController(modal, animated: true, completion:nil)
-            return true
-        }
-        return false
-    }
-    
+
     func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .AuthorizedWhenInUse{
             locationManager.startUpdatingLocation()
@@ -124,10 +115,7 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     @IBAction func refreshLocation(sender : AnyObject) {
         locationManager.startUpdatingLocation()
     }
-    
-    @IBAction func closeRandomSignView(segue: UIStoryboardSegue){
-        self.tabBarController!.selectedIndex = 0;
-    }
+
     
     /*
     // Override to support conditional editing of the table view.

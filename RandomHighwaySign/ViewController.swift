@@ -12,21 +12,67 @@ import SwiftyJSON;
 class ViewController: UIViewController, UIScrollViewDelegate {
 
     @IBOutlet weak var spinner: UIActivityIndicatorView!
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var detailsButton: UIBarButtonItem!
+    
+    let scrollView:UIScrollView =  UIScrollView()
+    let imageView:UIImageView =  UIImageView()
     
     var sign : Sign!;
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupImage()
+        
         randomSignRequest()
         
     }
 
+    func setupImage(){
+        scrollView.frame = view.bounds
+        scrollView.delegate = self
+        scrollView.minimumZoomScale = 1.0
+        scrollView.maximumZoomScale = 3.0
+        scrollView.zoomScale = 1.0
+        view.addSubview(scrollView)
+        
+        imageView.contentMode = .ScaleAspectFill
+        scrollView.addSubview(imageView)
+        
+        var doubleTapRecognizer = UITapGestureRecognizer(target:self, action:"scrollViewDoubleTapped:")
+        doubleTapRecognizer.numberOfTapsRequired = 2
+        doubleTapRecognizer.numberOfTouchesRequired = 1
+        scrollView.addGestureRecognizer(doubleTapRecognizer)
+        
 
+        
+        spinner.stopAnimating()
+        spinner.hidden = true
+    }
+
+    
+    
+    func centerFrameFromImage(image: UIImage?) -> CGRect {
+        if image == nil {
+            return CGRectZero
+        }
+        
+        let scaleFactor = scrollView.frame.size.width / image!.size.width
+        let newHeight = image!.size.height * scaleFactor
+        
+        var newImageSize = CGSize(width: scrollView.frame.size.width, height: newHeight)
+        
+        newImageSize.height = min(scrollView.frame.size.height, newImageSize.height)
+        
+        let centerFrame = CGRect(x: 0.0, y: scrollView.frame.size.height/2 - newImageSize.height/2, width: newImageSize.width, height: newImageSize.height)
+        
+        return centerFrame
+    }
+    
+    
+
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -51,52 +97,33 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         
         let image = UIImage(data:data!)
         imageView.image = image
-        //imageView.frame = CGRect(origin: CGPoint(x: 0,y: 0), size: image!.size)
+        imageView.frame = self.centerFrameFromImage(image)
         
-        //scrollView.addSubview(imageView)
-        //scrollView.contentSize = image!.size
-        
-        var doubleTapRecognizer = UITapGestureRecognizer(target:self, action:"scrollViewDoubleTapped:")
-        doubleTapRecognizer.numberOfTapsRequired = 2
-        doubleTapRecognizer.numberOfTouchesRequired = 1
-        scrollView.addGestureRecognizer(doubleTapRecognizer)
-        
-        // Set the translatesAutoresizingMaskIntoConstraints to NO so that the views autoresizing mask is not translated into auto layout constraints.
-        //imageView.setTranslatesAutoresizingMaskIntoConstraints(false);
-        //scrollView.setTranslatesAutoresizingMaskIntoConstraints(false);
-        
-        // Set up the minimum & maximum zoom scales
-        // configure image and scroll view for scrolling to extents of actual image
-        let widthScale = scrollView.frame.size.width / image!.size.width;
-        let heightScale = scrollView.frame.size.height / image!.size.height;
-        self.scrollView.minimumZoomScale = max(widthScale, heightScale);
-        self.scrollView.maximumZoomScale = 1.0
-        self.scrollView.zoomScale = self.scrollView.minimumZoomScale;
-        self.scrollView.delegate = self
         centerScrollViewContents()
         
         spinner.stopAnimating()
         spinner.hidden = true
     }
 
-    func centerScrollViewContents(){
-        let boundsSize = scrollView.bounds.size
-        var contentsFrame = imageView.frame
+    func centerScrollViewContents() {
+        let boundsSize = scrollView.frame
+        var contentsFrame = self.imageView.frame
         
-        if contentsFrame.size.width < boundsSize.width{
+        if contentsFrame.size.width < boundsSize.width {
             contentsFrame.origin.x = (boundsSize.width - contentsFrame.size.width) / 2.0
-        }else{
+        } else {
             contentsFrame.origin.x = 0.0
         }
         
-        if contentsFrame.size.height < boundsSize.height{
-            contentsFrame.origin.y = (boundsSize.height - contentsFrame.size.height) / 2.0
-        }else{
+        if contentsFrame.size.height < boundsSize.height {
+            contentsFrame.origin.y = (boundsSize.height - scrollView.scrollIndicatorInsets.top - scrollView.scrollIndicatorInsets.bottom - contentsFrame.size.height) / 2.0
+        } else {
             contentsFrame.origin.y = 0.0
         }
         
-        imageView.frame = contentsFrame
+        self.imageView.frame = contentsFrame
     }
+    
     
     func scrollViewDoubleTapped(recognizer : UITapGestureRecognizer){
         let pointInView = recognizer.locationInView(imageView)

@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Fkn-9d-oey">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Title-->
@@ -20,32 +19,10 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="2Ox-fK-iJG">
                                 <rect key="frame" x="290" y="290" width="20" height="20"/>
                             </activityIndicatorView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZtM-8B-X3w">
-                                <rect key="frame" x="0.0" y="64" width="600" height="492"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IrY-7a-UEI">
-                                        <rect key="frame" x="8" y="8" width="584" height="476"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="584" id="JKL-Ps-bpH"/>
-                                            <constraint firstAttribute="height" constant="476" id="gR9-Gz-yOH"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="IrY-7a-UEI" firstAttribute="leading" secondItem="ZtM-8B-X3w" secondAttribute="leadingMargin" id="1xk-IA-9he"/>
-                                    <constraint firstItem="IrY-7a-UEI" firstAttribute="top" secondItem="ZtM-8B-X3w" secondAttribute="topMargin" id="570-qK-Rxx"/>
-                                    <constraint firstItem="IrY-7a-UEI" firstAttribute="trailing" secondItem="ZtM-8B-X3w" secondAttribute="trailingMargin" id="Uuo-Nu-X2A"/>
-                                    <constraint firstItem="IrY-7a-UEI" firstAttribute="bottom" secondItem="ZtM-8B-X3w" secondAttribute="bottomMargin" id="Wfo-OI-X9j"/>
-                                </constraints>
-                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ZtM-8B-X3w" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="0HB-H5-oFV"/>
-                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="ZtM-8B-X3w" secondAttribute="bottom" id="Aoz-82-70r"/>
                             <constraint firstAttribute="centerY" secondItem="2Ox-fK-iJG" secondAttribute="centerY" id="Ek1-09-CWv"/>
-                            <constraint firstAttribute="trailing" secondItem="ZtM-8B-X3w" secondAttribute="trailing" id="aar-O1-QFv"/>
-                            <constraint firstItem="ZtM-8B-X3w" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="xOL-ad-a4Y"/>
                             <constraint firstAttribute="centerX" secondItem="2Ox-fK-iJG" secondAttribute="centerX" id="ymX-6h-GNg"/>
                         </constraints>
                     </view>
@@ -64,16 +41,14 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="imageView" destination="IrY-7a-UEI" id="fhs-9a-COf"/>
                         <outlet property="navItem" destination="kGH-xH-S0y" id="F13-Hi-hmB"/>
-                        <outlet property="scrollView" destination="ZtM-8B-X3w" id="Qcj-r3-jtc"/>
                         <outlet property="spinner" destination="2Ox-fK-iJG" id="i8L-1A-3Ef"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <exit id="c2s-GX-qol" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2403" y="-574"/>
+            <point key="canvasLocation" x="1063" y="-556"/>
         </scene>
         <!--Random-->
         <scene sceneID="2fx-nT-JUf">
@@ -87,12 +62,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="8yT-5J-3jB" kind="relationship" relationship="rootViewController" id="2YH-DI-DsE"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="L36-r7-fUd"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tzf-Le-36j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="871" y="-592"/>
+            <point key="canvasLocation" x="311" y="-556"/>
         </scene>
         <!--Details-->
         <scene sceneID="wRj-uM-cmp">
@@ -112,7 +87,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pHp-ft-b1O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2395" y="130"/>
+            <point key="canvasLocation" x="2731" y="-632"/>
         </scene>
         <!--Sign Details View Controller-->
         <scene sceneID="GjW-JM-kaZ">
@@ -248,31 +223,12 @@
                     </tabBar>
                     <connections>
                         <segue destination="Nvf-f1-Vpv" kind="relationship" relationship="viewControllers" id="mHr-Zw-GSk"/>
-                        <segue destination="OX7-XL-aMA" kind="relationship" relationship="viewControllers" id="tnA-Vs-N4n"/>
+                        <segue destination="h45-Ch-pYC" kind="relationship" relationship="viewControllers" id="iEp-iw-9Aa"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FgF-wx-tKx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-555" y="-556"/>
-        </scene>
-        <!--RandomTab-->
-        <scene sceneID="dt3-3I-X3h">
-            <objects>
-                <viewController title="RandomTab" id="OX7-XL-aMA" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Aq1-jN-RVL"/>
-                        <viewControllerLayoutGuide type="bottom" id="Ecn-gR-caA"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Tjf-Nm-CWj">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Random" id="hKl-zV-8aR"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8mF-hN-2Ze" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="153" y="-550"/>
         </scene>
         <!--Root View Controller-->
         <scene sceneID="qol-E2-SSo">
@@ -331,26 +287,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vD9-Fl-plF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="613" y="334"/>
-        </scene>
-        <!--Tab Bar Controller-->
-        <scene sceneID="7jU-gZ-hSl">
-            <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="8yT-5J-3jB" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="fZB-nb-h9X"/>
-                    <nil key="simulatedBottomBarMetrics"/>
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="Ghx-J3-eq4">
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="jQS-Xn-rzw"/>
-                        <segue destination="yQw-7v-Utx" kind="relationship" relationship="viewControllers" id="q0A-Rv-3fJ"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nE9-an-2Ce" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1591" y="-574"/>
         </scene>
     </scenes>
 </document>
