@@ -82,6 +82,8 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         if let newLoc : CLLocation = locations[locations.count - 1] as? CLLocation
         {
             locationManager.stopUpdatingLocation()
+            println(newLoc.coordinate.latitude)
+            println(newLoc.coordinate.longitude)
             makeRequest(newLoc.coordinate.latitude, longitude: newLoc.coordinate.longitude)
         }
     }
@@ -89,20 +91,27 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     func makeRequest(latitude:Double, longitude:Double){
         let radius = 5
         let page = 1
-        
-        Alamofire.request(.GET, baseUrl, parameters: ["type":"geo","lat": latitude, "lon":longitude, "radius":radius, "page":page])
-            .responseJSON{ (_,_,data,_) in
-                println (data)
-                let jsonRes = JSON(data!);
-                self.signs = [Sign]()
+        Alamofire.request(RandomRequestRouter.Geo(latitude:latitude,longitude:longitude,radius:radius,page:page))
+            .responseCollection{ (_,_,data:Sign?,error) in
+                if error == nil{
+                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)){
+                        println (data)
+                        let jsonRes = JSON(data!);
+                        self.signs = [Sign]()
                 
                 
-                for (index: String, subJson: JSON) in jsonRes["signs"] {
-                    self.signs.append(Sign.fromJson(subJson))
+                        for (index: String, subJson: JSON) in jsonRes["signs"] {
+                            self.signs.append(Sign.fromJson(subJson))
+                        }
+                    
+                    
+                        dispatch_async(dispatch_get_main_queue()){
+                            self.tableView.reloadData()
+                        }
+                    }
+
                 }
-                
-                self.tableView.reloadData()
-                
+        }
         }
     }
 

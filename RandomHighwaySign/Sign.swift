@@ -8,42 +8,103 @@
 
 import Foundation
 import SwiftyJSON
+import Alamofire
 
-class County{
+@objc public protocol ResponseObjectSerializable{
+    init(response:NSHTTPURLResponse, representation:AnyObject)
+}
+
+@objc public protocol ResponseCollectionSerializable {
+    static func collection(#response: NSHTTPURLResponse, representation: AnyObject) -> [Self]
+}
+
+extension Alamofire.Request{
+    public func responseObject<T: ResponseObjectSerializable>(completionHandler: (NSURLRequest, NSHTTPURLResponse?, T?, NSError?) -> Void) -> Self {
+        let serializer: Serializer = { (request, response, data) in
+            let JSONSerializer = Request.JSONResponseSerializer(options: .AllowFragments)
+            let (JSON: AnyObject?, serializationError) = JSONSerializer(request, response, data)
+            if response != nil && JSON != nil {
+                return (T(response: response!, representation: JSON!), nil)
+            } else {
+                return (nil, serializationError)
+            }
+        }
+        
+        return response(serializer: serializer, completionHandler: { (request, response, object, error) in
+            completionHandler(request, response, object as? T, error)
+        })
+    }
+}
+
+
+
+extension Alamofire.Request {
+    public func responseCollection<T: ResponseCollectionSerializable>(completionHandler: (NSURLRequest, NSHTTPURLResponse?, [T]?, NSError?) -> Void) -> Self {
+        let serializer: Serializer = { (request, response, data) in
+            let JSONSerializer = Request.JSONResponseSerializer(options: .AllowFragments)
+            let (JSON: AnyObject?, serializationError) = JSONSerializer(request, response, data)
+            if response != nil && JSON != nil {
+                return (T.collection(response: response!, representation: JSON!), nil)
+            } else {
+                return (nil, serializationError)
+            }
+        }
+        
+        return response(serializer: serializer, completionHandler: { (request, response, object, error) in
+            completionHandler(request, response, object as? [T], error)
+        })
+    }
+}
+
+enum RandomRequestRouter : URLRequestConvertible{
+    static let baseUrl = "http://www.sagebrushgis.com/"
+    
+    case Single()
+    case Geo(latitude:Double, longitude:Double, radius:Int, page:Int)
+    
+    var URLRequest: NSURLRequest{
+        let (path:String, parameters:[String: AnyObject]?) = {
+            switch self{
+            case .Single():
+                return ("/random/",["format":"json"])
+            case .Geo(let latitude, let longitude, let radius, let page) where page > 1:
+                return ("/query/", ["type":"geo","lat": latitude, "lon":longitude, "radius":radius, "page":page])
+            case .Geo(let latitude, let longitude, let radius, _):
+                return ("/query/", ["type":"geo","lat": latitude, "lon":longitude, "radius":radius])
+        }
+        }()
+        
+        let URL =   NSURL(string: RandomRequestRouter.baseUrl)
+        let URLRequest = NSURLRequest(URL: URL!.URLByAppendingPathComponent(path))
+        let encoding = Alamofire.ParameterEncoding.URL
+        
+        return encoding.encode(URLRequest, parameters: parameters).0
+        
+    }
+    
+}
+
+final class County : ResponseObjectSerializable{
     var name : String = ""
     var slug : String = ""
     var stateName : String = ""
     var stateSlug : String = ""
     var type : String = ""
     
-    static func fromJson(json:JSON) -> County{
-        var c : County = County()
+    
+    @objc required init(response: NSHTTPURLResponse, representation: AnyObject){
         
-        if let name = json["name"].string{
-            c.name = name
-        }
-        
-        if let slug = json["slug"].string{
-            c.slug = slug
-        }
-        
-        if let statename = json["statename"].string{
-            c.stateName = statename
-        }
-        
-        if let stateslug = json["stateslug"].string{
-            c.stateSlug = stateslug
-        }
-        
-        if let type = json["type"].string{
-            c.type = type
-        }
-        
-        return c
+        self.name = representation.valueForKeyPath("name") as! String
+        self.slug = representation.valueForKeyPath("slug") as! String
+        self.stateName = representation.valueForKeyPath("statename") as! String
+        self.stateSlug = representation.valueForKeyPath("stateslug") as! String
+        self.type = representation.valueForKeyPath("type") as! String
+
     }
+
 }
 
-class Highway{
+final class Highway : ResponseObjectSerializable, ResponseCollectionSerializable{
     var highway : String = ""
     var highwaySlug : String = ""
     var milepost : Double = 0.0
@@ -51,46 +112,29 @@ class Highway{
     var type : String = ""
     var typeSlug : String = ""
     var url : String = ""
+
     
-    static func fromJson(json:JSON) -> Highway{
-        var h : Highway = Highway()
+    @objc required init(response: NSHTTPURLResponse, representation: AnyObject){
         
-        if let highway = json["highway"].string{
-            h.highway = highway
-        }
-        
-        if let highwayslug = json["highwayslug"].string{
-            h.highwaySlug = highwayslug
-        }
-        
-        if let milepost = json["milepost"].double{
-            h.milepost = milepost
-        }
-        
-        if let sort = json["sort"].int{
-            h.sort = sort
-        }
-        
-        if let type = json["type"].string{
-            h.type = type
-        }
-        
-        if let typeSlug = json["typeslug"].string{
-            h.typeSlug = typeSlug
-        }
-        
-        if let url = json["url"].string{
-            h.url = url
-        }
-        
-        return h
+        self.highway = representation.valueForKeyPath("highway") as! String
+        self.highwaySlug = representation.valueForKeyPath("highwayslug") as! String
+        self.milepost = representation.valueForKeyPath("milepost") as! Double
+        self.sort = representation.valueForKeyPath("sort") as! Int
+        self.type = representation.valueForKeyPath("type") as! String
+        self.typeSlug = representation.valueForKeyPath("typeSlug") as! String
+        self.url = representation.valueForKeyPath("url") as! String
     }
     
+    @objc static func collection(#response: NSHTTPURLResponse, representation: AnyObject) -> [Highway]{
+        var highwayArray = representation as! [AnyObject]
+        
+        return highwayArray.map({Highway(response: response, representation: $0)})
+    }
     
     
 }
 
-class Sign{
+final class Sign : ResponseObjectSerializable, ResponseCollectionSerializable{
     var country : String = ""
     var county : County?
     var date : String = ""
@@ -107,66 +151,30 @@ class Sign{
     var thumbnail : String = ""
     var title : String = ""
     
-    static func fromJson(json:JSON) -> Sign{
-        var s : Sign = Sign()
+    @objc required init(response: NSHTTPURLResponse, representation: AnyObject){
         
-        if let country = json["country"].string{
-            s.country = country
-        }
+        self.country = representation.valueForKeyPath("title") as! String
+        self.date = representation.valueForKeyPath("date") as! String
+        self.description = representation.valueForKeyPath("description") as! String
+        self.id = representation.valueForKeyPath("id") as! Int64
+        self.largeImage = representation.valueForKeyPath("largeimage") as! String
+        self.latitude = representation.valueForKeyPath("latitude") as! Double
+        self.longitude = representation.valueForKeyPath("longitude") as! Double
+        self.mediumImage = representation.valueForKeyPath("mediumimage") as! String
+        self.place = representation.valueForKeyPath("place") as! String
+        self.smallImage = representation.valueForKeyPath("smallimage") as! String
+        self.state = representation.valueForKeyPath("state") as! String
+        self.thumbnail = representation.valueForKeyPath("thumbnail") as! String
+        self.title = representation.valueForKeyPath("title") as! String
         
-        s.county = County.fromJson(json["county"])
+        self.county =  County(response:response, representation:representation.valueForKeyPath("county")!)
+        self.highways = Highway.collection(response: response, representation: representation.valueForKeyPath("highways")!)
+    
+    }
+    
+    @objc static func collection(#response: NSHTTPURLResponse, representation: AnyObject) -> [Sign]{
+        var signArray = representation as! [AnyObject]
         
-        if let date = json["date"].string{
-            s.date = date
-        }
-        
-        if let description = json["description"].string{
-            s.description = description
-        }
-        
-        for (index: String, subJson: JSON) in json["highways"] {
-            s.highways.append(Highway.fromJson(subJson))
-        }
-        
-        if let id = json["id"].int64{
-            s.id = id
-        }
-        
-        if let largeimage = json["largeimage"].string{
-            s.largeImage = largeimage
-        }
-        
-        if let latitude = json["latitude"].double{
-            s.latitude = latitude
-        }
-        
-        if let longitude = json["longitude"].double{
-            s.longitude = longitude
-        }
-        
-        if let mediumimage = json["mediumimage"].string{
-            s.mediumImage = mediumimage
-        }
-        
-        if let place = json["place"].string{
-            s.place = place
-        }
-        
-        if let smallimage = json["smallimage"].string{
-            s.smallImage = smallimage
-        }
-        
-        if let state = json["state"].string{
-            s.state = state
-        }
-        
-        if let thumbnail = json["thumbnail"].string{
-            s.thumbnail = thumbnail
-        }
-        
-        if let title = json["title"].string{
-            s.title = title
-        }
-        return s
+        return signArray.map({Sign(response: response, representation: $0)})
     }
 }

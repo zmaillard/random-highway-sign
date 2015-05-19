@@ -81,7 +81,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     func randomSignRequest(){
         //spinner.hidden = false
         //spinner.startAnimating()
-        Alamofire.request(.GET, Config.RandomSignEndpoint)
+        Alamofire.request(RandomRequestRouter.Single())
             .responseJSON{(_,_,data,_)in
                 let jsonRes = JSON(data!);
                 self.sign = Sign.fromJson(jsonRes["signs"][0]);
