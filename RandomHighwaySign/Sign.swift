@@ -56,6 +56,47 @@ extension Alamofire.Request {
     }
 }
 
+extension Alamofire.Request {
+    class func imageResponseSerializer() -> Serializer{
+        return {request, response, data in
+            if data == nil{
+                return (nil, nil)
+            }
+            
+            let image = UIImage(data:data!, scale:UIScreen.mainScreen().scale)
+            
+            return (image, nil)
+        }
+    }
+    
+    func responseImage(completionHandler: (NSURLRequest, NSHTTPURLResponse?, UIImage?, NSError?) -> Void) -> Self {
+        return response(serializer: Request.imageResponseSerializer(), completionHandler: { (request, response, image, error) in
+            completionHandler(request, response, image as? UIImage, error)
+        })
+    }
+}
+
+/*extension Alamofire.Request {
+class func imageResponseSerializer() -> Serializer {
+return { request, response, data in
+if data == nil {
+return (nil, nil)
+}
+
+let image = UIImage(data: data!, scale: UIScreen.mainScreen().scale)
+
+return (image, nil)
+}
+}
+
+func responseImage(completionHandler: (NSURLRequest, NSHTTPURLResponse?, UIImage?, NSError?) -> Void) -> Self {
+return response(serializer: Request.imageResponseSerializer(), completionHandler: { (request, response, image, error) in
+completionHandler(request, response, image as? UIImage, error)
+})
+}
+}*/
+
+
 enum RandomRequestRouter : URLRequestConvertible{
     static let baseUrl = "http://www.sagebrushgis.com/"
     
@@ -78,8 +119,11 @@ enum RandomRequestRouter : URLRequestConvertible{
         let URLRequest = NSURLRequest(URL: URL!.URLByAppendingPathComponent(path))
         let encoding = Alamofire.ParameterEncoding.URL
         
-        return encoding.encode(URLRequest, parameters: parameters).0
+        let resp =  encoding.encode(URLRequest, parameters: parameters).0
         
+        println(resp)
+        
+        return resp
     }
     
 }
@@ -121,7 +165,7 @@ final class Highway : NSObject, ResponseObjectSerializable, ResponseCollectionSe
         self.milepost = representation.valueForKeyPath("milepost") as! Double
         self.sort = representation.valueForKeyPath("sort") as! Int
         self.type = representation.valueForKeyPath("type") as! String
-        self.typeSlug = representation.valueForKeyPath("typeSlug") as! String
+        self.typeSlug = representation.valueForKeyPath("typeslug") as! String
         self.url = representation.valueForKeyPath("url") as! String
     }
     
@@ -140,7 +184,7 @@ final class Sign : NSObject, ResponseObjectSerializable, ResponseCollectionSeria
     var date : String = ""
     var imageDescription : String = ""
     var highways : Array<Highway> = [Highway]()
-    var id : Int64 = 0
+    var id : Int = 0
     var largeImage : String = ""
     var latitude : Double = 0.0
     var longitude : Double = 0.0
@@ -156,7 +200,7 @@ final class Sign : NSObject, ResponseObjectSerializable, ResponseCollectionSeria
         self.country = representation.valueForKeyPath("title") as! String
         self.date = representation.valueForKeyPath("date") as! String
         self.imageDescription = representation.valueForKeyPath("description") as! String
-        self.id = representation.valueForKeyPath("id") as! Int64
+        self.id = representation.valueForKeyPath("id") as! Int
         self.largeImage = representation.valueForKeyPath("largeimage") as! String
         self.latitude = representation.valueForKeyPath("latitude") as! Double
         self.longitude = representation.valueForKeyPath("longitude") as! Double
@@ -173,8 +217,12 @@ final class Sign : NSObject, ResponseObjectSerializable, ResponseCollectionSeria
     }
     
     @objc static func collection(#response: NSHTTPURLResponse, representation: AnyObject) -> [Sign]{
-        var signArray = representation as! [AnyObject]
+        var signs = [Sign]()
+
+        for sign in representation.valueForKeyPath("signs") as! [NSDictionary]{
+            signs.append(Sign(response: response, representation: sign))
+        }
         
-        return signArray.map({Sign(response: response, representation: $0)})
+        return signs
     }
 }

@@ -61,22 +61,42 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
 
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("SignCell", forIndexPath: indexPath) as! UITableViewCell
-        
+        let cell = tableView.dequeueReusableCellWithIdentifier("SignCell", forIndexPath: indexPath) as! ResultTableViewCell
         let sign = self.signs[indexPath.row]
+        
+        cell.imageView!.image = nil
+        cell.request?.cancel()
         
         cell.textLabel?.text = sign.title
         cell.detailTextLabel?.text = "\(sign.place), \(sign.state)"
         
-        let url = NSURL(string: sign.thumbnail)
-        let data = NSData(contentsOfURL: url!)
-        
-        let image = UIImage(data:data!)
-        cell.imageView?.image = image
+        cell.request = Alamofire.request(.GET, sign.thumbnail).responseImage() {
+            (request, _, image, error) in
+            if error == nil && image != nil {
+                cell.imageView!.image = image
+            }
+        }
         
         return cell
     }
     
+/*let cell = collectionView.dequeueReusableCellWithReuseIdentifier(PhotoBrowserCellIdentifier, forIndexPath: indexPath) as! PhotoBrowserCollectionViewCell
+
+let imageURL = (photos.objectAtIndex(indexPath.row) as! PhotoInfo).url
+
+cell.imageView.image = nil
+cell.request?.cancel()
+
+cell.request = Alamofire.request(.GET, imageURL).responseImage() {
+(request, _, image, error) in
+if error == nil && image != nil {
+cell.imageView.image = image
+}
+}
+
+return cell*/
+
+
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         
         if let newLoc : CLLocation = locations[locations.count - 1] as? CLLocation
@@ -164,5 +184,9 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     }
     */
 
+}
+
+class ResultTableViewCell : UITableViewCell{
+    var request: Alamofire.Request?
 }
 
