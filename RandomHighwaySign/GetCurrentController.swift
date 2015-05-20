@@ -92,18 +92,11 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         let radius = 5
         let page = 1
         Alamofire.request(RandomRequestRouter.Geo(latitude:latitude,longitude:longitude,radius:radius,page:page))
-            .responseCollection{ (_,_,data:Sign?,error) in
+            .responseCollection{ (_,_,data:[Sign]?,error) in
                 if error == nil{
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)){
-                        println (data)
-                        let jsonRes = JSON(data!);
-                        self.signs = [Sign]()
-                
-                
-                        for (index: String, subJson: JSON) in jsonRes["signs"] {
-                            self.signs.append(Sign.fromJson(subJson))
-                        }
-                    
+                        
+                        self.signs = data!
                     
                         dispatch_async(dispatch_get_main_queue()){
                             self.tableView.reloadData()
@@ -112,8 +105,8 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
 
                 }
         }
-        }
     }
+    
 
     func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .AuthorizedWhenInUse{

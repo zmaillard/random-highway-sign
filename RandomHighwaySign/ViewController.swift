@@ -82,9 +82,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         //spinner.hidden = false
         //spinner.startAnimating()
         Alamofire.request(RandomRequestRouter.Single())
-            .responseJSON{(_,_,data,_)in
-                let jsonRes = JSON(data!);
-                self.sign = Sign.fromJson(jsonRes["signs"][0]);
+            .responseCollection{(_,_,data:[Sign]?,_)in
+                self.sign = data![0]
                 self.setImageData(self.sign.largeImage)
                 self.navItem.title = self.sign.title
         }

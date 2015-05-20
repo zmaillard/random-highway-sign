@@ -84,7 +84,7 @@ enum RandomRequestRouter : URLRequestConvertible{
     
 }
 
-final class County : ResponseObjectSerializable{
+final class County : NSObject, ResponseObjectSerializable{
     var name : String = ""
     var slug : String = ""
     var stateName : String = ""
@@ -104,7 +104,7 @@ final class County : ResponseObjectSerializable{
 
 }
 
-final class Highway : ResponseObjectSerializable, ResponseCollectionSerializable{
+final class Highway : NSObject, ResponseObjectSerializable, ResponseCollectionSerializable{
     var highway : String = ""
     var highwaySlug : String = ""
     var milepost : Double = 0.0
@@ -134,11 +134,11 @@ final class Highway : ResponseObjectSerializable, ResponseCollectionSerializable
     
 }
 
-final class Sign : ResponseObjectSerializable, ResponseCollectionSerializable{
+final class Sign : NSObject, ResponseObjectSerializable, ResponseCollectionSerializable{
     var country : String = ""
     var county : County?
     var date : String = ""
-    var description : String = ""
+    var imageDescription : String = ""
     var highways : Array<Highway> = [Highway]()
     var id : Int64 = 0
     var largeImage : String = ""
@@ -155,7 +155,7 @@ final class Sign : ResponseObjectSerializable, ResponseCollectionSerializable{
         
         self.country = representation.valueForKeyPath("title") as! String
         self.date = representation.valueForKeyPath("date") as! String
-        self.description = representation.valueForKeyPath("description") as! String
+        self.imageDescription = representation.valueForKeyPath("description") as! String
         self.id = representation.valueForKeyPath("id") as! Int64
         self.largeImage = representation.valueForKeyPath("largeimage") as! String
         self.latitude = representation.valueForKeyPath("latitude") as! Double
