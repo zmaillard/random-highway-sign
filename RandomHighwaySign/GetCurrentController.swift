@@ -64,16 +64,16 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         let cell = tableView.dequeueReusableCellWithIdentifier("SignCell", forIndexPath: indexPath) as! ResultTableViewCell
         let sign = self.signs[indexPath.row]
         
-        cell.imageView!.image = nil
+        cell.thumbnailImageView!.image = nil
         cell.request?.cancel()
         
-        cell.textLabel?.text = sign.title
-        cell.detailTextLabel?.text = "\(sign.place), \(sign.state)"
+        //cell.textLabel?.text = sign.title
+        //cell.detailTextLabel?.text = "\(sign.place), \(sign.state)"
         
         cell.request = Alamofire.request(.GET, sign.thumbnail).responseImage() {
             (request, _, image, error) in
             if error == nil && image != nil {
-                cell.imageView!.image = image
+                cell.thumbnailImageView!.image = image
             }
         }
         
@@ -158,6 +158,7 @@ return cell*/
         }    
     }
     */
+    
 
     /*
     // Override to support rearranging the table view.
@@ -188,5 +189,10 @@ return cell*/
 
 class ResultTableViewCell : UITableViewCell{
     var request: Alamofire.Request?
+    
+    @IBOutlet weak var thumbnailImageView: UIImageView!
+    
+    
+
 }
 
