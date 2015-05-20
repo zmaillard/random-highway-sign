@@ -76,26 +76,6 @@ extension Alamofire.Request {
     }
 }
 
-/*extension Alamofire.Request {
-class func imageResponseSerializer() -> Serializer {
-return { request, response, data in
-if data == nil {
-return (nil, nil)
-}
-
-let image = UIImage(data: data!, scale: UIScreen.mainScreen().scale)
-
-return (image, nil)
-}
-}
-
-func responseImage(completionHandler: (NSURLRequest, NSHTTPURLResponse?, UIImage?, NSError?) -> Void) -> Self {
-return response(serializer: Request.imageResponseSerializer(), completionHandler: { (request, response, image, error) in
-completionHandler(request, response, image as? UIImage, error)
-})
-}
-}*/
-
 
 enum RandomRequestRouter : URLRequestConvertible{
     static let baseUrl = "http://www.sagebrushgis.com/"
@@ -199,7 +179,9 @@ final class Sign : NSObject, ResponseObjectSerializable, ResponseCollectionSeria
         
         self.country = representation.valueForKeyPath("title") as! String
         self.date = representation.valueForKeyPath("date") as! String
-        self.imageDescription = representation.valueForKeyPath("description") as! String
+        if let desc = representation.valueForKeyPath("description") as? String{
+            self.imageDescription =  desc
+        }
         self.id = representation.valueForKeyPath("id") as! Int
         self.largeImage = representation.valueForKeyPath("largeimage") as! String
         self.latitude = representation.valueForKeyPath("latitude") as! Double

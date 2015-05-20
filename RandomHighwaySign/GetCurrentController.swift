@@ -59,6 +59,9 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         return self.signs.count
     }
 
+    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        
+    }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("SignCell", forIndexPath: indexPath) as! ResultTableViewCell
@@ -67,7 +70,7 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         cell.thumbnailImageView!.image = nil
         cell.request?.cancel()
         
-        //cell.textLabel?.text = sign.title
+        cell.titleLabel?.text = sign.title
         //cell.detailTextLabel?.text = "\(sign.place), \(sign.state)"
         
         cell.request = Alamofire.request(.GET, sign.thumbnail).responseImage() {
@@ -191,6 +194,7 @@ class ResultTableViewCell : UITableViewCell{
     var request: Alamofire.Request?
     
     @IBOutlet weak var thumbnailImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
     
     
 

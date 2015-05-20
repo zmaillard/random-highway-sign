@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Fkn-9d-oey">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Title-->
@@ -234,23 +235,36 @@
         <scene sceneID="qol-E2-SSo">
             <objects>
                 <tableViewController id="bZt-wc-sax" customClass="GetCurrentController" customModule="RandomHighwaySign" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="HcI-bm-b67">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="47" sectionHeaderHeight="22" sectionFooterHeight="22" id="HcI-bm-b67">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SignCell" id="470-yP-CQN" customClass="ResultTableViewCell" customModule="RandomHighwaySign" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SignCell" rowHeight="82" id="470-yP-CQN" customClass="ResultTableViewCell" customModule="RandomHighwaySign" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="470-yP-CQN" id="RlO-fK-xbG">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" restorationIdentifier="thumbnailImageView" translatesAutoresizingMaskIntoConstraints="NO" id="cP9-A5-CcN">
-                                            <rect key="frame" x="14" y="0.0" width="97" height="43"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" restorationIdentifier="thumbnailImageView" translatesAutoresizingMaskIntoConstraints="NO" id="cP9-A5-CcN">
+                                            <rect key="frame" x="8" y="5" width="89" height="68.5"/>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="This is some title text" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="0aa-qu-9cQ">
+                                            <rect key="frame" x="105" y="5" width="454" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="0aa-qu-9cQ" firstAttribute="leading" secondItem="cP9-A5-CcN" secondAttribute="trailing" constant="8" id="4X8-uv-J9I"/>
+                                        <constraint firstItem="cP9-A5-CcN" firstAttribute="leading" secondItem="RlO-fK-xbG" secondAttribute="leadingMargin" id="5oZ-Kt-tDH"/>
+                                        <constraint firstItem="cP9-A5-CcN" firstAttribute="bottom" secondItem="RlO-fK-xbG" secondAttribute="bottomMargin" id="8c9-QA-kYY"/>
+                                        <constraint firstItem="cP9-A5-CcN" firstAttribute="top" secondItem="RlO-fK-xbG" secondAttribute="topMargin" constant="20" id="yc9-jy-vq3"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="thumbnailImageView" destination="cP9-A5-CcN" id="mqe-vz-8Dg"/>
+                                    <outlet property="titleLabel" destination="0aa-qu-9cQ" id="Mg3-oO-2wT"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
