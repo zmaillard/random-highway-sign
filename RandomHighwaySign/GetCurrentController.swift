@@ -15,7 +15,6 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
 
     //Url for Sign Query
     let locationManager = CLLocationManager()
-    let baseUrl = "http://www.sagebrushgis.com/query"
     
     var currentPage = 0;
     var modal : UIViewController!
@@ -58,10 +57,6 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         // Return the number of rows in the section.
         return self.signs.count
     }
-
-    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        
-    }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("SignCell", forIndexPath: indexPath) as! ResultTableViewCell
@@ -71,7 +66,8 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         cell.request?.cancel()
         
         cell.titleLabel?.text = sign.title
-        //cell.detailTextLabel?.text = "\(sign.place), \(sign.state)"
+        cell.descLabel?.text = sign.imageDescription
+        cell.descLabel?.sizeToFit()
         
         cell.request = Alamofire.request(.GET, sign.thumbnail).responseImage() {
             (request, _, image, error) in
@@ -82,22 +78,6 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         
         return cell
     }
-    
-/*let cell = collectionView.dequeueReusableCellWithReuseIdentifier(PhotoBrowserCellIdentifier, forIndexPath: indexPath) as! PhotoBrowserCollectionViewCell
-
-let imageURL = (photos.objectAtIndex(indexPath.row) as! PhotoInfo).url
-
-cell.imageView.image = nil
-cell.request?.cancel()
-
-cell.request = Alamofire.request(.GET, imageURL).responseImage() {
-(request, _, image, error) in
-if error == nil && image != nil {
-cell.imageView.image = image
-}
-}
-
-return cell*/
 
 
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
@@ -105,8 +85,6 @@ return cell*/
         if let newLoc : CLLocation = locations[locations.count - 1] as? CLLocation
         {
             locationManager.stopUpdatingLocation()
-            println(newLoc.coordinate.latitude)
-            println(newLoc.coordinate.longitude)
             makeRequest(newLoc.coordinate.latitude, longitude: newLoc.coordinate.longitude)
         }
     }
@@ -195,7 +173,7 @@ class ResultTableViewCell : UITableViewCell{
     
     @IBOutlet weak var thumbnailImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    
+    @IBOutlet weak var descLabel: UILabel!
     
 
 }

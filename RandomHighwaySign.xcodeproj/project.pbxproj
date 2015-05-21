@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5209C18B1AE48CFE0078D43A /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5209C18A1AE48CFE0078D43A /* Config.swift */; };
 		5209C18D1AE5C6870078D43A /* Sign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5209C18C1AE5C6870078D43A /* Sign.swift */; };
 		521B29B61B0021CB00A003AE /* GetCurrentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521B29B51B0021CB00A003AE /* GetCurrentController.swift */; };
 		5228AB391AE4574800A664D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5228AB381AE4574800A664D4 /* AppDelegate.swift */; };
@@ -32,7 +31,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5209C18A1AE48CFE0078D43A /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		5209C18C1AE5C6870078D43A /* Sign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sign.swift; sourceTree = "<group>"; };
 		521B29B51B0021CB00A003AE /* GetCurrentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetCurrentController.swift; sourceTree = "<group>"; };
 		5228AB331AE4574800A664D4 /* RandomHighwaySign.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RandomHighwaySign.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,7 +99,6 @@
 				5228AB441AE4574800A664D4 /* LaunchScreen.xib */,
 				5228AB3A1AE4574800A664D4 /* RandomHighwaySign.xcdatamodeld */,
 				5228AB361AE4574800A664D4 /* Supporting Files */,
-				5209C18A1AE48CFE0078D43A /* Config.swift */,
 				5209C18C1AE5C6870078D43A /* Sign.swift */,
 				522C78251AF1C7CA0001121F /* SignDetailsViewController.swift */,
 				521B29B51B0021CB00A003AE /* GetCurrentController.swift */,
@@ -305,7 +302,6 @@
 			files = (
 				522C78261AF1C7CA0001121F /* SignDetailsViewController.swift in Sources */,
 				5228AB3E1AE4574800A664D4 /* ViewController.swift in Sources */,
-				5209C18B1AE48CFE0078D43A /* Config.swift in Sources */,
 				5209C18D1AE5C6870078D43A /* Sign.swift in Sources */,
 				5228AB391AE4574800A664D4 /* AppDelegate.swift in Sources */,
 				521B29B61B0021CB00A003AE /* GetCurrentController.swift in Sources */,
