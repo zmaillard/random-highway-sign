@@ -4,21 +4,22 @@
 //
 //  Created by Zachary Maillard on 4/19/15.
 
-import AVFoundation;
+import AVFoundation
 import UIKit
-import Alamofire;
-import SwiftyJSON;
+import Alamofire
+import SwiftyJSON
+import QuartzCore
 
 class ViewController: UIViewController, UIScrollViewDelegate {
 
-    @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var detailsButton: UIBarButtonItem!
     
     let scrollView:UIScrollView =  UIScrollView()
     let imageView:UIImageView =  UIImageView()
-    
-    var sign : Sign!;
+    let spinner = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
+
+    var sign : Sign?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,25 +31,48 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     }
 
     func setupImage(){
+        spinner.center = CGPoint(x: view.center.x, y: view.center.y - view.bounds.origin.y / 2.0)
+        spinner.hidesWhenStopped = true
+        spinner.startAnimating()
+        view.addSubview(spinner)
+        
         scrollView.frame = view.bounds
         scrollView.delegate = self
         scrollView.minimumZoomScale = 1.0
         scrollView.maximumZoomScale = 3.0
         scrollView.zoomScale = 1.0
+        scrollView.setTranslatesAutoresizingMaskIntoConstraints(false)
         view.addSubview(scrollView)
         
-        imageView.contentMode = .ScaleAspectFill
+        imageView.contentMode = .ScaleAspectFit
+        imageView.setTranslatesAutoresizingMaskIntoConstraints(false)
         scrollView.addSubview(imageView)
         
         var doubleTapRecognizer = UITapGestureRecognizer(target:self, action:"scrollViewDoubleTapped:")
         doubleTapRecognizer.numberOfTapsRequired = 2
         doubleTapRecognizer.numberOfTouchesRequired = 1
         scrollView.addGestureRecognizer(doubleTapRecognizer)
-        
+        //scrollView.setTranslatesAutoresizingMaskIntoConstraints(false)
 
+        //Set contraints
+        let bindings = ["scrollView": scrollView, "view": view, "imageView": imageView]
         
-        spinner.stopAnimating()
-        spinner.hidden = true
+        let scrollH:[AnyObject] = NSLayoutConstraint.constraintsWithVisualFormat("H:|[scrollView]|", options: NSLayoutFormatOptions(0), metrics: nil, views: bindings)
+        
+        view.addConstraints(scrollH)
+        
+        let scrollV:[AnyObject] = NSLayoutConstraint.constraintsWithVisualFormat("V:|[scrollView]|", options: NSLayoutFormatOptions(0), metrics: nil, views: bindings)
+        
+        view.addConstraints(scrollV)
+        
+        let containerEqualH:[AnyObject] = NSLayoutConstraint.constraintsWithVisualFormat("H:|[imageView(==view)]|", options: NSLayoutFormatOptions(0), metrics: nil, views: bindings)
+        
+        view.addConstraints(containerEqualH)
+        
+        let containerEqualV:[AnyObject] = NSLayoutConstraint.constraintsWithVisualFormat("V:|[imageView(==view)]|", options: NSLayoutFormatOptions(0), metrics: nil, views: bindings)
+        
+        view.addConstraints(containerEqualV)
+        
     }
 
     
@@ -84,8 +108,8 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         Alamofire.request(RandomRequestRouter.Single())
             .responseCollection{(_,_,data:[Sign]?,_)in
                 self.sign = data![0]
-                self.setImageData(self.sign.largeImage)
-                self.navItem.title = self.sign.title
+                self.setImageData(self.sign!.largeImage)
+                self.navItem.title = self.sign!.title
         }
     }
 
@@ -101,7 +125,6 @@ class ViewController: UIViewController, UIScrollViewDelegate {
         centerScrollViewContents()
         
         spinner.stopAnimating()
-        spinner.hidden = true
     }
 
     func centerScrollViewContents() {
@@ -159,6 +182,7 @@ class ViewController: UIViewController, UIScrollViewDelegate {
     
     
     @IBAction func getDetailsTapped(sender : AnyObject) {
+        self.setupImage()
         self.randomSignRequest()
     }
     

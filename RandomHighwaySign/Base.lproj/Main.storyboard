@@ -16,25 +16,11 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="2Ox-fK-iJG">
-                                <rect key="frame" x="290" y="290" width="20" height="20"/>
-                            </activityIndicatorView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="centerY" secondItem="2Ox-fK-iJG" secondAttribute="centerY" id="Ek1-09-CWv"/>
-                            <constraint firstAttribute="centerX" secondItem="2Ox-fK-iJG" secondAttribute="centerX" id="ymX-6h-GNg"/>
-                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Image" id="3nj-dD-LNy"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Title" id="kGH-xH-S0y">
-                        <barButtonItem key="leftBarButtonItem" style="done" systemItem="done" id="xoN-02-uGS">
-                            <connections>
-                                <segue destination="c2s-GX-qol" kind="unwind" unwindAction="closeRandomSignView:" id="jIa-l5-jUE"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="qLf-GN-hcZ">
                             <connections>
                                 <action selector="getDetailsTapped:" destination="BYZ-38-t0r" id="y8s-Yc-Xsg"/>
@@ -43,11 +29,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="navItem" destination="kGH-xH-S0y" id="F13-Hi-hmB"/>
-                        <outlet property="spinner" destination="2Ox-fK-iJG" id="i8L-1A-3Ef"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-                <exit id="c2s-GX-qol" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1063" y="-556"/>
         </scene>
@@ -291,6 +275,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Signs At Current Location" id="9jr-na-CtL"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="showSignImage" id="tSS-42-oLM"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ADb-Qh-gqv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -314,4 +301,7 @@
             <point key="canvasLocation" x="613" y="334"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="tSS-42-oLM"/>
+    </inferredMetricsTieBreakers>
 </document>
