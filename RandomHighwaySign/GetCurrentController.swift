@@ -65,16 +65,8 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         return self.signs.count
     }
     
-    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-        // Create a variable that you want to send based on the destination view controller
-        // You can get a reference to the data by using indexPath shown below
-        let sign = self.signs[indexPath.row]
-        
-        // Create an instance of PlayerTableViewController and pass the variable
-        let destinationVC = SignImageViewController()
-        destinationVC.sign = sign
-        
-        destinationVC.performSegueWithIdentifier("OpenDetail", sender: self)
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        performSegueWithIdentifier("OpenDetail", sender: self)
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -126,19 +118,20 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         locationManager.startUpdatingLocation()
     }
 
-/*
+
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "OpenDetail"){
-            if let signViewController = segue.destinationViewController as? SignImageViewController{
+            if let navController = segue.destinationViewController as? UINavigationController{
+                if let signViewController = navController.topViewController as? SignImageViewController{
                 var indexPath = tableView.indexPathForSelectedRow()
                 if let tableCell = tableView.cellForRowAtIndexPath(indexPath!) as? ResultTableViewCell{
-                     signViewController.assignSign(tableCell.sign!)
+                     signViewController.sign = tableCell.sign
                 }
                 
-
+                }
             }
         }
-    }*/
+    }
 
 }
 

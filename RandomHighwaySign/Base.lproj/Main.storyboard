@@ -277,7 +277,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Signs At Current Location" id="9jr-na-CtL"/>
                     <connections>
-                        <segue destination="o0U-Se-Qzt" kind="show" identifier="OpenDetail" id="5Is-WH-L12"/>
+                        <segue destination="o0U-Se-Qzt" kind="show" identifier="OpenDetail" id="jtA-5g-VeU"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ADb-Qh-gqv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -341,7 +341,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dWO-SJ-6zA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1871" y="356"/>
+            <point key="canvasLocation" x="1919" y="124"/>
         </scene>
     </scenes>
 </document>
