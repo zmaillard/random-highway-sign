@@ -66,7 +66,15 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     }
     
     override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier("OpenDetail", sender: self)
+        // Create a variable that you want to send based on the destination view controller
+        // You can get a reference to the data by using indexPath shown below
+        let sign = self.signs[indexPath.row]
+        
+        // Create an instance of PlayerTableViewController and pass the variable
+        let destinationVC = SignImageViewController()
+        destinationVC.sign = sign
+        
+        destinationVC.performSegueWithIdentifier("OpenDetail", sender: self)
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -118,19 +126,19 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         locationManager.startUpdatingLocation()
     }
 
-
+/*
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "OpenDetail"){
-            if let signViewController = segue.destinationViewController as? ViewController{
+            if let signViewController = segue.destinationViewController as? SignImageViewController{
                 var indexPath = tableView.indexPathForSelectedRow()
                 if let tableCell = tableView.cellForRowAtIndexPath(indexPath!) as? ResultTableViewCell{
-                     signViewController.sign = tableCell.sign
+                     signViewController.assignSign(tableCell.sign!)
                 }
                 
 
             }
         }
-    }
+    }*/
 
 }
 

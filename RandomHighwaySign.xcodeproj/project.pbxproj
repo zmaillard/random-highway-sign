@@ -19,6 +19,8 @@
 		522C78261AF1C7CA0001121F /* SignDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522C78251AF1C7CA0001121F /* SignDetailsViewController.swift */; };
 		527CEC501B33A80A00A2BBD6 /* SignImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527CEC4F1B33A80A00A2BBD6 /* SignImage.xib */; };
 		527CEC521B33A85200A2BBD6 /* SignImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527CEC511B33A85200A2BBD6 /* SignImage.swift */; };
+		527CEC541B33AF8600A2BBD6 /* RandomSignViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527CEC531B33AF8600A2BBD6 /* RandomSignViewController.swift */; };
+		527CEC561B33B49A00A2BBD6 /* SignImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527CEC551B33B49A00A2BBD6 /* SignImageViewController.swift */; };
 		F8981A9D8BA13C1C25B16549 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FF973186E078D92DD5A02A3 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -49,6 +51,8 @@
 		522C78251AF1C7CA0001121F /* SignDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignDetailsViewController.swift; sourceTree = "<group>"; };
 		527CEC4F1B33A80A00A2BBD6 /* SignImage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignImage.xib; sourceTree = "<group>"; };
 		527CEC511B33A85200A2BBD6 /* SignImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignImage.swift; sourceTree = "<group>"; };
+		527CEC531B33AF8600A2BBD6 /* RandomSignViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomSignViewController.swift; sourceTree = "<group>"; };
+		527CEC551B33B49A00A2BBD6 /* SignImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignImageViewController.swift; sourceTree = "<group>"; };
 		6FF973186E078D92DD5A02A3 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8A894FCFC6B704603F97F17 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		FB44D173F8F0EB6C3562B704 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -108,6 +112,8 @@
 				521B29B51B0021CB00A003AE /* GetCurrentController.swift */,
 				527CEC511B33A85200A2BBD6 /* SignImage.swift */,
 				527CEC4F1B33A80A00A2BBD6 /* SignImage.xib */,
+				527CEC531B33AF8600A2BBD6 /* RandomSignViewController.swift */,
+				527CEC551B33B49A00A2BBD6 /* SignImageViewController.swift */,
 			);
 			path = RandomHighwaySign;
 			sourceTree = "<group>";
@@ -307,8 +313,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				527CEC561B33B49A00A2BBD6 /* SignImageViewController.swift in Sources */,
 				522C78261AF1C7CA0001121F /* SignDetailsViewController.swift in Sources */,
 				5228AB3E1AE4574800A664D4 /* ViewController.swift in Sources */,
+				527CEC541B33AF8600A2BBD6 /* RandomSignViewController.swift in Sources */,
 				5209C18D1AE5C6870078D43A /* Sign.swift in Sources */,
 				5228AB391AE4574800A664D4 /* AppDelegate.swift in Sources */,
 				521B29B61B0021CB00A003AE /* GetCurrentController.swift in Sources */,

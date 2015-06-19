@@ -27,6 +27,7 @@ class SignImage: UIView, UIScrollViewDelegate {
     
     func loadSign(sign:Sign){
         setupImage()
+        setImageData(sign.largeImage)
         self.sign = sign
     }
     
@@ -87,6 +88,7 @@ class SignImage: UIView, UIScrollViewDelegate {
     func scrollViewDidZoom(scrollView: UIScrollView) {
         centerScrollViewContents()
     }
+    
     
     func centerFrameFromImage(image: UIImage?) -> CGRect {
         if image == nil {

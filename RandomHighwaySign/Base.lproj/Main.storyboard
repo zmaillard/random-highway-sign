@@ -13,7 +13,7 @@
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" customClass="SignImage" customModule="RandomHighwaySign" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -29,6 +29,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="navItem" destination="kGH-xH-S0y" id="F13-Hi-hmB"/>
+                        <outlet property="signImage" destination="8bC-Xf-vdC" id="OLm-0l-3z7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -303,12 +304,12 @@
         <!--Title-->
         <scene sceneID="o6e-82-thV">
             <objects>
-                <viewController storyboardIdentifier="signDetails" id="dl2-wm-MQ3" customClass="ViewController" customModule="RandomHighwaySign" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="dl2-wm-MQ3" customClass="SignImageViewController" customModule="RandomHighwaySign" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="NZW-cs-EUj"/>
                         <viewControllerLayoutGuide type="bottom" id="4fC-Fz-abB"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Ww1-TA-zD4">
+                    <view key="view" contentMode="scaleToFill" id="Ww1-TA-zD4" customClass="SignImage" customModule="RandomHighwaySign" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -316,7 +317,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Title" id="U97-8x-reh"/>
                     <connections>
-                        <outlet property="navItem" destination="U97-8x-reh" id="vv8-OS-Uw7"/>
+                        <outlet property="signImage" destination="Ww1-TA-zD4" id="Xv0-a8-XYL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CzB-Gr-hI1" sceneMemberID="firstResponder"/>
