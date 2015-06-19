@@ -25,16 +25,23 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         super.viewDidLoad()
 
         self.tabBarController?.delegate = self
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
 
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         navigationController?.setNavigationBarHidden(false, animated: true)
         locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
         locationManager.distanceFilter = 5000 //5km movement before updating
         locationManager.delegate = self
+        
+        self.refreshControl = UIRefreshControl()
+        self.refreshControl?.attributedTitle = NSAttributedString(string: "Loading New Signs")
+        self.refreshControl?.addTarget(self, action:"refresh", forControlEvents: UIControlEvents.ValueChanged)
+    
+        self.tableView.addSubview(refreshControl!)
+    
+    }
+    
+    func refresh(){
+        locationManager.startUpdatingLocation()
+        self.refreshControl?.endRefreshing()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -59,26 +66,14 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     }
     
     override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier("showSignImage", sender: self)
+        performSegueWithIdentifier("OpenDetail", sender: self)
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("SignCell", forIndexPath: indexPath) as! ResultTableViewCell
         let sign = self.signs[indexPath.row]
         
-        cell.thumbnailImageView!.image = nil
-        cell.request?.cancel()
-        
-        cell.titleLabel?.text = sign.title
-        cell.descLabel?.text = sign.imageDescription
-        cell.descLabel?.sizeToFit()
-        
-        cell.request = Alamofire.request(.GET, sign.thumbnail).responseImage() {
-            (request, _, image, error) in
-            if error == nil && image != nil {
-                cell.thumbnailImageView!.image = image
-            }
-        }
+        cell.assignSign(sign)
         
         return cell
     }
@@ -125,8 +120,15 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
 
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if (segue.identifier == "showSignImage"){
-            
+        if (segue.identifier == "OpenDetail"){
+            if let signViewController = segue.destinationViewController as? ViewController{
+                var indexPath = tableView.indexPathForSelectedRow()
+                if let tableCell = tableView.cellForRowAtIndexPath(indexPath!) as? ResultTableViewCell{
+                     signViewController.sign = tableCell.sign
+                }
+                
+
+            }
         }
     }
 
@@ -134,11 +136,29 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
 
 class ResultTableViewCell : UITableViewCell{
     var request: Alamofire.Request?
+    var sign: Sign?
     
     @IBOutlet weak var thumbnailImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descLabel: UILabel!
     
+    func assignSign(sign : Sign){
+        self.sign = sign
+        self.thumbnailImageView!.image = nil
+        self.request?.cancel()
+        
+        self.titleLabel?.text = sign.title
+        self.descLabel?.text = sign.imageDescription
+        self.descLabel?.sizeToFit()
+        
+        self.request = Alamofire.request(.GET, sign.thumbnail).responseImage() {
+            (request, _, image, error) in
+            if error == nil && image != nil {
+                self.thumbnailImageView!.image = image
+            }
+        }
+        
+    }
 
 }
 

@@ -276,12 +276,12 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Signs At Current Location" id="9jr-na-CtL"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="presentation" identifier="showSignImage" id="tSS-42-oLM"/>
+                        <segue destination="o0U-Se-Qzt" kind="show" identifier="OpenDetail" id="5Is-WH-L12"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ADb-Qh-gqv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1375" y="144"/>
+            <point key="canvasLocation" x="1105" y="362"/>
         </scene>
         <!--Current Location-->
         <scene sceneID="K5X-Io-H5a">
@@ -298,10 +298,49 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vD9-Fl-plF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="613" y="334"/>
+            <point key="canvasLocation" x="233" y="362"/>
+        </scene>
+        <!--Title-->
+        <scene sceneID="o6e-82-thV">
+            <objects>
+                <viewController storyboardIdentifier="signDetails" id="dl2-wm-MQ3" customClass="ViewController" customModule="RandomHighwaySign" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="NZW-cs-EUj"/>
+                        <viewControllerLayoutGuide type="bottom" id="4fC-Fz-abB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ww1-TA-zD4">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Title" id="U97-8x-reh"/>
+                    <connections>
+                        <outlet property="navItem" destination="U97-8x-reh" id="vv8-OS-Uw7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CzB-Gr-hI1" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2683" y="356"/>
+        </scene>
+        <!--Image-->
+        <scene sceneID="ZkR-WJ-4Cr">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="o0U-Se-Qzt" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Image" id="u0C-CA-FH9"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Q3A-Ra-WuJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="dl2-wm-MQ3" kind="relationship" relationship="rootViewController" id="yQH-1T-1i6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dWO-SJ-6zA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1871" y="356"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="tSS-42-oLM"/>
-    </inferredMetricsTieBreakers>
 </document>
