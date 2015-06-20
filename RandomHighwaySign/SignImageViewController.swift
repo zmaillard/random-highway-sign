@@ -7,17 +7,25 @@
 //
 
 import UIKit
+import FontAwesomeIconFactory
 
 class SignImageViewController: UIViewController {
     var sign:Sign?
     
+    @IBOutlet weak var detailsButton: UIBarButtonItem!
     @IBOutlet var signImage: SignImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        var fact = NIKFontAwesomeIconFactory.barButtonItemIconFactory()
+        fact.colors = [self.view.tintColor]
+        detailsButton.title = ""
+        detailsButton.image = fact.createImageForIcon(.InfoCircle)
+        
         signImage.loadSign(sign!)
         self.title = self.sign!.title
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,6 +33,19 @@ class SignImageViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func doneButtonClicked(sender : AnyObject){
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "signIdentify"{
+            let destView = segue.destinationViewController as? UINavigationController
+            
+            if let identifyView = destView?.topViewController as? SignDetailsViewController{
+                identifyView.sign = self.sign
+            }
+        }
+    }
     
     /*
     // MARK: - Navigation

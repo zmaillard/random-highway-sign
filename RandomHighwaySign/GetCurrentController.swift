@@ -8,11 +8,14 @@
 
 import UIKit
 import CoreLocation
-import Alamofire;
-import SwiftyJSON;
+import Alamofire
+import SwiftyJSON
+import FontAwesomeIconFactory
 
 class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UITabBarControllerDelegate {
 
+    @IBOutlet weak var randomButton: UIBarButtonItem!
+    
     //Url for Sign Query
     let locationManager = CLLocationManager()
     
@@ -26,11 +29,17 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
 
         self.tabBarController?.delegate = self
 
+        var fact = NIKFontAwesomeIconFactory.barButtonItemIconFactory()
+        fact.colors = [self.view.tintColor]
+        randomButton.title = ""
+        randomButton.image = fact.createImageForIcon(.Random)
+        
+
         navigationController?.setNavigationBarHidden(false, animated: true)
         locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
         locationManager.distanceFilter = 5000 //5km movement before updating
         locationManager.delegate = self
-        
+
         self.refreshControl = UIRefreshControl()
         self.refreshControl?.attributedTitle = NSAttributedString(string: "Loading New Signs")
         self.refreshControl?.addTarget(self, action:"refresh", forControlEvents: UIControlEvents.ValueChanged)

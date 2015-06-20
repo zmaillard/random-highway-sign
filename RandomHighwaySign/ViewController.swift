@@ -9,18 +9,26 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import QuartzCore
+import FontAwesomeIconFactory
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var navItem: UINavigationItem!
+    @IBOutlet weak var navItem: UIBarButtonItem!
     @IBOutlet weak var detailsButton: UIBarButtonItem!
-    
-
     @IBOutlet var signImage: SignImage!
+    
     var sign : Sign?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var fact = NIKFontAwesomeIconFactory.barButtonItemIconFactory()
+        fact.colors = [self.view.tintColor]
+        navItem.title = ""
+        navItem.image = fact.createImageForIcon(.Refresh)
+        
+        detailsButton.title = ""
+        detailsButton.image = fact.createImageForIcon(.InfoCircle)
         
         randomSignRequest()
         
@@ -38,7 +46,7 @@ class ViewController: UIViewController {
         Alamofire.request(RandomRequestRouter.Single())
             .responseCollection{(_,_,data:[Sign]?,_)in
                 self.sign = data![0]
-                self.navItem.title = self.sign!.title
+                self.title = self.sign!.title
                 self.signImage.loadSign(self.sign!)
         }
     }

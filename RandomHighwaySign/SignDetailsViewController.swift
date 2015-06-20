@@ -11,29 +11,33 @@ import MapKit
 
 class SignDetailsViewController: UITableViewController {
     var sign : Sign!
-
-    @IBOutlet weak var details: UILabel!
-    @IBOutlet weak var signTitle: UILabel!
+    
+    @IBOutlet weak var signTItle: UILabel!
+    @IBOutlet weak var signDescription: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.title = "Details"
-        signTitle.text = sign.title
-        details.text = sign.description
-        details.lineBreakMode = .ByWordWrapping
-        details.numberOfLines = 0
-        details.sizeToFit()
-        
-
-        
-        //var coord = CLLocationCoordinate2DMake(sign.latitude, sign.longitude)
-
-        //var region = MKCoordinateRegionMakeWithDistance(coord, 5000, 5000)
-        //map.setRegion(region, animated:true)
+    
+        self.tableView.estimatedRowHeight = 100.0;
+        self.tableView.rowHeight = UITableViewAutomaticDimension;
+        self.title = "Sign Details"
+        signTItle.text = sign.title
+        signDescription.text = sign.imageDescription
     }
     
-
-
-
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        var cell = tableView.cellForRowAtIndexPath(indexPath)
+        
+        if cell?.contentView.subviews.count > 0{
+            if let labelVal =  cell?.contentView.subviews[0] as? UILabel{
+                return 200
+                
+            }
+        }
+        
+        return 50
+    }
+    
+    
+    
 }
