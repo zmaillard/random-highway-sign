@@ -21,7 +21,6 @@
 		527CEC521B33A85200A2BBD6 /* SignImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527CEC511B33A85200A2BBD6 /* SignImage.swift */; };
 		527CEC541B33AF8600A2BBD6 /* RandomSignViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527CEC531B33AF8600A2BBD6 /* RandomSignViewController.swift */; };
 		527CEC561B33B49A00A2BBD6 /* SignImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527CEC551B33B49A00A2BBD6 /* SignImageViewController.swift */; };
-		527CEC5C1B34EDE000A2BBD6 /* IdentifyImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527CEC5B1B34EDE000A2BBD6 /* IdentifyImage.xib */; };
 		F8981A9D8BA13C1C25B16549 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FF973186E078D92DD5A02A3 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -54,7 +53,6 @@
 		527CEC511B33A85200A2BBD6 /* SignImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignImage.swift; sourceTree = "<group>"; };
 		527CEC531B33AF8600A2BBD6 /* RandomSignViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomSignViewController.swift; sourceTree = "<group>"; };
 		527CEC551B33B49A00A2BBD6 /* SignImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignImageViewController.swift; sourceTree = "<group>"; };
-		527CEC5B1B34EDE000A2BBD6 /* IdentifyImage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IdentifyImage.xib; sourceTree = "<group>"; };
 		6FF973186E078D92DD5A02A3 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8A894FCFC6B704603F97F17 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		FB44D173F8F0EB6C3562B704 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -82,7 +80,6 @@
 		5228AB2A1AE4574800A664D4 = {
 			isa = PBXGroup;
 			children = (
-				527CEC5B1B34EDE000A2BBD6 /* IdentifyImage.xib */,
 				5228AB351AE4574800A664D4 /* RandomHighwaySign */,
 				5228AB4E1AE4574800A664D4 /* RandomHighwaySignTests */,
 				5228AB341AE4574800A664D4 /* Products */,
@@ -249,7 +246,6 @@
 			files = (
 				5228AB411AE4574800A664D4 /* Main.storyboard in Resources */,
 				5228AB461AE4574800A664D4 /* LaunchScreen.xib in Resources */,
-				527CEC5C1B34EDE000A2BBD6 /* IdentifyImage.xib in Resources */,
 				527CEC501B33A80A00A2BBD6 /* SignImage.xib in Resources */,
 				5228AB431AE4574800A664D4 /* Images.xcassets in Resources */,
 			);

@@ -18,26 +18,19 @@ class SignDetailsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-        self.tableView.estimatedRowHeight = 100.0;
-        self.tableView.rowHeight = UITableViewAutomaticDimension;
         self.title = "Sign Details"
+        
+        
         signTItle.text = sign.title
         signDescription.text = sign.imageDescription
+        
+        signDescription.sizeToFit()
+    }
+
+    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        var cell = tableView.cellForRowAtIndexPath(indexPath)
-        
-        if cell?.contentView.subviews.count > 0{
-            if let labelVal =  cell?.contentView.subviews[0] as? UILabel{
-                return 200
-                
-            }
-        }
-        
-        return 50
-    }
-    
-    
+
     
 }
