@@ -26,7 +26,7 @@ class SignDetailsViewController: UITableViewController {
     }
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 5
+        return 6
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -40,6 +40,8 @@ class SignDetailsViewController: UITableViewController {
             return "Highways"
         }else if section == 4{
             return "Date Taken"
+        }else if section == 5{
+            return "Map"
         }else
         {
             return ""
@@ -53,6 +55,12 @@ class SignDetailsViewController: UITableViewController {
             let highwayTableCell = tableCell as? HighwayTableViewCell
             
             highwayTableCell?.assignHighway(sign.highways[indexPath.row])
+            
+            return tableCell!
+        }else if indexPath.section == 5{
+            var tableCell =  tableView.dequeueReusableCellWithIdentifier("map", forIndexPath: indexPath) as? MapTableViewCell
+            
+            tableCell!.zoomTo(self.sign.latitude,longitude:self.sign.longitude)
             
             return tableCell!
         }else{
