@@ -22,6 +22,8 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
+        
         var fact = NIKFontAwesomeIconFactory.barButtonItemIconFactory()
         fact.colors = [self.view.tintColor]
         navItem.title = ""
@@ -32,6 +34,10 @@ class ViewController: UIViewController {
         
         randomSignRequest()
         
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.toolbarHidden = false
     }
 
     

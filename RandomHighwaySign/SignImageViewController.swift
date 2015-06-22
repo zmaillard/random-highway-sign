@@ -27,6 +27,11 @@ class SignImageViewController: UIViewController {
         self.title = self.sign!.title
         
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        self.navigationController?.toolbarHidden = false
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
