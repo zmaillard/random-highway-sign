@@ -55,6 +55,14 @@ class SignDetailsViewController: UITableViewController {
             let highwayTableCell = tableCell as? HighwayTableViewCell
             
             highwayTableCell?.assignHighway(sign.highways[indexPath.row])
+            tableCell?.layoutSubviews()
+            
+            return tableCell!
+        }else if indexPath.section == 1{
+            var tableCell =  tableView.dequeueReusableCellWithIdentifier("desc", forIndexPath: indexPath) as? UITableViewCell
+            let descTableCell = tableCell as? DescriptionTableViewCell
+            
+            descTableCell?.descriptionLabel.text = sign.imageDescription
             
             return tableCell!
         }else if indexPath.section == 5{
@@ -69,8 +77,6 @@ class SignDetailsViewController: UITableViewController {
         
             if indexPath.section == 0{
                 tableCell?.textLabel?.text = sign.title
-            }else if indexPath.section == 1{
-                tableCell?.textLabel?.text = sign.imageDescription
             }else if indexPath.section == 2{
                 tableCell?.textLabel?.text = sign.place + ", " + sign.state
             }
