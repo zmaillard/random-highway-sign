@@ -26,12 +26,20 @@ class HighwayTableViewCell: UITableViewCell {
         self.highwayText?.text = highway.highway
         self.highwayText?.sizeToFit()
         
-        self.request = Alamofire.request(.GET, highway.url).responseImage() {
+        //HACK
+        let newUrl = highway.url.stringByReplacingOccurrencesOfString("/20x", withString: "")
+        
+        
+        self.request = Alamofire.request(.GET, newUrl).responseImage() {
             (request, _, image, error) in
             if error == nil && image != nil {
-                self.highwayImage!.image = image
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.highwayImage!.image = image
+                    self.setNeedsLayout()
+                })
             }
         }
+    
         
     }
 
