@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5209C18D1AE5C6870078D43A /* Sign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5209C18C1AE5C6870078D43A /* Sign.swift */; };
 		521B29B61B0021CB00A003AE /* GetCurrentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521B29B51B0021CB00A003AE /* GetCurrentController.swift */; };
+		52246BD31B3C2F0F0099A9C5 /* US-20.png in Resources */ = {isa = PBXBuildFile; fileRef = 52246BD21B3C2F0F0099A9C5 /* US-20.png */; };
 		5228AB391AE4574800A664D4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5228AB381AE4574800A664D4 /* AppDelegate.swift */; };
 		5228AB3C1AE4574800A664D4 /* RandomHighwaySign.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5228AB3A1AE4574800A664D4 /* RandomHighwaySign.xcdatamodeld */; };
 		5228AB3E1AE4574800A664D4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5228AB3D1AE4574800A664D4 /* ViewController.swift */; };
@@ -41,6 +42,7 @@
 /* Begin PBXFileReference section */
 		5209C18C1AE5C6870078D43A /* Sign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sign.swift; sourceTree = "<group>"; };
 		521B29B51B0021CB00A003AE /* GetCurrentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetCurrentController.swift; sourceTree = "<group>"; };
+		52246BD21B3C2F0F0099A9C5 /* US-20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "US-20.png"; sourceTree = "<group>"; };
 		5228AB331AE4574800A664D4 /* RandomHighwaySign.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RandomHighwaySign.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5228AB371AE4574800A664D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5228AB381AE4574800A664D4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +88,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		52246BD11B3C2EF60099A9C5 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				52246BD21B3C2F0F0099A9C5 /* US-20.png */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
 		5228AB2A1AE4574800A664D4 = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +119,7 @@
 		5228AB351AE4574800A664D4 /* RandomHighwaySign */ = {
 			isa = PBXGroup;
 			children = (
+				52246BD11B3C2EF60099A9C5 /* Assets */,
 				52FDF0481B37B44200AEF5B0 /* SignDetails */,
 				5228AB381AE4574800A664D4 /* AppDelegate.swift */,
 				5228AB3D1AE4574800A664D4 /* ViewController.swift */,
@@ -266,6 +277,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52246BD31B3C2F0F0099A9C5 /* US-20.png in Resources */,
 				5228AB411AE4574800A664D4 /* Main.storyboard in Resources */,
 				5228AB461AE4574800A664D4 /* LaunchScreen.xib in Resources */,
 				527CEC501B33A80A00A2BBD6 /* SignImage.xib in Resources */,
