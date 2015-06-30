@@ -259,38 +259,25 @@
                                     <outlet property="descriptionLabel" destination="O9G-XG-b9V" id="yu9-xx-d4i"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="highway" rowHeight="75" id="kGH-Rb-6so" customClass="HighwayTableViewCell" customModule="RandomHighwaySign" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="highway" textLabel="JI2-bi-DdK" imageView="C57-I5-sRr" rowHeight="75" style="IBUITableViewCellStyleDefault" id="kGH-Rb-6so" customClass="HighwayTableViewCell" customModule="RandomHighwaySign" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kGH-Rb-6so" id="daI-sR-yWQ">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="US-20.png" translatesAutoresizingMaskIntoConstraints="NO" id="uFE-aa-WhE">
-                                            <rect key="frame" x="8" y="8" width="86" height="58"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="86" id="8hi-wq-A6U"/>
-                                                <constraint firstAttribute="height" constant="58" id="Trp-jk-nVP"/>
-                                            </constraints>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BdH-sT-tEa">
-                                            <rect key="frame" x="102" y="26" width="484" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JI2-bi-DdK">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="US-20.png" id="C57-I5-sRr">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </imageView>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstItem="BdH-sT-tEa" firstAttribute="leading" secondItem="uFE-aa-WhE" secondAttribute="trailing" constant="8" id="1Iu-J3-SiD"/>
-                                        <constraint firstAttribute="centerY" secondItem="BdH-sT-tEa" secondAttribute="centerY" id="6dy-9W-OaJ"/>
-                                        <constraint firstItem="uFE-aa-WhE" firstAttribute="top" secondItem="daI-sR-yWQ" secondAttribute="top" constant="8" id="BZy-Eu-3t1"/>
-                                        <constraint firstAttribute="trailing" secondItem="BdH-sT-tEa" secondAttribute="trailing" constant="14" id="N0e-Ds-u8H"/>
-                                        <constraint firstAttribute="bottom" secondItem="uFE-aa-WhE" secondAttribute="bottom" constant="8" id="Rio-NI-9qC"/>
-                                        <constraint firstItem="uFE-aa-WhE" firstAttribute="leading" secondItem="daI-sR-yWQ" secondAttribute="leading" constant="8" id="lez-Bo-Vge"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="highwayImage" destination="uFE-aa-WhE" id="DB6-1P-asW"/>
-                                    <outlet property="highwayText" destination="BdH-sT-tEa" id="FTh-bL-rsv"/>
-                                    <outlet property="imageView" destination="uFE-aa-WhE" id="O3X-hg-ptf"/>
+                                    <outlet property="highwayImage" destination="C57-I5-sRr" id="r0Z-rV-SIk"/>
+                                    <outlet property="highwayText" destination="JI2-bi-DdK" id="XDO-Rt-a8e"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="map" rowHeight="201" id="grB-t6-Il5" customClass="MapTableViewCell" customModule="RandomHighwaySign" customModuleProvider="target">

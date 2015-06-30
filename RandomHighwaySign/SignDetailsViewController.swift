@@ -22,8 +22,10 @@ class SignDetailsViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+            return UITableViewAutomaticDimension
     }
+
+
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 6
