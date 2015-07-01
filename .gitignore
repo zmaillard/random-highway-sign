@@ -33,3 +33,6 @@ Pods/
 Carthage/Build
 
 .idea
+
+vendor/bundle
+.bundle
