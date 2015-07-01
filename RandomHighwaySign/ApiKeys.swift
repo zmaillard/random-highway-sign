@@ -2,9 +2,7 @@
 //  ApiKeys.swift
 //  RandomHighwaySign
 //
-//  Created by Zachary Maillard on 7/1/15.
-//  Copyright (c) 2015 SagebrushGIS. All rights reserved.
-//
+//  http://dev.iachieved.it/iachievedit/using-property-lists-for-api-keys-in-swift-applications/
 
 import Foundation
 
