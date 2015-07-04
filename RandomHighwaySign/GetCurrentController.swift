@@ -11,6 +11,7 @@ import CoreLocation
 import Alamofire
 import SwiftyJSON
 import FontAwesomeIconFactory
+import GooglePlacesAutocomplete
 
 class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UITabBarControllerDelegate {
 
@@ -24,6 +25,11 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     
     var signs : Array<Sign> = [Sign]()
 
+    let gpaViewController = GooglePlacesAutocomplete(
+        apiKey: valueForApiKey(keyName:  "PLACES"),
+        placeType: .Cities
+    )
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +54,17 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         self.refreshControl?.addTarget(self, action:"refresh", forControlEvents: UIControlEvents.ValueChanged)
     
         self.tableView.addSubview(refreshControl!)
+
     
+    }
+    
+    @IBAction func searchClicked(sender: AnyObject) {
+        presentViewController(gpaViewController, animated: true, completion: nil)
+    }
+    
+    
+    override func viewDidAppear(animated: Bool) {
+        gpaViewController.placeDelegate = self
     }
     
     func refresh(){
@@ -146,6 +162,21 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     }
 
 }
+
+extension GetCurrentController : GooglePlacesAutocompleteDelegate{
+    func placeSelected(place: Place) {
+        println(place)
+    }
+    
+    func placesFound(places: [Place]) {
+        
+    }
+    
+    func placeViewClosed() {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+}
+
 
 class ResultTableViewCell : UITableViewCell{
     var request: Alamofire.Request?
