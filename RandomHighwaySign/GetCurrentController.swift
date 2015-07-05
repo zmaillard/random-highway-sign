@@ -17,6 +17,9 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
 
     @IBOutlet weak var randomButton: UIBarButtonItem!
     
+
+    
+    
     //Url for Sign Query
     let locationManager = CLLocationManager()
     
@@ -25,6 +28,9 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     
     var signs : Array<Sign> = [Sign]()
 
+    var latitude: Double!
+    var longitude: Double!
+    
     let gpaViewController = GooglePlacesAutocomplete(
         apiKey: valueForApiKey(keyName:  "PLACES"),
         placeType: .Cities
@@ -165,7 +171,14 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
 
 extension GetCurrentController : GooglePlacesAutocompleteDelegate{
     func placeSelected(place: Place) {
-        println(place)
+        place.getDetails(){
+            (result:PlaceDetails) in
+            self.latitude = result.latitude
+            self.longitude = result.longitude
+            
+            self.dismissViewControllerAnimated(true, completion: nil)
+            self.makeRequest(self.latitude , longitude: self.longitude)
+        }
     }
     
     func placesFound(places: [Place]) {
