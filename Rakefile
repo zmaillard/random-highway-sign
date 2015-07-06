@@ -1,8 +1,14 @@
-require 'plist'
+require 'erb'
+
+
 task :api_plist do
-  keys = [{'PLACES' => ENV["PLACES_API_KEY"]}]
-  puts keys.to_plist
-  puts "Building API PList"
+  templ = File.read('ApiKeys.plist.erb')
+  erb = ERB.new(templ)
+  apikey = ENV["PLACES_API_KEY"]
+
+  File.open("ApiKeys.plist", "w") do |f|
+  	f.puts erb.result(binding)
+  end
 end
 
 task :default => 'api_plist'

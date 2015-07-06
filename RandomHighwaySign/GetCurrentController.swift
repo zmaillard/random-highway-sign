@@ -17,8 +17,6 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
 
     @IBOutlet weak var randomButton: UIBarButtonItem!
     
-
-    
     
     //Url for Sign Query
     let locationManager = CLLocationManager()
