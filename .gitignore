@@ -36,3 +36,7 @@ Carthage/Build
 
 vendor/bundle
 .bundle
+
+#Api Key Info
+ApiKeys.plist
+.env
