@@ -1,2 +1,10 @@
 language: objective-c
+
+cache:
+  directories:
+    - vendor/bundle
+
+before_install:
+  - bundle install --path=vendor/bundle --binstubs=vendor/bin
+  
 script: "xcodebuild test -workspace RandomHighwaySign.xcworkspace -scheme \"RandomHighwaySign iOS\" -destination \"platform=iOS Simulator,name=iPhone 5\""
