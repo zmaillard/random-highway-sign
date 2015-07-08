@@ -9,5 +9,5 @@ cache:
   - cocoapods
   - bundler
 
-xcode_project: RandomHighwaySign.xcodeproj
+xcode_workspace: RandomHighwaySign.xcworkspace
 xcode_scheme: RandomHighwaySign
