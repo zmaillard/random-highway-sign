@@ -23,12 +23,13 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     var modal : UIViewController!
     
     var signs : Array<Sign> = [Sign]()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.tabBarController?.delegate = self
-
+        
         var fact = NIKFontAwesomeIconFactory.barButtonItemIconFactory()
         fact.colors = [self.view.tintColor]
         randomButton.title = ""
@@ -36,6 +37,8 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         
 
         navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        
         locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
         locationManager.distanceFilter = 5000 //5km movement before updating
         locationManager.delegate = self
