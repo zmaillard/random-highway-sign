@@ -125,11 +125,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Signs At Current Location" id="Npe-dv-NWU">
-                        <barButtonItem key="leftBarButtonItem" systemItem="search" id="e9v-Qh-cwX">
-                            <connections>
-                                <action selector="searchClicked:" destination="bZt-wc-sax" id="d9O-uz-qm0"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" systemItem="search" id="e9v-Qh-cwX"/>
                         <barButtonItem key="rightBarButtonItem" title="Item" id="Z7Z-pO-HNH">
                             <connections>
                                 <segue destination="h45-Ch-pYC" kind="show" identifier="showRandom" id="ejP-Nj-DPm"/>

@@ -11,12 +11,10 @@ import CoreLocation
 import Alamofire
 import SwiftyJSON
 import FontAwesomeIconFactory
-import GooglePlacesAutocomplete
 
 class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UITabBarControllerDelegate {
 
     @IBOutlet weak var randomButton: UIBarButtonItem!
-    
     
     //Url for Sign Query
     let locationManager = CLLocationManager()
@@ -26,14 +24,6 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     
     var signs : Array<Sign> = [Sign]()
 
-    var latitude: Double!
-    var longitude: Double!
-    
-    let gpaViewController = GooglePlacesAutocomplete(
-        apiKey: valueForApiKey(keyName:  "PLACES"),
-        placeType: .Cities
-    )
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,17 +48,7 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         self.refreshControl?.addTarget(self, action:"refresh", forControlEvents: UIControlEvents.ValueChanged)
     
         self.tableView.addSubview(refreshControl!)
-
     
-    }
-    
-    @IBAction func searchClicked(sender: AnyObject) {
-        presentViewController(gpaViewController, animated: true, completion: nil)
-    }
-    
-    
-    override func viewDidAppear(animated: Bool) {
-        gpaViewController.placeDelegate = self
     }
     
     func refresh(){
@@ -166,28 +146,6 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     }
 
 }
-
-extension GetCurrentController : GooglePlacesAutocompleteDelegate{
-    func placeSelected(place: Place) {
-        place.getDetails(){
-            (result:PlaceDetails) in
-            self.latitude = result.latitude
-            self.longitude = result.longitude
-            
-            self.dismissViewControllerAnimated(true, completion: nil)
-            self.makeRequest(self.latitude , longitude: self.longitude)
-        }
-    }
-    
-    func placesFound(places: [Place]) {
-        
-    }
-    
-    func placeViewClosed() {
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-}
-
 
 class ResultTableViewCell : UITableViewCell{
     var request: Alamofire.Request?
