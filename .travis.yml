@@ -1,10 +1,13 @@
 language: objective-c
 
 before_install:
+  - brew update 
+  - brew reinstall xctool
   - bundle install
 
 cache:
   - cocoapods
   - bundler
-  
-script: "xcodebuild test -workspace RandomHighwaySign.xcworkspace -scheme \"RandomHighwaySign iOS\" -destination \"platform=iOS Simulator,name=iPhone 5\""
+
+xcode_project: RandomHighwaySign.xcodeproj
+xcode_scheme: RandomHighwaySign
