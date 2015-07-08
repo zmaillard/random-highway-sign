@@ -11,3 +11,4 @@ cache:
 
 xcode_workspace: RandomHighwaySign.xcworkspace
 xcode_scheme: RandomHighwaySign
+xcode_sdk: iphonesimulator
