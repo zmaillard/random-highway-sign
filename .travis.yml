@@ -1,7 +1,10 @@
 language: objective-c
-sudo: false
 
 before_install:
   - bundle install
+
+cache:
+  - cocoapods
+  - bundler
   
 script: "xcodebuild test -workspace RandomHighwaySign.xcworkspace -scheme \"RandomHighwaySign iOS\" -destination \"platform=iOS Simulator,name=iPhone 5\""
