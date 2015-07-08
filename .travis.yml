@@ -1,4 +1,5 @@
 language: objective-c
+osx_image: beta-xcode6.3
 
 before_install:
   - brew update 
@@ -11,4 +12,4 @@ cache:
 
 xcode_workspace: RandomHighwaySign.xcworkspace
 xcode_scheme: RandomHighwaySign
-xcode_sdk: iphonesimulator8.1
+xcode_sdk: iphonesimulator8.3
