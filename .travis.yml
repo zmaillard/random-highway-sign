@@ -5,6 +5,7 @@ before_install:
   - brew update 
   - brew reinstall xctool
   - bundle install
+  - rake api_plist
 
 cache:
   - cocoapods
