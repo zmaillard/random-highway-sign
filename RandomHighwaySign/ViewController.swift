@@ -19,6 +19,8 @@ class ViewController: UIViewController {
     
     var sign : Sign?
     
+    var loadImageDelegate : LoadImageDelegate!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,6 +40,10 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.toolbarHidden = false
+        
+        if loadImageDelegate != nil{
+            loadImageDelegate.loadImageInto(self)
+        }
     }
 
     
