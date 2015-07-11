@@ -11,10 +11,12 @@ import CoreLocation
 import Alamofire
 import SwiftyJSON
 import FontAwesomeIconFactory
+import GooglePlacesAutocomplete
 
 class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UITabBarControllerDelegate {
 
     @IBOutlet weak var randomButton: UIBarButtonItem!
+    
     
     //Url for Sign Query
     let locationManager = CLLocationManager()
@@ -26,6 +28,17 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     
     var signs : Array<Sign> = [Sign]()
 
+    var latitude: Double!
+    var longitude: Double!
+    
+    var noResultsToDisplay = false
+    var noLocation = false
+    
+    let gpaViewController = GooglePlacesAutocomplete(
+        apiKey: valueForApiKey(keyName:  "PLACES"),
+        placeType: .Cities
+    )
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +73,19 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         self.refreshControl?.addTarget(self, action:"refresh", forControlEvents: UIControlEvents.ValueChanged)
     
         self.tableView.addSubview(refreshControl!)
+
     
+    }
+    
+    @IBAction func searchClicked(sender: AnyObject) {
+        presentViewController(gpaViewController, animated: true, completion: nil)
+    }
+    
+    
+    override func viewDidAppear(animated: Bool) {
+        //Hide empty rows
+        self.tableView.tableFooterView  =  UIView(frame: CGRectZero)
+        gpaViewController.placeDelegate = self
     }
     
     func refresh(){
@@ -90,7 +115,12 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows in the section.
-        return self.signs.count
+        if (noResultsToDisplay || noLocation){
+            return 1
+        }
+        else{
+            return self.signs.count
+        }
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -98,12 +128,25 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("SignCell", forIndexPath: indexPath) as! ResultTableViewCell
-        let sign = self.signs[indexPath.row]
         
-        cell.assignSign(sign)
+        if (noResultsToDisplay){
+            let cell = UITableViewCell()
+            cell.textLabel?.text = "No Results"
+            return cell
+        }else if (noLocation){
+            let cell = UITableViewCell()
+            cell.textLabel?.text = "Cannot Determine Location"
+            return cell
+        }else{
+            let cell = tableView.dequeueReusableCellWithIdentifier("SignCell", forIndexPath: indexPath) as! ResultTableViewCell
+
+            let sign = self.signs[indexPath.row]
         
-        return cell
+            cell.assignSign(sign)
+            
+            return cell
+        }
+
     }
 
 
@@ -111,6 +154,7 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         
         if let newLoc : CLLocation = locations[locations.count - 1] as? CLLocation
         {
+            noLocation = false
             locationManager.stopUpdatingLocation()
             makeRequest(newLoc.coordinate.latitude, longitude: newLoc.coordinate.longitude)
         }
@@ -126,6 +170,8 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
                         
                         self.signs = data!
                     
+                        self.noResultsToDisplay = self.signs.count == 0
+                        
                         dispatch_async(dispatch_get_main_queue()){
                             self.tableView.reloadData()
                             self.activityIndicator.stopAnimating()
@@ -142,6 +188,12 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         if status == .AuthorizedWhenInUse{
             locationManager.startUpdatingLocation()
         }
+    }
+    
+    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+        locationManager.stopUpdatingLocation()
+        noLocation = true
+        self.tableView.reloadData()
     }
     
     @IBAction func refreshLocation(sender : AnyObject) {
@@ -164,6 +216,28 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     }
 
 }
+
+extension GetCurrentController : GooglePlacesAutocompleteDelegate{
+    func placeSelected(place: Place) {
+        place.getDetails(){
+            (result:PlaceDetails) in
+            self.latitude = result.latitude
+            self.longitude = result.longitude
+            
+            self.dismissViewControllerAnimated(true, completion: nil)
+            self.makeRequest(self.latitude , longitude: self.longitude)
+        }
+    }
+    
+    func placesFound(places: [Place]) {
+        
+    }
+    
+    func placeViewClosed() {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+}
+
 
 class ResultTableViewCell : UITableViewCell{
     var request: Alamofire.Request?
