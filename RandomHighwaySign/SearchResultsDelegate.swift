@@ -9,5 +9,5 @@
 import Foundation
 
 protocol SearchResultsDelegate{
-    
+    func locationChosen(latitude:Double, longitude:Double);
 }

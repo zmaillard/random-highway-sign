@@ -19,6 +19,8 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     //Url for Sign Query
     let locationManager = CLLocationManager()
     
+
+    
     var currentPage = 0;
     var modal : UIViewController!
     
@@ -35,7 +37,17 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         randomButton.title = ""
         randomButton.image = fact.createImageForIcon(.Random)
         
-
+        
+        var activityIndicator: UIActivityIndicatorView!
+        activityIndicator = UIActivityIndicatorView()
+        var frame = activityIndicator.frame;
+        activityIndicator.frame = CGRectMake(0.0, 0.0, 40.0, 40.0)
+        activityIndicator.center = view.center
+        activityIndicator.activityIndicatorViewStyle = .WhiteLarge
+        view.addSubview(activityIndicator)
+        
+        
+        
         navigationController?.setNavigationBarHidden(false, animated: true)
         
         
@@ -60,6 +72,10 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         locationManager.requestWhenInUseAuthorization()
     }
 
+    override func viewDidAppear(animated: Bool) {
+        activityIndicator.startAnimating()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -112,7 +128,9 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
                     
                         dispatch_async(dispatch_get_main_queue()){
                             self.tableView.reloadData()
+                            self.activityIndicator.stopAnimating()
                         }
+                        
                     }
 
                 }
