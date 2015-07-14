@@ -54,9 +54,9 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
 
         navigationController?.setNavigationBarHidden(false, animated: true)
         
-        loadingIndicatorView = LoadingIndicatorView(frame:UIScreen.mainScreen().bounds)
+        loadingIndicatorView = LoadingIndicatorView(frame:CGRectMake(0, 0, 80, 80))
         loadingIndicatorView.center = self.tableView.center
-        self.view.addSubview(loadingIndicatorView)
+        
         
         locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
         locationManager.distanceFilter = 5000 //5km movement before updating
@@ -85,6 +85,7 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     
     func refresh(){
         locationManager.startUpdatingLocation()
+        self.view.addSubview(loadingIndicatorView)
         loadingIndicatorView.showActivity()
         self.refreshControl?.endRefreshing()
     }
@@ -115,6 +116,7 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
             return self.signs.count
         }
     }
+    
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         performSegueWithIdentifier("OpenDetail", sender: self)
@@ -167,6 +169,7 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
                         
                         dispatch_async(dispatch_get_main_queue()){
                             self.tableView.reloadData()
+                            self.loadingIndicatorView.removeFromSuperview()
                             self.loadingIndicatorView.hideActivity()
                         }
                         
@@ -180,11 +183,13 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .AuthorizedWhenInUse{
             locationManager.startUpdatingLocation()
+            self.view.addSubview(loadingIndicatorView)
             loadingIndicatorView.showActivity()
         }
     }
     
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+        self.loadingIndicatorView.removeFromSuperview()
         loadingIndicatorView.hideActivity()
         locationManager.stopUpdatingLocation()
         noLocation = true

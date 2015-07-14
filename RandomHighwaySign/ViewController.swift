@@ -17,6 +17,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var detailsButton: UIBarButtonItem!
     @IBOutlet var signImage: SignImage!
     
+    var loadingIndicatorView:LoadingIndicatorView!
     var sign : Sign?
     
     var loadImageDelegate : LoadImageDelegate!
@@ -32,12 +33,15 @@ class ViewController: UIViewController {
         detailsButton.title = ""
         detailsButton.image = fact.createImageForIcon(.InfoCircle)
         
-        randomSignRequest()
+        loadingIndicatorView = LoadingIndicatorView(frame:CGRectMake(0, 0, 80, 80))
+        loadingIndicatorView.center = self.view.center
         
     }
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.toolbarHidden = false
+        
+        randomSignRequest()
         
         if loadImageDelegate != nil{
             loadImageDelegate.loadImageInto(self)
@@ -52,11 +56,16 @@ class ViewController: UIViewController {
     }
 
     func randomSignRequest(){
+        self.view.addSubview(loadingIndicatorView)
+        self.loadingIndicatorView.showActivity()
         Sign.getRandom() {
             (sign:Sign) in
             self.sign = sign
             self.title = sign.title
             self.signImage.loadSign(self.sign!)
+            
+            self.loadingIndicatorView.removeFromSuperview()
+            self.loadingIndicatorView.hideActivity()
         }
 
     }
