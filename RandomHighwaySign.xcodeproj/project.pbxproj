@@ -24,10 +24,9 @@
 		527CEC521B33A85200A2BBD6 /* SignImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527CEC511B33A85200A2BBD6 /* SignImage.swift */; };
 		527CEC541B33AF8600A2BBD6 /* RandomSignViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527CEC531B33AF8600A2BBD6 /* RandomSignViewController.swift */; };
 		527CEC561B33B49A00A2BBD6 /* SignImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527CEC551B33B49A00A2BBD6 /* SignImageViewController.swift */; };
+		52BAA4261B53EC66000F1FB2 /* LoadingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BAA4251B53EC66000F1FB2 /* LoadingIndicatorView.swift */; };
 		52C6C9D31B4EA1D60076B328 /* LoadImageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C6C9D21B4EA1D60076B328 /* LoadImageDelegate.swift */; };
 		52C6C9D61B4EA35D0076B328 /* SearchResultsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C6C9D51B4EA35D0076B328 /* SearchResultsDelegate.swift */; };
-		52E68D371B51BEE0005CFDEE /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E68D361B51BEE0005CFDEE /* ActivityView.swift */; };
-		52E68D3A1B51C005005CFDEE /* ActivityView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52E68D391B51C005005CFDEE /* ActivityView.xib */; };
 		52FDF0471B3742E600AEF5B0 /* HighwayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDF0461B3742E600AEF5B0 /* HighwayTableViewCell.swift */; };
 		52FDF04A1B37B46D00AEF5B0 /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDF0491B37B46D00AEF5B0 /* MapTableViewCell.swift */; };
 		52FDF04C1B37B5A900AEF5B0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52FDF04B1B37B5A900AEF5B0 /* MapKit.framework */; };
@@ -67,10 +66,9 @@
 		527CEC511B33A85200A2BBD6 /* SignImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignImage.swift; sourceTree = "<group>"; };
 		527CEC531B33AF8600A2BBD6 /* RandomSignViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomSignViewController.swift; sourceTree = "<group>"; };
 		527CEC551B33B49A00A2BBD6 /* SignImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignImageViewController.swift; sourceTree = "<group>"; };
+		52BAA4251B53EC66000F1FB2 /* LoadingIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorView.swift; sourceTree = "<group>"; };
 		52C6C9D21B4EA1D60076B328 /* LoadImageDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadImageDelegate.swift; sourceTree = "<group>"; };
 		52C6C9D51B4EA35D0076B328 /* SearchResultsDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsDelegate.swift; sourceTree = "<group>"; };
-		52E68D361B51BEE0005CFDEE /* ActivityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
-		52E68D391B51C005005CFDEE /* ActivityView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ActivityView.xib; sourceTree = "<group>"; };
 		52FDF0461B3742E600AEF5B0 /* HighwayTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HighwayTableViewCell.swift; path = RandomHighwaySign/HighwayTableViewCell.swift; sourceTree = "<group>"; };
 		52FDF0491B37B46D00AEF5B0 /* MapTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapTableViewCell.swift; path = RandomHighwaySign/MapTableViewCell.swift; sourceTree = "<group>"; };
 		52FDF04B1B37B5A900AEF5B0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -132,7 +130,7 @@
 		5228AB351AE4574800A664D4 /* RandomHighwaySign */ = {
 			isa = PBXGroup;
 			children = (
-				52E68D381B51BFF0005CFDEE /* ActivityView */,
+				52BAA4241B53EC3D000F1FB2 /* ActivityView */,
 				52C6C9D41B4EA2F70076B328 /* MainTableView */,
 				52C6C9D11B4E9F5E0076B328 /* ImageView */,
 				52246BD11B3C2EF60099A9C5 /* Assets */,
@@ -179,6 +177,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		52BAA4241B53EC3D000F1FB2 /* ActivityView */ = {
+			isa = PBXGroup;
+			children = (
+				52BAA4251B53EC66000F1FB2 /* LoadingIndicatorView.swift */,
+			);
+			name = ActivityView;
+			sourceTree = "<group>";
+		};
 		52C6C9D11B4E9F5E0076B328 /* ImageView */ = {
 			isa = PBXGroup;
 			children = (
@@ -194,15 +200,6 @@
 				52C6C9D51B4EA35D0076B328 /* SearchResultsDelegate.swift */,
 			);
 			name = MainTableView;
-			sourceTree = "<group>";
-		};
-		52E68D381B51BFF0005CFDEE /* ActivityView */ = {
-			isa = PBXGroup;
-			children = (
-				52E68D361B51BEE0005CFDEE /* ActivityView.swift */,
-				52E68D391B51C005005CFDEE /* ActivityView.xib */,
-			);
-			name = ActivityView;
 			sourceTree = "<group>";
 		};
 		52FDF0481B37B44200AEF5B0 /* SignDetails */ = {
@@ -324,7 +321,6 @@
 				5228AB461AE4574800A664D4 /* LaunchScreen.xib in Resources */,
 				527CEC501B33A80A00A2BBD6 /* SignImage.xib in Resources */,
 				5228AB431AE4574800A664D4 /* Images.xcassets in Resources */,
-				52E68D3A1B51C005005CFDEE /* ActivityView.xib in Resources */,
 				52246BD51B44146B0099A9C5 /* ApiKeys.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -396,13 +392,13 @@
 				5228AB3E1AE4574800A664D4 /* ViewController.swift in Sources */,
 				52FDF0471B3742E600AEF5B0 /* HighwayTableViewCell.swift in Sources */,
 				52C6C9D61B4EA35D0076B328 /* SearchResultsDelegate.swift in Sources */,
-				52E68D371B51BEE0005CFDEE /* ActivityView.swift in Sources */,
 				52FDF04E1B39888E00AEF5B0 /* DescriptionTableViewCell.swift in Sources */,
 				527CEC541B33AF8600A2BBD6 /* RandomSignViewController.swift in Sources */,
 				5209C18D1AE5C6870078D43A /* Sign.swift in Sources */,
 				52FDF04A1B37B46D00AEF5B0 /* MapTableViewCell.swift in Sources */,
 				52246BD71B4414EC0099A9C5 /* ApiKeys.swift in Sources */,
 				5228AB391AE4574800A664D4 /* AppDelegate.swift in Sources */,
+				52BAA4261B53EC66000F1FB2 /* LoadingIndicatorView.swift in Sources */,
 				52C6C9D31B4EA1D60076B328 /* LoadImageDelegate.swift in Sources */,
 				521B29B61B0021CB00A003AE /* GetCurrentController.swift in Sources */,
 				527CEC521B33A85200A2BBD6 /* SignImage.swift in Sources */,

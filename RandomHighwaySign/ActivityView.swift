@@ -11,16 +11,11 @@ import Foundation
 import UIKit
 
 public class ActivityView : UIView{
+    
+    var activityIndicator:UIActivityIndicatorView!
 
-    var view:UIView!
-    
-    @IBOutlet weak var imageView: UIImageView!
-    
-    @IBOutlet weak var statusText: UILabel!
-
-    
-    func xibSetup(){
-        view = loadViewFromNib()
+    init(frame: CGRect) {
+        
     }
     
     

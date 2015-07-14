@@ -24,8 +24,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
-        
         var fact = NIKFontAwesomeIconFactory.barButtonItemIconFactory()
         fact.colors = [self.view.tintColor]
         navItem.title = ""
@@ -44,6 +42,7 @@ class ViewController: UIViewController {
         if loadImageDelegate != nil{
             loadImageDelegate.loadImageInto(self)
         }
+        
     }
 
     
@@ -53,19 +52,14 @@ class ViewController: UIViewController {
     }
 
     func randomSignRequest(){
-        //spinner.hidden = false
-        //spinner.startAnimating()
-        Alamofire.request(RandomRequestRouter.Single())
-            .responseCollection{(_,_,data:[Sign]?,_)in
-                self.sign = data![0]
-                self.title = self.sign!.title
-                self.signImage.loadSign(self.sign!)
+        Sign.getRandom() {
+            (sign:Sign) in
+            self.sign = sign
+            self.title = sign.title
+            self.signImage.loadSign(self.sign!)
         }
+
     }
-
-
-
-
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "OpenRandomDetail"{
@@ -79,13 +73,6 @@ class ViewController: UIViewController {
     @IBAction func getDetailsTapped(sender : AnyObject) {
         self.randomSignRequest()
     }
-    
-    @IBAction func loadDetailsPage(segue : UIStoryboardSegue){
-        
-    }
-    
-    @IBAction func backToMainController (segue : UIStoryboardSegue){
-        
-    }
+
     
 }
