@@ -58,14 +58,18 @@ class ViewController: UIViewController {
     func randomSignRequest(){
         self.view.addSubview(loadingIndicatorView)
         self.loadingIndicatorView.showActivity()
-        Sign.getRandom() {
-            (sign:Sign) in
-            self.sign = sign
-            self.title = sign.title
-            self.signImage.loadSign(self.sign!)
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)){
+            Sign.getRandom() {
+                (sign:Sign) in
+                self.sign = sign
+                self.title = sign.title
+                self.signImage.loadSign(self.sign!)
+            }
             
-            self.loadingIndicatorView.removeFromSuperview()
-            self.loadingIndicatorView.hideActivity()
+            dispatch_async(dispatch_get_main_queue(), {
+                self.loadingIndicatorView.removeFromSuperview()
+                self.loadingIndicatorView.hideActivity()
+            })
         }
 
     }

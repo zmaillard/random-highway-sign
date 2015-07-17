@@ -22,7 +22,6 @@
 		522C78261AF1C7CA0001121F /* SignDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522C78251AF1C7CA0001121F /* SignDetailsViewController.swift */; };
 		527CEC501B33A80A00A2BBD6 /* SignImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527CEC4F1B33A80A00A2BBD6 /* SignImage.xib */; };
 		527CEC521B33A85200A2BBD6 /* SignImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527CEC511B33A85200A2BBD6 /* SignImage.swift */; };
-		527CEC541B33AF8600A2BBD6 /* RandomSignViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527CEC531B33AF8600A2BBD6 /* RandomSignViewController.swift */; };
 		527CEC561B33B49A00A2BBD6 /* SignImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527CEC551B33B49A00A2BBD6 /* SignImageViewController.swift */; };
 		52BAA4261B53EC66000F1FB2 /* LoadingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BAA4251B53EC66000F1FB2 /* LoadingIndicatorView.swift */; };
 		52C6C9D31B4EA1D60076B328 /* LoadImageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C6C9D21B4EA1D60076B328 /* LoadImageDelegate.swift */; };
@@ -64,7 +63,6 @@
 		522C78251AF1C7CA0001121F /* SignDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignDetailsViewController.swift; path = RandomHighwaySign/SignDetailsViewController.swift; sourceTree = "<group>"; };
 		527CEC4F1B33A80A00A2BBD6 /* SignImage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignImage.xib; sourceTree = "<group>"; };
 		527CEC511B33A85200A2BBD6 /* SignImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignImage.swift; sourceTree = "<group>"; };
-		527CEC531B33AF8600A2BBD6 /* RandomSignViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RandomSignViewController.swift; sourceTree = "<group>"; };
 		527CEC551B33B49A00A2BBD6 /* SignImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignImageViewController.swift; sourceTree = "<group>"; };
 		52BAA4251B53EC66000F1FB2 /* LoadingIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorView.swift; sourceTree = "<group>"; };
 		52C6C9D21B4EA1D60076B328 /* LoadImageDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadImageDelegate.swift; sourceTree = "<group>"; };
@@ -145,7 +143,6 @@
 				521B29B51B0021CB00A003AE /* GetCurrentController.swift */,
 				527CEC511B33A85200A2BBD6 /* SignImage.swift */,
 				527CEC4F1B33A80A00A2BBD6 /* SignImage.xib */,
-				527CEC531B33AF8600A2BBD6 /* RandomSignViewController.swift */,
 				527CEC551B33B49A00A2BBD6 /* SignImageViewController.swift */,
 				52246BD61B4414EC0099A9C5 /* ApiKeys.swift */,
 			);
@@ -393,7 +390,6 @@
 				52FDF0471B3742E600AEF5B0 /* HighwayTableViewCell.swift in Sources */,
 				52C6C9D61B4EA35D0076B328 /* SearchResultsDelegate.swift in Sources */,
 				52FDF04E1B39888E00AEF5B0 /* DescriptionTableViewCell.swift in Sources */,
-				527CEC541B33AF8600A2BBD6 /* RandomSignViewController.swift in Sources */,
 				5209C18D1AE5C6870078D43A /* Sign.swift in Sources */,
 				52FDF04A1B37B46D00AEF5B0 /* MapTableViewCell.swift in Sources */,
 				52246BD71B4414EC0099A9C5 /* ApiKeys.swift in Sources */,
