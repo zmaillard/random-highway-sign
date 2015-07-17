@@ -38,22 +38,13 @@ class SignImageViewController: UIViewController {
     func loadSign(){
         self.view.addSubview(loadingIndicatorView)
         self.loadingIndicatorView.showActivity()
-        
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)){
+
+        self.title = self.sign!.title
+        self.signImage.loadSign(self.sign!)
             
-            self.title = self.sign!.title
-            
-            dispatch_async(dispatch_get_main_queue()){
-                self.signImage.loadSign(self.sign!)
-                self.loadingIndicatorView.removeFromSuperview()
-                self.loadingIndicatorView.hideActivity()
-            }
-            
-        }
-        
-        
-        
-        
+
+        self.loadingIndicatorView.removeFromSuperview()
+        self.loadingIndicatorView.hideActivity()
         
     }
 

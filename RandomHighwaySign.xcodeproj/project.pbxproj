@@ -141,9 +141,7 @@
 				5228AB361AE4574800A664D4 /* Supporting Files */,
 				5209C18C1AE5C6870078D43A /* Sign.swift */,
 				521B29B51B0021CB00A003AE /* GetCurrentController.swift */,
-				527CEC511B33A85200A2BBD6 /* SignImage.swift */,
 				527CEC4F1B33A80A00A2BBD6 /* SignImage.xib */,
-				527CEC551B33B49A00A2BBD6 /* SignImageViewController.swift */,
 				52246BD61B4414EC0099A9C5 /* ApiKeys.swift */,
 			);
 			path = RandomHighwaySign;
@@ -185,6 +183,8 @@
 		52C6C9D11B4E9F5E0076B328 /* ImageView */ = {
 			isa = PBXGroup;
 			children = (
+				527CEC551B33B49A00A2BBD6 /* SignImageViewController.swift */,
+				527CEC511B33A85200A2BBD6 /* SignImage.swift */,
 				5228AB3D1AE4574800A664D4 /* ViewController.swift */,
 				52C6C9D21B4EA1D60076B328 /* LoadImageDelegate.swift */,
 			);
