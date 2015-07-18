@@ -20,7 +20,6 @@ class ViewController: UIViewController {
     var loadingIndicatorView:LoadingIndicatorView!
     var sign : Sign?
     
-    var loadImageDelegate : LoadImageDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,10 +41,7 @@ class ViewController: UIViewController {
         self.navigationController?.toolbarHidden = false
         
         randomSignRequest()
-        
-        if loadImageDelegate != nil{
-            loadImageDelegate.loadImageInto(self)
-        }
+
         
     }
 
