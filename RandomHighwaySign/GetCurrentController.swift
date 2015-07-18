@@ -17,9 +17,10 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
 
     @IBOutlet weak var randomButton: UIBarButtonItem!
     
-    
     //Url for Sign Query
     let locationManager = CLLocationManager()
+    
+    var randomSign:Sign!
     
     var currentPage = 0;
     var modal : UIViewController!
@@ -37,6 +38,8 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         placeType: .Cities
     )
     
+    var loadingIndicatorView:LoadingIndicatorView!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,11 +54,14 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
 
         navigationController?.setNavigationBarHidden(false, animated: true)
         
+        loadingIndicatorView = LoadingIndicatorView(frame:CGRectMake(0, 0, 80, 80))
+        loadingIndicatorView.center = self.tableView.center
+        
         
         locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers
         locationManager.distanceFilter = 5000 //5km movement before updating
         locationManager.delegate = self
-
+        
         self.refreshControl = UIRefreshControl()
         self.refreshControl?.attributedTitle = NSAttributedString(string: "Loading New Signs")
         self.refreshControl?.addTarget(self, action:"refresh", forControlEvents: UIControlEvents.ValueChanged)
@@ -65,6 +71,7 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     
     }
     
+
     @IBAction func searchClicked(sender: AnyObject) {
         presentViewController(gpaViewController, animated: true, completion: nil)
     }
@@ -78,6 +85,8 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     
     func refresh(){
         locationManager.startUpdatingLocation()
+        self.view.addSubview(loadingIndicatorView)
+        loadingIndicatorView.showActivity()
         self.refreshControl?.endRefreshing()
     }
     
@@ -85,6 +94,7 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         locationManager.requestWhenInUseAuthorization()
     }
 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -106,6 +116,7 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
             return self.signs.count
         }
     }
+    
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         performSegueWithIdentifier("OpenDetail", sender: self)
@@ -158,7 +169,10 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
                         
                         dispatch_async(dispatch_get_main_queue()){
                             self.tableView.reloadData()
+                            self.loadingIndicatorView.removeFromSuperview()
+                            self.loadingIndicatorView.hideActivity()
                         }
+                        
                     }
 
                 }
@@ -169,17 +183,17 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .AuthorizedWhenInUse{
             locationManager.startUpdatingLocation()
+            self.view.addSubview(loadingIndicatorView)
+            loadingIndicatorView.showActivity()
         }
     }
     
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+        self.loadingIndicatorView.removeFromSuperview()
+        loadingIndicatorView.hideActivity()
         locationManager.stopUpdatingLocation()
         noLocation = true
         self.tableView.reloadData()
-    }
-    
-    @IBAction func refreshLocation(sender : AnyObject) {
-        locationManager.startUpdatingLocation()
     }
 
 
@@ -218,6 +232,8 @@ extension GetCurrentController : GooglePlacesAutocompleteDelegate{
     func placeViewClosed() {
         dismissViewControllerAnimated(true, completion: nil)
     }
+    
+
 }
 
 

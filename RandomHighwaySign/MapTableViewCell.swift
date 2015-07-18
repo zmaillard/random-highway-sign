@@ -18,8 +18,6 @@ class MapTableViewCell: UITableViewCell {
 
         var point = MKPointAnnotation()
         point.coordinate = coord;
-        //point.title = @"Where am I?";
-        //point.subtitle = @"I'm here!!!";
         
         mapView.addAnnotation(point)
         

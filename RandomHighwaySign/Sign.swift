@@ -175,6 +175,13 @@ final class Sign : NSObject, ResponseObjectSerializable, ResponseCollectionSeria
     var thumbnail : String = ""
     var title : String = ""
     
+    static func  getRandom(callback:(sign:Sign) -> Void ) {
+        Alamofire.request(RandomRequestRouter.Single())
+            .responseCollection{(_,_,data:[Sign]?,_)in
+                callback( sign:data![0])
+        }
+    }
+    
     @objc required init(response: NSHTTPURLResponse, representation: AnyObject){
         
         self.country = representation.valueForKeyPath("title") as! String
