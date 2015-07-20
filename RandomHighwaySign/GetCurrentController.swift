@@ -145,7 +145,8 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     }
     
     func makeRequest(latitude:Double, longitude:Double){
-        let radius = 5
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        let radius = userDefaults.integerForKey("search_radius")
         let page = 1
         Alamofire.request(RandomRequestRouter.Geo(latitude:latitude,longitude:longitude,radius:radius,page:page))
             .responseCollection{ (_,_,data:[Sign]?,error) in
