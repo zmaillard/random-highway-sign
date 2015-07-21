@@ -37,6 +37,9 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         placeType: .Cities
     )
     
+    deinit{
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,6 +64,8 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         self.refreshControl?.addTarget(self, action:"refresh", forControlEvents: UIControlEvents.ValueChanged)
     
         self.tableView.addSubview(refreshControl!)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "settingsChanged", name: NSUserDefaultsDidChangeNotification, object: nil)
 
     
     }
@@ -196,6 +201,10 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
                 }
             }
         }
+    }
+    
+    func settingsChanged(){
+        refresh()
     }
 
 }
