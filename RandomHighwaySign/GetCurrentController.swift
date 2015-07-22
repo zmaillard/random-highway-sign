@@ -40,6 +40,9 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     
     var loadingIndicatorView:LoadingIndicatorView!
 
+    deinit{
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,6 +70,8 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         self.refreshControl?.addTarget(self, action:"refresh", forControlEvents: UIControlEvents.ValueChanged)
     
         self.tableView.addSubview(refreshControl!)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadCurrentLocation", name: NSUserDefaultsDidChangeNotification, object: nil)
 
     
     }
@@ -88,6 +93,10 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         self.view.addSubview(loadingIndicatorView)
         loadingIndicatorView.showActivity()
         self.refreshControl?.endRefreshing()
+    }
+    
+    func reloadCurrentLocation(){
+        makeRequest(latitude,longitude:longitude)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -156,7 +165,8 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     }
     
     func makeRequest(latitude:Double, longitude:Double){
-        let radius = 5
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        let radius = userDefaults.integerForKey("search_radius")
         let page = 1
         Alamofire.request(RandomRequestRouter.Geo(latitude:latitude,longitude:longitude,radius:radius,page:page))
             .responseCollection{ (_,_,data:[Sign]?,error) in
@@ -210,7 +220,6 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
             }
         }
     }
-
 }
 
 extension GetCurrentController : GooglePlacesAutocompleteDelegate{

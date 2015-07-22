@@ -20,6 +20,7 @@
 		5228AB461AE4574800A664D4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5228AB441AE4574800A664D4 /* LaunchScreen.xib */; };
 		5228AB521AE4574800A664D4 /* RandomHighwaySignTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5228AB511AE4574800A664D4 /* RandomHighwaySignTests.swift */; };
 		522C78261AF1C7CA0001121F /* SignDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522C78251AF1C7CA0001121F /* SignDetailsViewController.swift */; };
+		523512C81B5C3E1F00925C4C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 523512C71B5C3E1F00925C4C /* Settings.bundle */; };
 		527CEC501B33A80A00A2BBD6 /* SignImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527CEC4F1B33A80A00A2BBD6 /* SignImage.xib */; };
 		527CEC521B33A85200A2BBD6 /* SignImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527CEC511B33A85200A2BBD6 /* SignImage.swift */; };
 		527CEC561B33B49A00A2BBD6 /* SignImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527CEC551B33B49A00A2BBD6 /* SignImageViewController.swift */; };
@@ -59,6 +60,7 @@
 		5228AB501AE4574800A664D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5228AB511AE4574800A664D4 /* RandomHighwaySignTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomHighwaySignTests.swift; sourceTree = "<group>"; };
 		522C78251AF1C7CA0001121F /* SignDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignDetailsViewController.swift; path = RandomHighwaySign/SignDetailsViewController.swift; sourceTree = "<group>"; };
+		523512C71B5C3E1F00925C4C /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		527CEC4F1B33A80A00A2BBD6 /* SignImage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignImage.xib; sourceTree = "<group>"; };
 		527CEC511B33A85200A2BBD6 /* SignImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignImage.swift; sourceTree = "<group>"; };
 		527CEC551B33B49A00A2BBD6 /* SignImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignImageViewController.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 				521B29B51B0021CB00A003AE /* GetCurrentController.swift */,
 				527CEC4F1B33A80A00A2BBD6 /* SignImage.xib */,
 				52246BD61B4414EC0099A9C5 /* ApiKeys.swift */,
+				523512C71B5C3E1F00925C4C /* Settings.bundle */,
 			);
 			path = RandomHighwaySign;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				527CEC501B33A80A00A2BBD6 /* SignImage.xib in Resources */,
 				5228AB431AE4574800A664D4 /* Images.xcassets in Resources */,
 				52246BD51B44146B0099A9C5 /* ApiKeys.plist in Resources */,
+				523512C81B5C3E1F00925C4C /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
