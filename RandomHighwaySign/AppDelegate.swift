@@ -112,7 +112,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func prepareDefaultSettings(){
-
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        var radius = userDefaults.integerForKey("search_radius")
+    
+        if (radius == 0){
+            let defaults = [ "search_radius" : 5 ]
+            
+            userDefaults.registerDefaults(defaults)
+            userDefaults.synchronize()
+        }
     }
 
 }

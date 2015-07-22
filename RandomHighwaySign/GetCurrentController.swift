@@ -65,7 +65,7 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     
         self.tableView.addSubview(refreshControl!)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "settingsChanged", name: NSUserDefaultsDidChangeNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadCurrentLocation", name: NSUserDefaultsDidChangeNotification, object: nil)
 
     
     }
@@ -84,6 +84,10 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     func refresh(){
         locationManager.startUpdatingLocation()
         self.refreshControl?.endRefreshing()
+    }
+    
+    func reloadCurrentLocation(){
+        makeRequest(latitude,longitude:longitude)
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -202,11 +206,6 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
             }
         }
     }
-    
-    func settingsChanged(){
-        refresh()
-    }
-
 }
 
 extension GetCurrentController : GooglePlacesAutocompleteDelegate{
