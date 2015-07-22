@@ -9,7 +9,7 @@
 import UIKit
 import FontAwesomeIconFactory
 
-class SignImageViewController: UIViewController {
+class SignImageViewController: UIViewController, ImageLoadingDelegate {
     var sign:Sign?
     
     @IBOutlet weak var detailsButton: UIBarButtonItem!
@@ -26,7 +26,9 @@ class SignImageViewController: UIViewController {
         detailsButton.image = fact.createImageForIcon(.InfoCircle)
         
         loadingIndicatorView = LoadingIndicatorView(frame:CGRectMake(0, 0, 80, 80))
-        loadingIndicatorView.center = self.view.center        
+        loadingIndicatorView.center = self.view.center
+        
+        self.signImage.status = self
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -41,10 +43,6 @@ class SignImageViewController: UIViewController {
 
         self.title = self.sign!.title
         self.signImage.loadSign(self.sign!)
-            
-
-        self.loadingIndicatorView.removeFromSuperview()
-        self.loadingIndicatorView.hideActivity()
         
     }
 
@@ -67,5 +65,9 @@ class SignImageViewController: UIViewController {
         }
     }
     
+    func OnImageLoaded() {
+        self.loadingIndicatorView.removeFromSuperview()
+        self.loadingIndicatorView.hideActivity()
+    }
 
 }

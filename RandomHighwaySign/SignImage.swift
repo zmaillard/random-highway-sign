@@ -17,7 +17,8 @@ class SignImage: UIView, UIScrollViewDelegate {
     @IBOutlet var view: UIView!
     
     var sign : Sign?
-    
+
+    var status:ImageLoadingDelegate!
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -40,6 +41,10 @@ class SignImage: UIView, UIScrollViewDelegate {
             self.imageView.frame = self.centerFrameFromImage(image)
             
             self.centerScrollViewContents()
+            
+            if (self.status != nil){
+                self.status.OnImageLoaded()
+            }
         }
     
     

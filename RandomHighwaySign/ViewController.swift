@@ -11,7 +11,7 @@ import SwiftyJSON
 import QuartzCore
 import FontAwesomeIconFactory
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, ImageLoadingDelegate {
 
     @IBOutlet weak var navItem: UIBarButtonItem!
     @IBOutlet weak var detailsButton: UIBarButtonItem!
@@ -34,6 +34,8 @@ class ViewController: UIViewController {
         
         loadingIndicatorView = LoadingIndicatorView(frame:CGRectMake(0, 0, 80, 80))
         loadingIndicatorView.center = self.view.center
+        
+        signImage.status = self
         
     }
     
@@ -63,8 +65,7 @@ class ViewController: UIViewController {
             }
             
             dispatch_async(dispatch_get_main_queue(), {
-                self.loadingIndicatorView.removeFromSuperview()
-                self.loadingIndicatorView.hideActivity()
+
             })
         }
 
@@ -81,6 +82,11 @@ class ViewController: UIViewController {
     
     @IBAction func getDetailsTapped(sender : AnyObject) {
         self.randomSignRequest()
+    }
+    
+    func OnImageLoaded() {
+        self.loadingIndicatorView.removeFromSuperview()
+        self.loadingIndicatorView.hideActivity()
     }
 
     
