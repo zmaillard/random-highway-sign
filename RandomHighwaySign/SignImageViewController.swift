@@ -15,6 +15,8 @@ class SignImageViewController: UIViewController {
     @IBOutlet weak var detailsButton: UIBarButtonItem!
     @IBOutlet var signImage: SignImage!
     
+    var loadingIndicatorView:LoadingIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,15 +25,28 @@ class SignImageViewController: UIViewController {
         detailsButton.title = ""
         detailsButton.image = fact.createImageForIcon(.InfoCircle)
         
-        signImage.loadSign(sign!)
-        self.title = self.sign!.title
-        
+        loadingIndicatorView = LoadingIndicatorView(frame:CGRectMake(0, 0, 80, 80))
+        loadingIndicatorView.center = self.view.center        
     }
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.toolbarHidden = false
+    
+        loadSign()
     }
 
+    func loadSign(){
+        self.view.addSubview(loadingIndicatorView)
+        self.loadingIndicatorView.showActivity()
+
+        self.title = self.sign!.title
+        self.signImage.loadSign(self.sign!)
+            
+
+        self.loadingIndicatorView.removeFromSuperview()
+        self.loadingIndicatorView.hideActivity()
+        
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -52,14 +67,5 @@ class SignImageViewController: UIViewController {
         }
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

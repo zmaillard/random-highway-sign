@@ -17,12 +17,12 @@ class ViewController: UIViewController {
     @IBOutlet weak var detailsButton: UIBarButtonItem!
     @IBOutlet var signImage: SignImage!
     
+    var loadingIndicatorView:LoadingIndicatorView!
     var sign : Sign?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
         
         var fact = NIKFontAwesomeIconFactory.barButtonItemIconFactory()
         fact.colors = [self.view.tintColor]
@@ -32,12 +32,17 @@ class ViewController: UIViewController {
         detailsButton.title = ""
         detailsButton.image = fact.createImageForIcon(.InfoCircle)
         
-        randomSignRequest()
+        loadingIndicatorView = LoadingIndicatorView(frame:CGRectMake(0, 0, 80, 80))
+        loadingIndicatorView.center = self.view.center
         
     }
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.toolbarHidden = false
+        
+        randomSignRequest()
+
+        
     }
 
     
@@ -47,19 +52,23 @@ class ViewController: UIViewController {
     }
 
     func randomSignRequest(){
-        //spinner.hidden = false
-        //spinner.startAnimating()
-        Alamofire.request(RandomRequestRouter.Single())
-            .responseCollection{(_,_,data:[Sign]?,_)in
-                self.sign = data![0]
-                self.title = self.sign!.title
+        self.view.addSubview(loadingIndicatorView)
+        self.loadingIndicatorView.showActivity()
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)){
+            Sign.getRandom() {
+                (sign:Sign) in
+                self.sign = sign
+                self.title = sign.title
                 self.signImage.loadSign(self.sign!)
+            }
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                self.loadingIndicatorView.removeFromSuperview()
+                self.loadingIndicatorView.hideActivity()
+            })
         }
+
     }
-
-
-
-
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "OpenRandomDetail"{
@@ -73,13 +82,6 @@ class ViewController: UIViewController {
     @IBAction func getDetailsTapped(sender : AnyObject) {
         self.randomSignRequest()
     }
-    
-    @IBAction func loadDetailsPage(segue : UIStoryboardSegue){
-        
-    }
-    
-    @IBAction func backToMainController (segue : UIStoryboardSegue){
-        
-    }
+
     
 }

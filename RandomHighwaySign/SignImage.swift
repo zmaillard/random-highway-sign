@@ -7,13 +7,13 @@
 //
 
 import UIKit
+import Alamofire
 
 class SignImage: UIView, UIScrollViewDelegate {
 
     let scrollView:UIScrollView =  UIScrollView()
     let imageView:UIImageView =  UIImageView()
-    let spinner = UIActivityIndicatorView(activityIndicatorStyle: .WhiteLarge)
-    
+
     @IBOutlet var view: UIView!
     
     var sign : Sign?
@@ -32,16 +32,17 @@ class SignImage: UIView, UIScrollViewDelegate {
     }
     
     func setImageData(imageUrl:String){
-        let url = NSURL(string: imageUrl)
-        let data = NSData(contentsOfURL: url!)
-        
-        let image = UIImage(data:data!)
-        imageView.image = image
-        imageView.frame = self.centerFrameFromImage(image)
-        
-        centerScrollViewContents()
-        
-        spinner.stopAnimating()
+        Alamofire.request(.GET, imageUrl).response() {
+            (_, _, data, _) in
+            
+            let image = UIImage(data:data! as! NSData)
+            self.imageView.image = image
+            self.imageView.frame = self.centerFrameFromImage(image)
+            
+            self.centerScrollViewContents()
+        }
+    
+    
     }
     
     func centerScrollViewContents() {
@@ -108,10 +109,6 @@ class SignImage: UIView, UIScrollViewDelegate {
     }
     
     func setupImage(){
-        spinner.center = CGPoint(x: view.center.x, y: view.center.y - view.bounds.origin.y / 2.0)
-        spinner.hidesWhenStopped = true
-        spinner.startAnimating()
-        view.addSubview(spinner)
         
         scrollView.frame = view.bounds
         scrollView.delegate = self

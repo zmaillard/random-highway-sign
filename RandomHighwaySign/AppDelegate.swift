@@ -17,6 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        prepareDefaultSettings()
+        
         return true
     }
 
@@ -44,6 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.saveContext()
     }
 
+    
     // MARK: - Core Data stack
 
     lazy var applicationDocumentsDirectory: NSURL = {
@@ -104,6 +108,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 NSLog("Unresolved error \(error), \(error!.userInfo)")
                 abort()
             }
+        }
+    }
+    
+    private func prepareDefaultSettings(){
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        var radius = userDefaults.integerForKey("search_radius")
+    
+        if (radius == 0){
+            let defaults = [ "search_radius" : 5 ]
+            
+            userDefaults.registerDefaults(defaults)
+            userDefaults.synchronize()
         }
     }
 
