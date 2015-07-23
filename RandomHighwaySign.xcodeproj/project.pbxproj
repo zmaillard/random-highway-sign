@@ -17,9 +17,9 @@
 		5228AB3E1AE4574800A664D4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5228AB3D1AE4574800A664D4 /* ViewController.swift */; };
 		5228AB411AE4574800A664D4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5228AB3F1AE4574800A664D4 /* Main.storyboard */; };
 		5228AB431AE4574800A664D4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5228AB421AE4574800A664D4 /* Images.xcassets */; };
-		5228AB461AE4574800A664D4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5228AB441AE4574800A664D4 /* LaunchScreen.xib */; };
 		5228AB521AE4574800A664D4 /* RandomHighwaySignTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5228AB511AE4574800A664D4 /* RandomHighwaySignTests.swift */; };
 		522C78261AF1C7CA0001121F /* SignDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522C78251AF1C7CA0001121F /* SignDetailsViewController.swift */; };
+		523512C61B59F90300925C4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 523512C51B59F90300925C4C /* LaunchScreen.storyboard */; };
 		523512C81B5C3E1F00925C4C /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 523512C71B5C3E1F00925C4C /* Settings.bundle */; };
 		523512CA1B605EEA00925C4C /* ImageLoadingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523512C91B605EEA00925C4C /* ImageLoadingDelegate.swift */; };
 		527CEC501B33A80A00A2BBD6 /* SignImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527CEC4F1B33A80A00A2BBD6 /* SignImage.xib */; };
@@ -56,11 +56,11 @@
 		5228AB3D1AE4574800A664D4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5228AB401AE4574800A664D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5228AB421AE4574800A664D4 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		5228AB451AE4574800A664D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		5228AB4B1AE4574800A664D4 /* RandomHighwaySignTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RandomHighwaySignTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5228AB501AE4574800A664D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5228AB511AE4574800A664D4 /* RandomHighwaySignTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomHighwaySignTests.swift; sourceTree = "<group>"; };
 		522C78251AF1C7CA0001121F /* SignDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignDetailsViewController.swift; path = RandomHighwaySign/SignDetailsViewController.swift; sourceTree = "<group>"; };
+		523512C51B59F90300925C4C /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		523512C71B5C3E1F00925C4C /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		523512C91B605EEA00925C4C /* ImageLoadingDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageLoadingDelegate.swift; sourceTree = "<group>"; };
 		527CEC4F1B33A80A00A2BBD6 /* SignImage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignImage.xib; sourceTree = "<group>"; };
@@ -136,13 +136,13 @@
 				5228AB381AE4574800A664D4 /* AppDelegate.swift */,
 				5228AB3F1AE4574800A664D4 /* Main.storyboard */,
 				5228AB421AE4574800A664D4 /* Images.xcassets */,
-				5228AB441AE4574800A664D4 /* LaunchScreen.xib */,
 				5228AB3A1AE4574800A664D4 /* RandomHighwaySign.xcdatamodeld */,
 				5228AB361AE4574800A664D4 /* Supporting Files */,
 				5209C18C1AE5C6870078D43A /* Sign.swift */,
 				521B29B51B0021CB00A003AE /* GetCurrentController.swift */,
 				527CEC4F1B33A80A00A2BBD6 /* SignImage.xib */,
 				52246BD61B4414EC0099A9C5 /* ApiKeys.swift */,
+				523512C51B59F90300925C4C /* LaunchScreen.storyboard */,
 				523512C71B5C3E1F00925C4C /* Settings.bundle */,
 			);
 			path = RandomHighwaySign;
@@ -315,8 +315,8 @@
 			files = (
 				52246BD31B3C2F0F0099A9C5 /* US-20.png in Resources */,
 				5228AB411AE4574800A664D4 /* Main.storyboard in Resources */,
-				5228AB461AE4574800A664D4 /* LaunchScreen.xib in Resources */,
 				527CEC501B33A80A00A2BBD6 /* SignImage.xib in Resources */,
+				523512C61B59F90300925C4C /* LaunchScreen.storyboard in Resources */,
 				5228AB431AE4574800A664D4 /* Images.xcassets in Resources */,
 				52246BD51B44146B0099A9C5 /* ApiKeys.plist in Resources */,
 				523512C81B5C3E1F00925C4C /* Settings.bundle in Resources */,
@@ -427,14 +427,6 @@
 				5228AB401AE4574800A664D4 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		5228AB441AE4574800A664D4 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				5228AB451AE4574800A664D4 /* Base */,
-			);
-			name = LaunchScreen.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
