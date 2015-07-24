@@ -37,14 +37,12 @@ class ViewController: UIViewController, ImageLoadingDelegate {
         
         signImage.status = self
         
+        randomSignRequest()
+        
     }
     
     override func viewWillAppear(animated: Bool) {
         self.navigationController?.toolbarHidden = false
-        
-        randomSignRequest()
-
-        
     }
 
     
