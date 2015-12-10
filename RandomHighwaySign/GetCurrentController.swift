@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import Alamofire
+import AlamofireImage
 import SwiftyJSON
 import FontAwesomeIconFactory
 import GooglePlacesAutocomplete
@@ -159,11 +160,11 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         let radius = 5
         let page = 1
         Alamofire.request(RandomRequestRouter.Geo(latitude:latitude,longitude:longitude,radius:radius,page:page))
-            .responseCollection{ (_,_,data:[Sign]?,error) in
-                if error == nil{
+            .responseCollection{(response: Response<[Sign], NSError>)in
+                if response.result.error == nil{
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)){
                         
-                        self.signs = data!
+                        self.signs = response.result.value!
                     
                         self.noResultsToDisplay = self.signs.count == 0
                         
@@ -254,11 +255,9 @@ class ResultTableViewCell : UITableViewCell{
         self.descLabel?.text = sign.imageDescription
         self.descLabel?.sizeToFit()
         
-        self.request = Alamofire.request(.GET, sign.thumbnail).responseImage() {
-            (request, _, image, error) in
-            if error == nil && image != nil {
-                self.thumbnailImageView!.image = image
-            }
+        self.request = Alamofire.request(.GET, sign.thumbnail).responseImage {
+            response in
+                self.thumbnailImageView!.image = response.result.value
         }
         
     }

@@ -134,21 +134,16 @@ class SignImage: UIView, UIScrollViewDelegate {
         //Set contraints
         let bindings = ["scrollView": scrollView, "view": view, "imageView": imageView]
         
-        let scrollH:[AnyObject] = NSLayoutConstraint.constraintsWithVisualFormat("H:|[scrollView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: bindings)
         
-        view.addConstraints(scrollH)
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[scrollView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: bindings))
         
-        let scrollV:[AnyObject] = NSLayoutConstraint.constraintsWithVisualFormat("V:|[scrollView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: bindings)
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[scrollView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: bindings))
         
-        view.addConstraints(scrollV)
+
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[imageView(==view)]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: bindings))
         
-        let containerEqualH:[AnyObject] = NSLayoutConstraint.constraintsWithVisualFormat("H:|[imageView(==view)]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: bindings)
         
-        view.addConstraints(containerEqualH)
-        
-        let containerEqualV:[AnyObject] = NSLayoutConstraint.constraintsWithVisualFormat("V:|[imageView(==view)]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: bindings)
-        
-        view.addConstraints(containerEqualV)
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[imageView(==view)]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: bindings))
         
     }
 

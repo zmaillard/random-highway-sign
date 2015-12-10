@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import AlamofireImage
 
 class HighwayTableViewCell: UITableViewCell {
 
@@ -30,16 +31,14 @@ class HighwayTableViewCell: UITableViewCell {
         let newUrl = highway.url.stringByReplacingOccurrencesOfString("/20x", withString: "")
         
         
-        self.request = Alamofire.request(.GET, newUrl).responseImage() {
-            (request, _, image, error) in
-            if error == nil && image != nil {
+        self.request = Alamofire.request(.GET, newUrl)
+            .responseImage {
+                response  in
                 dispatch_async(dispatch_get_main_queue(), {
-                    self.highwayImage!.image = image
+                    self.highwayImage!.image = response.result.value
                     self.setNeedsLayout()
                 })
             }
-        }
-    
         
     }
 

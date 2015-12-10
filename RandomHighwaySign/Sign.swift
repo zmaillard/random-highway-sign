@@ -9,54 +9,96 @@
 import Foundation
 import SwiftyJSON
 import Alamofire
+import AlamofireImage
 
-@objc public protocol ResponseObjectSerializable{
-    init(response:NSHTTPURLResponse, representation:AnyObject)
+public protocol ResponseObjectSerializable {
+    init?(response: NSHTTPURLResponse, representation: AnyObject)
 }
 
-@objc public protocol ResponseCollectionSerializable {
+public protocol ResponseCollectionSerializable {
     static func collection(response response: NSHTTPURLResponse, representation: AnyObject) -> [Self]
 }
 
+
 extension Alamofire.Request{
-    public func responseObject<T: ResponseObjectSerializable>(completionHandler: (NSURLRequest, NSHTTPURLResponse?, T?, NSError?) -> Void) -> Self {
-        let serializer: Serializer = { (request, response, data) in
-            let JSONSerializer = Request.JSONResponseSerializer(options: .AllowFragments)
-            let (JSON: AnyObject,?, serializationError) = JSONSerializer(request, response, data)
-            if response != nil && JSON != nil {
-                return (T(response: response!, representation: JSON!), nil)
-            } else {
-                return (nil, serializationError)
+    public func responseObject<T: ResponseObjectSerializable>(completionHandler: Response<T, NSError> -> Void) -> Self {
+        let responseSerializer = ResponseSerializer<T, NSError> { request, response, data, error in
+            guard error == nil else { return .Failure(error!) }
+            
+            let JSONResponseSerializer = Request.JSONResponseSerializer(options: .AllowFragments)
+            let result = JSONResponseSerializer.serializeResponse(request, response, data, error)
+            
+            switch result {
+            case .Success(let value):
+                if let
+                    response = response,
+                    responseObject = T(response: response, representation: value)
+                {
+                    return .Success(responseObject)
+                } else {
+                    let failureReason = "JSON could not be serialized into response object: \(value)"
+                    let error = Error.errorWithCode(.JSONSerializationFailed, failureReason: failureReason)
+                    return .Failure(error)
+                }
+            case .Failure(let error):
+                return .Failure(error)
             }
         }
         
-        return response(serializer: serializer, completionHandler: { (request, response, object, error) in
-            completionHandler(request, response, object as? T, error)
-        })
+        return response(responseSerializer: responseSerializer, completionHandler: completionHandler)
     }
 }
 
 
 
 extension Alamofire.Request {
-    public func responseCollection<T: ResponseCollectionSerializable>(completionHandler: (NSURLRequest, NSHTTPURLResponse?, [T]?, NSError?) -> Void) -> Self {
-        let serializer: Serializer = { (request, response, data) in
+    public func responseCollection<T: ResponseCollectionSerializable>(completionHandler: Response<[T], NSError> -> Void) -> Self {
+        let responseSerializer = ResponseSerializer<[T], NSError> { request, response, data, error in
+            guard error == nil else { return .Failure(error!) }
+            
             let JSONSerializer = Request.JSONResponseSerializer(options: .AllowFragments)
-            let (JSON: AnyObject,?, serializationError) = JSONSerializer(request, response, data)
-            if response != nil && JSON != nil {
-                return (T.collection(response: response!, representation: JSON!), nil)
-            } else {
-                return (nil, serializationError)
+            let result = JSONSerializer.serializeResponse(request, response, data, error)
+            
+            switch result {
+            case .Success(let value):
+                if let response = response {
+                    return .Success(T.collection(response: response, representation: value))
+                } else {
+                    let failureReason = "Response collection could not be serialized due to nil response"
+                    let error = Error.errorWithCode(.JSONSerializationFailed, failureReason: failureReason)
+                    return .Failure(error)
+                }
+            case .Failure(let error):
+                return .Failure(error)
             }
         }
         
-        return response(serializer: serializer, completionHandler: { (request, response, object, error) in
-            completionHandler(request, response, object as? [T], error)
-        })
+        return response(responseSerializer: responseSerializer, completionHandler: completionHandler)
     }
 }
 
+    /*
 extension Alamofire.Request {
+    
+    
+    
+    public func responseImage(
+        imageScale: CGFloat = Request.imageScale,
+        inflateResponseImage: Bool = true,
+        completionHandler: Response<Image, NSError> -> Void)
+        -> Self
+    {
+        return response(
+            responseSerializer: Request.imageResponseSerializer(
+                imageScale: imageScale,
+                inflateResponseImage: inflateResponseImage
+            ),
+            completionHandler: completionHandler
+        )
+    }
+    
+    
+
     class func imageResponseSerializer() -> Serializer{
         return {request, response, data in
             if data == nil{
@@ -75,7 +117,7 @@ extension Alamofire.Request {
         })
     }
 }
-
+*/
 
 enum RandomRequestRouter : URLRequestConvertible{
     static let baseUrl = "http://www.sagebrushgis.com/"
@@ -83,7 +125,7 @@ enum RandomRequestRouter : URLRequestConvertible{
     case Single()
     case Geo(latitude:Double, longitude:Double, radius:Int, page:Int)
     
-    var URLRequest: NSURLRequest{
+    var URLRequest: NSMutableURLRequest{
         let (path, parameters): (String, [String: AnyObject]?) = {
             switch self{
             case .Single():
@@ -101,7 +143,7 @@ enum RandomRequestRouter : URLRequestConvertible{
         
         let resp =  encoding.encode(URLRequest, parameters: parameters).0
         
-        println(resp)
+        print(resp)
         
         return resp
     }
@@ -177,8 +219,9 @@ final class Sign : NSObject, ResponseObjectSerializable, ResponseCollectionSeria
     
     static func  getRandom(callback:(sign:Sign) -> Void ) {
         Alamofire.request(RandomRequestRouter.Single())
-            .responseCollection{(_,_,data:[Sign]?,_)in
-                callback( sign:data![0])
+            .responseCollection{(response: Response<[Sign], NSError>)in
+                
+                callback( sign:response.result.value![0])
         }
     }
     
