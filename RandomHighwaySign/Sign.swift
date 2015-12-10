@@ -15,14 +15,14 @@ import Alamofire
 }
 
 @objc public protocol ResponseCollectionSerializable {
-    static func collection(#response: NSHTTPURLResponse, representation: AnyObject) -> [Self]
+    static func collection(response response: NSHTTPURLResponse, representation: AnyObject) -> [Self]
 }
 
 extension Alamofire.Request{
     public func responseObject<T: ResponseObjectSerializable>(completionHandler: (NSURLRequest, NSHTTPURLResponse?, T?, NSError?) -> Void) -> Self {
         let serializer: Serializer = { (request, response, data) in
             let JSONSerializer = Request.JSONResponseSerializer(options: .AllowFragments)
-            let (JSON: AnyObject?, serializationError) = JSONSerializer(request, response, data)
+            let (JSON: AnyObject,?, serializationError) = JSONSerializer(request, response, data)
             if response != nil && JSON != nil {
                 return (T(response: response!, representation: JSON!), nil)
             } else {
@@ -42,7 +42,7 @@ extension Alamofire.Request {
     public func responseCollection<T: ResponseCollectionSerializable>(completionHandler: (NSURLRequest, NSHTTPURLResponse?, [T]?, NSError?) -> Void) -> Self {
         let serializer: Serializer = { (request, response, data) in
             let JSONSerializer = Request.JSONResponseSerializer(options: .AllowFragments)
-            let (JSON: AnyObject?, serializationError) = JSONSerializer(request, response, data)
+            let (JSON: AnyObject,?, serializationError) = JSONSerializer(request, response, data)
             if response != nil && JSON != nil {
                 return (T.collection(response: response!, representation: JSON!), nil)
             } else {
@@ -84,7 +84,7 @@ enum RandomRequestRouter : URLRequestConvertible{
     case Geo(latitude:Double, longitude:Double, radius:Int, page:Int)
     
     var URLRequest: NSURLRequest{
-        let (path:String, parameters:[String: AnyObject]?) = {
+        let (path, parameters): (String, [String: AnyObject]?) = {
             switch self{
             case .Single():
                 return ("/random/",["format":"json"])
@@ -149,8 +149,8 @@ final class Highway : NSObject, ResponseObjectSerializable, ResponseCollectionSe
         self.url = representation.valueForKeyPath("url") as! String
     }
     
-    @objc static func collection(#response: NSHTTPURLResponse, representation: AnyObject) -> [Highway]{
-        var highwayArray = representation as! [AnyObject]
+    @objc static func collection(response response: NSHTTPURLResponse, representation: AnyObject) -> [Highway]{
+        let highwayArray = representation as! [AnyObject]
         
         return highwayArray.map({Highway(response: response, representation: $0)})
     }
@@ -205,7 +205,7 @@ final class Sign : NSObject, ResponseObjectSerializable, ResponseCollectionSeria
     
     }
     
-    @objc static func collection(#response: NSHTTPURLResponse, representation: AnyObject) -> [Sign]{
+    @objc static func collection(response response: NSHTTPURLResponse, representation: AnyObject) -> [Sign]{
         var signs = [Sign]()
 
         for sign in representation.valueForKeyPath("signs") as! [NSDictionary]{

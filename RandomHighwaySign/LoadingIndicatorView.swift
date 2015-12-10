@@ -29,7 +29,7 @@ class LoadingIndicatorView: UIView {
         loadingView.addSubview(activityIndicator)
     }
     
-    required init(coder decoder: NSCoder) {
+    required init?(coder decoder: NSCoder) {
         super.init(coder: decoder)
     }
     

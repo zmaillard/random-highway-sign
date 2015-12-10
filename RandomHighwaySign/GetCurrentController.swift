@@ -145,7 +145,7 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     }
 
 
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         if let newLoc : CLLocation = locations[locations.count - 1] as? CLLocation
         {
@@ -180,7 +180,7 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     }
     
 
-    func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .AuthorizedWhenInUse{
             locationManager.startUpdatingLocation()
             self.view.addSubview(loadingIndicatorView)
@@ -188,7 +188,7 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         }
     }
     
-    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         self.loadingIndicatorView.removeFromSuperview()
         loadingIndicatorView.hideActivity()
         locationManager.stopUpdatingLocation()
@@ -201,7 +201,7 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         if (segue.identifier == "OpenDetail"){
             if let navController = segue.destinationViewController as? UINavigationController{
                 if let signViewController = navController.topViewController as? SignImageViewController{
-                var indexPath = tableView.indexPathForSelectedRow()
+                let indexPath = tableView.indexPathForSelectedRow
                 if let tableCell = tableView.cellForRowAtIndexPath(indexPath!) as? ResultTableViewCell{
                      signViewController.sign = tableCell.sign
                 }
