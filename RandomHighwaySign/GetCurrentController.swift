@@ -47,7 +47,7 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
 
         self.tabBarController?.delegate = self
         
-        var fact = NIKFontAwesomeIconFactory.barButtonItemIconFactory()
+        let fact = NIKFontAwesomeIconFactory.barButtonItemIconFactory()
         fact.colors = [self.view.tintColor]
         randomButton.title = ""
         randomButton.image = fact.createImageForIcon(.Random)
@@ -148,7 +148,7 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
 
     func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        if let newLoc : CLLocation = locations[locations.count - 1] as? CLLocation
+        if let newLoc : CLLocation = locations[locations.count - 1] as CLLocation
         {
             noLocation = false
             locationManager.stopUpdatingLocation()
@@ -200,15 +200,13 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "OpenDetail"){
-            if let navController = segue.destinationViewController as? UINavigationController{
-                if let signViewController = navController.topViewController as? SignImageViewController{
+                if let signViewController = segue.destinationViewController as? SignImageViewController{
                 let indexPath = tableView.indexPathForSelectedRow
                 if let tableCell = tableView.cellForRowAtIndexPath(indexPath!) as? ResultTableViewCell{
                      signViewController.sign = tableCell.sign
                 }
                 
                 }
-            }
         }
     }
 

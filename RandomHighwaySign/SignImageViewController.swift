@@ -18,7 +18,7 @@ class SignImageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var fact = NIKFontAwesomeIconFactory.barButtonItemIconFactory()
+        let fact = NIKFontAwesomeIconFactory.barButtonItemIconFactory()
         fact.colors = [self.view.tintColor]
         detailsButton.title = ""
         detailsButton.image = fact.createImageForIcon(.InfoCircle)
@@ -44,9 +44,8 @@ class SignImageViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "signIdentify"{
-            let destView = segue.destinationViewController as? UINavigationController
             
-            if let identifyView = destView?.topViewController as? SignDetailsViewController{
+            if let identifyView = segue.destinationViewController as? SignDetailsViewController{
                 identifyView.sign = self.sign
             }
         }
