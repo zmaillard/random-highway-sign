@@ -2,6 +2,7 @@ language: objective-c
 osx_image: xcode7.2
 
 before_install:
+  - gem install cocoapods -v '0.32.1'
   - brew update 
   - brew reinstall xctool
   - bundle install
@@ -13,4 +14,4 @@ cache:
 
 xcode_workspace: RandomHighwaySign.xcworkspace
 xcode_scheme: RandomHighwaySign
-xcode_sdk: iphonesimulator8.3
+xcode_sdk: iphoneos9.2
