@@ -12,6 +12,7 @@ cache:
   - cocoapods
   - bundler
 
-xcode_workspace: RandomHighwaySign.xcworkspace
-xcode_scheme: RandomHighwaySign
+#xcode_workspace: RandomHighwaySign.xcworkspace
+script: xctool -workspace RandomHighwaySign.xsworkspace -scheme RandomHighwaySign CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO 
+#xcode_scheme: RandomHighwaySign
 xcode_sdk: iphoneos9.2
