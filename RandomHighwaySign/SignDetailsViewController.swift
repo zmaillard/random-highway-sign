@@ -53,40 +53,40 @@ class SignDetailsViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         if indexPath.section == 3{
-            var tableCell =  tableView.dequeueReusableCellWithIdentifier("highway", forIndexPath: indexPath) as? UITableViewCell
+            let tableCell =  tableView.dequeueReusableCellWithIdentifier("highway", forIndexPath: indexPath) as UITableViewCell
             let highwayTableCell = tableCell as? HighwayTableViewCell
             
             highwayTableCell?.assignHighway(sign.highways[indexPath.row])
-            tableCell?.layoutSubviews()
+            tableCell.layoutSubviews()
             
-            return tableCell!
+            return tableCell
         }else if indexPath.section == 1{
-            var tableCell =  tableView.dequeueReusableCellWithIdentifier("desc", forIndexPath: indexPath) as? UITableViewCell
+            let tableCell =  tableView.dequeueReusableCellWithIdentifier("desc", forIndexPath: indexPath) as UITableViewCell
             let descTableCell = tableCell as? DescriptionTableViewCell
             
             descTableCell?.descriptionLabel.text = sign.imageDescription
             
-            return tableCell!
+            return tableCell
         }else if indexPath.section == 5{
-            var tableCell =  tableView.dequeueReusableCellWithIdentifier("map", forIndexPath: indexPath) as? MapTableViewCell
+            let tableCell =  tableView.dequeueReusableCellWithIdentifier("map", forIndexPath: indexPath) as? MapTableViewCell
             
             tableCell!.zoomTo(self.sign.latitude,longitude:self.sign.longitude)
             
             return tableCell!
         }else{
         
-            var tableCell =  tableView.dequeueReusableCellWithIdentifier("standard", forIndexPath: indexPath) as? UITableViewCell
+            let tableCell =  tableView.dequeueReusableCellWithIdentifier("standard", forIndexPath: indexPath) as UITableViewCell
         
             if indexPath.section == 0{
-                tableCell?.textLabel?.text = sign.title
+                tableCell.textLabel?.text = sign.title
             }else if indexPath.section == 2{
-                tableCell?.textLabel?.text = sign.place + ", " + sign.state
+                tableCell.textLabel?.text = sign.place + ", " + sign.state
             }
             else{
-                tableCell?.textLabel?.text = sign.date
+                tableCell.textLabel?.text = sign.date
             }
         
-            return tableCell!
+            return tableCell
         }
     }
     

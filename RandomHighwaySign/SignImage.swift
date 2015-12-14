@@ -19,7 +19,7 @@ class SignImage: UIView, UIScrollViewDelegate {
     var sign : Sign?
     
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         NSBundle.mainBundle().loadNibNamed("SignImage", owner: self, options: nil)
         self.addSubview(self.view);    // adding the top level view to the view hierarchy
@@ -115,11 +115,11 @@ class SignImage: UIView, UIScrollViewDelegate {
         scrollView.minimumZoomScale = 1.0
         scrollView.maximumZoomScale = 3.0
         scrollView.zoomScale = 1.0
-        scrollView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(scrollView)
         
         imageView.contentMode = .ScaleAspectFit
-        imageView.setTranslatesAutoresizingMaskIntoConstraints(false)
+        imageView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(imageView)
         
         var doubleTapRecognizer = UITapGestureRecognizer(target:self, action:"scrollViewDoubleTapped:")
@@ -131,21 +131,16 @@ class SignImage: UIView, UIScrollViewDelegate {
         //Set contraints
         let bindings = ["scrollView": scrollView, "view": view, "imageView": imageView]
         
-        let scrollH:[AnyObject] = NSLayoutConstraint.constraintsWithVisualFormat("H:|[scrollView]|", options: NSLayoutFormatOptions(0), metrics: nil, views: bindings)
         
-        view.addConstraints(scrollH)
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[scrollView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: bindings))
         
-        let scrollV:[AnyObject] = NSLayoutConstraint.constraintsWithVisualFormat("V:|[scrollView]|", options: NSLayoutFormatOptions(0), metrics: nil, views: bindings)
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[scrollView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: bindings))
         
-        view.addConstraints(scrollV)
+
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[imageView(==view)]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: bindings))
         
-        let containerEqualH:[AnyObject] = NSLayoutConstraint.constraintsWithVisualFormat("H:|[imageView(==view)]|", options: NSLayoutFormatOptions(0), metrics: nil, views: bindings)
         
-        view.addConstraints(containerEqualH)
-        
-        let containerEqualV:[AnyObject] = NSLayoutConstraint.constraintsWithVisualFormat("V:|[imageView(==view)]|", options: NSLayoutFormatOptions(0), metrics: nil, views: bindings)
-        
-        view.addConstraints(containerEqualV)
+        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[imageView(==view)]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: bindings))
         
     }
 

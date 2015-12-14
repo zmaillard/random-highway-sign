@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import Alamofire
+import AlamofireImage
 import SwiftyJSON
 import FontAwesomeIconFactory
 import GooglePlacesAutocomplete
@@ -49,7 +50,7 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
 
         self.tabBarController?.delegate = self
         
-        var fact = NIKFontAwesomeIconFactory.barButtonItemIconFactory()
+        let fact = NIKFontAwesomeIconFactory.barButtonItemIconFactory()
         fact.colors = [self.view.tintColor]
         randomButton.title = ""
         randomButton.image = fact.createImageForIcon(.Random)
@@ -154,9 +155,9 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     }
 
 
-    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
-        if let newLoc : CLLocation = locations[locations.count - 1] as? CLLocation
+        if let newLoc : CLLocation = locations[locations.count - 1] as CLLocation
         {
             noLocation = false
             locationManager.stopUpdatingLocation()
@@ -169,11 +170,11 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         let radius = userDefaults.integerForKey("search_radius")
         let page = 1
         Alamofire.request(RandomRequestRouter.Geo(latitude:latitude,longitude:longitude,radius:radius,page:page))
-            .responseCollection{ (_,_,data:[Sign]?,error) in
-                if error == nil{
+            .responseCollection{(response: Response<[Sign], NSError>)in
+                if response.result.error == nil{
                     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)){
                         
-                        self.signs = data!
+                        self.signs = response.result.value!
                     
                         self.noResultsToDisplay = self.signs.count == 0
                         
@@ -190,7 +191,7 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     }
     
 
-    func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
         if status == .AuthorizedWhenInUse{
             locationManager.startUpdatingLocation()
             self.view.addSubview(loadingIndicatorView)
@@ -198,7 +199,7 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         }
     }
     
-    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         self.loadingIndicatorView.removeFromSuperview()
         loadingIndicatorView.hideActivity()
         locationManager.stopUpdatingLocation()
@@ -209,15 +210,13 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if (segue.identifier == "OpenDetail"){
-            if let navController = segue.destinationViewController as? UINavigationController{
-                if let signViewController = navController.topViewController as? SignImageViewController{
-                var indexPath = tableView.indexPathForSelectedRow()
+                if let signViewController = segue.destinationViewController as? SignImageViewController{
+                let indexPath = tableView.indexPathForSelectedRow
                 if let tableCell = tableView.cellForRowAtIndexPath(indexPath!) as? ResultTableViewCell{
                      signViewController.sign = tableCell.sign
                 }
                 
                 }
-            }
         }
     }
 }
@@ -263,11 +262,9 @@ class ResultTableViewCell : UITableViewCell{
         self.descLabel?.text = sign.imageDescription
         self.descLabel?.sizeToFit()
         
-        self.request = Alamofire.request(.GET, sign.thumbnail).responseImage() {
-            (request, _, image, error) in
-            if error == nil && image != nil {
-                self.thumbnailImageView!.image = image
-            }
+        self.request = Alamofire.request(.GET, sign.thumbnail).responseImage {
+            response in
+                self.thumbnailImageView!.image = response.result.value
         }
         
     }

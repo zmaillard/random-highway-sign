@@ -14,9 +14,9 @@ class MapTableViewCell: UITableViewCell {
     
     func zoomTo(latitude:Double, longitude:Double){
         let coord = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        var mapRect = MKCoordinateRegionMakeWithDistance(coord, 5000, 5000)
+        let mapRect = MKCoordinateRegionMakeWithDistance(coord, 5000, 5000)
 
-        var point = MKPointAnnotation()
+        let point = MKPointAnnotation()
         point.coordinate = coord;
         
         mapView.addAnnotation(point)

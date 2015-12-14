@@ -24,7 +24,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var fact = NIKFontAwesomeIconFactory.barButtonItemIconFactory()
+        let fact = NIKFontAwesomeIconFactory.barButtonItemIconFactory()
         fact.colors = [self.view.tintColor]
         navItem.title = ""
         navItem.image = fact.createImageForIcon(.Refresh)
