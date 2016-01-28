@@ -161,6 +161,18 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         {
             noLocation = false
             locationManager.stopUpdatingLocation()
+            
+            let geocoder = CLGeocoder()
+            geocoder.reverseGeocodeLocation(newLoc){
+                (placemarks:[CLPlacemark]?, error:NSError?) in
+                
+                if (placemarks?.count > 0){
+                    self.title = "Signs Near \(placemarks?[0].locality ?? "") \(placemarks?[0].administrativeArea ?? "")"
+                }else{
+                    self.title = "Signs Near Current Location"
+                }
+            }
+            
             makeRequest(newLoc.coordinate.latitude, longitude: newLoc.coordinate.longitude)
         }
     }
