@@ -97,7 +97,9 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     }
     
     func reloadCurrentLocation(){
-        makeRequest(latitude,longitude:longitude)
+        if (latitude != nil && longitude != nil){
+            makeRequest(latitude,longitude:longitude)
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -161,16 +163,20 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         {
             noLocation = false
             locationManager.stopUpdatingLocation()
+             CLGeocoder().reverseGeocodeLocation(newLoc){
+                (placemarks, error) in
             
-            let geocoder = CLGeocoder()
-            geocoder.reverseGeocodeLocation(newLoc){
-                (placemarks:[CLPlacemark]?, error:NSError?) in
-                
+                if ((error) != nil){
+                    self.title = "Signs Near Current Location"
+                    return
+                }
+
                 if (placemarks?.count > 0){
                     self.title = "Signs Near \(placemarks?[0].locality ?? "") \(placemarks?[0].administrativeArea ?? "")"
                 }else{
                     self.title = "Signs Near Current Location"
                 }
+                
             }
             
             makeRequest(newLoc.coordinate.latitude, longitude: newLoc.coordinate.longitude)
