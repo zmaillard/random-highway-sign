@@ -72,6 +72,7 @@ class ViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "OpenRandomDetail"{
+            navigationItem.title = nil
             if let signDetailsViewController = segue.destinationViewController as? SignDetailsViewController{
                 signDetailsViewController.sign = self.sign
             }
