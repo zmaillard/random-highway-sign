@@ -77,47 +77,7 @@ extension Alamofire.Request {
     }
 }
 
-    /*
-extension Alamofire.Request {
-    
-    
-    
-    public func responseImage(
-        imageScale: CGFloat = Request.imageScale,
-        inflateResponseImage: Bool = true,
-        completionHandler: Response<Image, NSError> -> Void)
-        -> Self
-    {
-        return response(
-            responseSerializer: Request.imageResponseSerializer(
-                imageScale: imageScale,
-                inflateResponseImage: inflateResponseImage
-            ),
-            completionHandler: completionHandler
-        )
-    }
-    
-    
 
-    class func imageResponseSerializer() -> Serializer{
-        return {request, response, data in
-            if data == nil{
-                return (nil, nil)
-            }
-            
-            let image = UIImage(data:data!, scale:UIScreen.mainScreen().scale)
-            
-            return (image, nil)
-        }
-    }
-    
-    func responseImage(completionHandler: (NSURLRequest, NSHTTPURLResponse?, UIImage?, NSError?) -> Void) -> Self {
-        return response(serializer: Request.imageResponseSerializer(), completionHandler: { (request, response, image, error) in
-            completionHandler(request, response, image as? UIImage, error)
-        })
-    }
-}
-*/
 
 enum RandomRequestRouter : URLRequestConvertible{
     static let baseUrl = "http://www.sagebrushgis.com/"
@@ -142,9 +102,7 @@ enum RandomRequestRouter : URLRequestConvertible{
         let encoding = Alamofire.ParameterEncoding.URL
         
         let resp =  encoding.encode(URLRequest, parameters: parameters).0
-        
         print(resp)
-        
         return resp
     }
     
@@ -197,6 +155,32 @@ final class Highway : NSObject, ResponseObjectSerializable, ResponseCollectionSe
         return highwayArray.map({Highway(response: response, representation: $0)})
     }
     
+    
+}
+
+final class SignCollectionResult : NSObject, ResponseObjectSerializable{
+    var signs : Array<Sign> = [Sign]()
+    var currentPage : Int = 0;
+    var totalPages : Int = 0;
+    
+    @objc required init(response: NSHTTPURLResponse, representation: AnyObject){
+
+        self.signs = Sign.collection(response: response, representation: representation)
+        
+        
+        if let tempPage = representation.valueForKeyPath("page") as? String{
+            self.currentPage = Int(tempPage)!
+        }else{
+            self.currentPage = representation.valueForKeyPath("page") as! Int
+        }
+        
+    
+        
+        self.totalPages = representation.valueForKeyPath("pages") as! Int
+
+
+        
+    }
     
 }
 

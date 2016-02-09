@@ -18,6 +18,8 @@ class SignDetailsViewController: UITableViewController {
     
         self.title = "Sign Details"
         
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
+        
         
     }
 
