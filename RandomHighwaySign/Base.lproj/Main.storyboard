@@ -46,7 +46,7 @@
         <!--Signs At Current Location-->
         <scene sceneID="qol-E2-SSo">
             <objects>
-                <tableViewController title="Signs At Current Location" id="bZt-wc-sax" customClass="GetCurrentController" customModule="RandomHighwaySign" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Signs At Current Location" hidesBottomBarWhenPushed="YES" id="bZt-wc-sax" customClass="GetCurrentController" customModule="RandomHighwaySign" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="86" sectionHeaderHeight="22" sectionFooterHeight="22" id="HcI-bm-b67">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
