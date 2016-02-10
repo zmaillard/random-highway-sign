@@ -91,6 +91,7 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         //Hide empty rows
         self.tableView.tableFooterView  =  UIView(frame: CGRectZero)
         gpaViewController.placeDelegate = self
+        self.navigationController?.toolbarHidden = true;
     }
     
     func refresh(){
