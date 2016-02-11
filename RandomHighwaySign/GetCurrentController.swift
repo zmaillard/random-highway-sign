@@ -16,7 +16,7 @@ import GooglePlacesAutocomplete
 
 class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UITabBarControllerDelegate {
 
-    @IBOutlet weak var randomButton: UIBarButtonItem!
+    @IBOutlet weak var currentLocationButton: UIBarButtonItem!
     
     //Url for Sign Query
     let locationManager = CLLocationManager()
@@ -54,11 +54,25 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         
         let fact = NIKFontAwesomeIconFactory.barButtonItemIconFactory()
         fact.colors = [self.view.tintColor]
-        randomButton.title = ""
-        randomButton.image = fact.createImageForIcon(.Random)
+        currentLocationButton.title = ""
+        currentLocationButton.image = fact.createImageForIcon(.Bullseye)
         
 
         navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        var toolbarItems:Array<UIBarButtonItem> = []
+        
+        let leftFlex:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+
+        
+        let randomButton:UIBarButtonItem = UIBarButtonItem(title: title, style: .Plain, target: self, action: "showRandom:")
+        randomButton.image = fact.createImageForIcon(.Random)
+        toolbarItems.append(leftFlex)
+        toolbarItems.append(randomButton)
+        self.setToolbarItems(toolbarItems, animated: false)
+        
+        navigationController?.setToolbarHidden(false, animated: true)
+        
         
         loadingIndicatorView = LoadingIndicatorView(frame:CGRectMake(0, 0, 80, 80))
         loadingIndicatorView.center = self.tableView.center
@@ -79,9 +93,15 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     
     }
     
+    func showRandom(sender:UIBarButtonItem){
+        performSegueWithIdentifier("randomSign", sender: self)
+    }
     
     
-
+    @IBAction func getCurrentLocationClicked(sender:AnyObject){
+        refresh()
+    }
+    
     @IBAction func searchClicked(sender: AnyObject) {
         presentViewController(gpaViewController, animated: true, completion: nil)
     }
@@ -94,6 +114,9 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     }
     
     func refresh(){
+        self.currentPage = 1
+        self.totalPages = 1
+        self.signs = [Sign]()
         locationManager.startUpdatingLocation()
         self.view.addSubview(loadingIndicatorView)
         loadingIndicatorView.showActivity()

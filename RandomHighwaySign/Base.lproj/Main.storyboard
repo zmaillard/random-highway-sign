@@ -112,13 +112,14 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" id="Z7Z-pO-HNH">
                             <connections>
-                                <segue destination="BYZ-38-t0r" kind="show" id="avF-cU-qiF"/>
+                                <action selector="getCurrentLocationClicked:" destination="bZt-wc-sax" id="2bw-uN-im0"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="randomButton" destination="Z7Z-pO-HNH" id="TAI-JA-Ike"/>
+                        <outlet property="currentLocationButton" destination="Z7Z-pO-HNH" id="I9I-86-ydQ"/>
                         <segue destination="dl2-wm-MQ3" kind="show" identifier="OpenDetail" id="vCM-TB-aDp"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="randomSign" id="LIg-kN-XgN"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ADb-Qh-gqv" userLabel="First Responder" sceneMemberID="firstResponder"/>
