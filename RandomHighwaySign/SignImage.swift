@@ -121,7 +121,7 @@ class SignImage: UIView, UIScrollViewDelegate {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(imageView)
         
-        let doubleTapRecognizer = UITapGestureRecognizer(target:self, action:#selector(SignImage.scrollViewDoubleTapped(_:)))
+        let doubleTapRecognizer = UITapGestureRecognizer(target:self, action:"scrollViewDoubleTapped:")
         doubleTapRecognizer.numberOfTapsRequired = 2
         doubleTapRecognizer.numberOfTouchesRequired = 1
         scrollView.addGestureRecognizer(doubleTapRecognizer)

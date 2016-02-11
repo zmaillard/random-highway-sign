@@ -37,7 +37,7 @@ fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
 
 class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UITabBarControllerDelegate {
 
-    @IBOutlet weak var randomButton: UIBarButtonItem!
+    @IBOutlet weak var currentLocationButton: UIBarButtonItem!
     
     //Url for Sign Query
     let locationManager = CLLocationManager()
@@ -74,13 +74,28 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         
         let fact = NIKFontAwesomeIconFactory.barButtonItem()
         fact.colors = [self.view.tintColor]
-        randomButton.title = ""
-        randomButton.image = fact.createImage(for: .random)
+        currentLocationButton.title = ""
+        currentLocationButton.image = fact.createImageForIcon(.Bullseye)
         
 
         navigationController?.setNavigationBarHidden(false, animated: true)
         
-        loadingIndicatorView = LoadingIndicatorView(frame:CGRect(x: 0, y: 0, width: 80, height: 80))
+        var toolbarItems:Array<UIBarButtonItem> = []
+        
+        let leftFlex:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+
+        
+        let randomButton:UIBarButtonItem = UIBarButtonItem(title: title, style: .Plain, target: self, action: "showRandom:")
+        randomButton.image = fact.createImageForIcon(.Random)
+        toolbarItems.append(leftFlex)
+        toolbarItems.append(randomButton)
+        self.setToolbarItems(toolbarItems, animated: false)
+        
+        navigationController?.setToolbarHidden(false, animated: true)
+        
+        
+        loadingIndicatorView = LoadingIndicatorView(frame:CGRectMake(0, 0, 80, 80))
+>>>>>>> a1e8ab8... Added shuffle to right of toolbar
         loadingIndicatorView.center = self.tableView.center
         
         
@@ -99,11 +114,18 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     
     }
     
+    func showRandom(sender:UIBarButtonItem){
+        performSegueWithIdentifier("randomSign", sender: self)
+    }
     
+    
+    @IBAction func getCurrentLocationClicked(sender:AnyObject){
+        refresh()
+    }
     
 
-    @IBAction func searchClicked(_ sender: AnyObject) {
-        present(gpaViewController, animated: true, completion: nil)
+    @IBAction func searchClicked(sender: AnyObject) {
+        presentViewController(gpaViewController, animated: true, completion: nil)
     }
     
     
@@ -114,6 +136,9 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     }
     
     func refresh(){
+        self.currentPage = 1
+        self.totalPages = 1
+        self.signs = [Sign]()
         locationManager.startUpdatingLocation()
         self.view.addSubview(loadingIndicatorView)
         loadingIndicatorView.showActivity()

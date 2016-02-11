@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         let fact = NIKFontAwesomeIconFactory.barButtonItem()
         fact.colors = [self.view.tintColor]
         navItem.title = ""
-        navItem.image = fact.createImage(for: .refresh)
+        navItem.image = fact.createImageForIcon(.Random)
         
         detailsButton.title = ""
         detailsButton.image = fact.createImage(for: .infoCircle)
