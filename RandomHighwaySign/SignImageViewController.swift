@@ -20,17 +20,17 @@ class SignImageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let fact = NIKFontAwesomeIconFactory.barButtonItemIconFactory()
+        let fact = NIKFontAwesomeIconFactory.barButtonItem()
         fact.colors = [self.view.tintColor]
         detailsButton.title = ""
-        detailsButton.image = fact.createImageForIcon(.InfoCircle)
+        detailsButton.image = fact.createImage(for: .infoCircle)
         
-        loadingIndicatorView = LoadingIndicatorView(frame:CGRectMake(0, 0, 80, 80))
+        loadingIndicatorView = LoadingIndicatorView(frame:CGRect(x: 0, y: 0, width: 80, height: 80))
         loadingIndicatorView.center = self.view.center        
     }
     
-    override func viewWillAppear(animated: Bool) {
-        self.navigationController?.toolbarHidden = false
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isToolbarHidden = false
     
         loadSign()
     }
@@ -53,14 +53,14 @@ class SignImageViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func doneButtonClicked(sender : AnyObject){
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func doneButtonClicked(_ sender : AnyObject){
+        self.dismiss(animated: true, completion: nil)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "signIdentify"{
             
-            if let identifyView = segue.destinationViewController as? SignDetailsViewController{
+            if let identifyView = segue.destination as? SignDetailsViewController{
                 identifyView.sign = self.sign
             }
         }

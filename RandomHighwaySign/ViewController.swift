@@ -24,21 +24,21 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let fact = NIKFontAwesomeIconFactory.barButtonItemIconFactory()
+        let fact = NIKFontAwesomeIconFactory.barButtonItem()
         fact.colors = [self.view.tintColor]
         navItem.title = ""
-        navItem.image = fact.createImageForIcon(.Refresh)
+        navItem.image = fact.createImage(for: .refresh)
         
         detailsButton.title = ""
-        detailsButton.image = fact.createImageForIcon(.InfoCircle)
+        detailsButton.image = fact.createImage(for: .infoCircle)
         
-        loadingIndicatorView = LoadingIndicatorView(frame:CGRectMake(0, 0, 80, 80))
+        loadingIndicatorView = LoadingIndicatorView(frame:CGRect(x: 0, y: 0, width: 80, height: 80))
         loadingIndicatorView.center = self.view.center
         
     }
     
-    override func viewWillAppear(animated: Bool) {
-        self.navigationController?.toolbarHidden = false
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isToolbarHidden = false
         
         randomSignRequest()
 
@@ -54,7 +54,7 @@ class ViewController: UIViewController {
     func randomSignRequest(){
         self.view.addSubview(loadingIndicatorView)
         self.loadingIndicatorView.showActivity()
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)){
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.high).async{
             Sign.getRandom() {
                 (sign:Sign) in
                 self.sign = sign
@@ -62,7 +62,7 @@ class ViewController: UIViewController {
                 self.signImage.loadSign(self.sign!)
             }
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 self.loadingIndicatorView.removeFromSuperview()
                 self.loadingIndicatorView.hideActivity()
             })
@@ -70,17 +70,17 @@ class ViewController: UIViewController {
 
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "OpenRandomDetail"{
             navigationItem.title = nil
-            if let signDetailsViewController = segue.destinationViewController as? SignDetailsViewController{
+            if let signDetailsViewController = segue.destination as? SignDetailsViewController{
                 signDetailsViewController.sign = self.sign
             }
         }
     }
     
     
-    @IBAction func getDetailsTapped(sender : AnyObject) {
+    @IBAction func getDetailsTapped(_ sender : AnyObject) {
         self.randomSignRequest()
     }
 

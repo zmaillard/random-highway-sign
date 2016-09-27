@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		222EB714F6A64EF5BAC5CA82 /* Pods_RandomHighwaySign.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9F7C259C5E8C418118D2198 /* Pods_RandomHighwaySign.framework */; };
 		5209C18D1AE5C6870078D43A /* Sign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5209C18C1AE5C6870078D43A /* Sign.swift */; };
 		521B29B61B0021CB00A003AE /* GetCurrentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521B29B51B0021CB00A003AE /* GetCurrentController.swift */; };
 		52246BD31B3C2F0F0099A9C5 /* US-20.png in Resources */ = {isa = PBXBuildFile; fileRef = 52246BD21B3C2F0F0099A9C5 /* US-20.png */; };
@@ -29,7 +30,6 @@
 		52FDF04A1B37B46D00AEF5B0 /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDF0491B37B46D00AEF5B0 /* MapTableViewCell.swift */; };
 		52FDF04C1B37B5A900AEF5B0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52FDF04B1B37B5A900AEF5B0 /* MapKit.framework */; };
 		52FDF04E1B39888E00AEF5B0 /* DescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDF04D1B39888E00AEF5B0 /* DescriptionTableViewCell.swift */; };
-		F8981A9D8BA13C1C25B16549 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FF973186E078D92DD5A02A3 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,8 +87,9 @@
 		52FDF04B1B37B5A900AEF5B0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		52FDF04D1B39888E00AEF5B0 /* DescriptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DescriptionTableViewCell.swift; path = RandomHighwaySign/DescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		6FF973186E078D92DD5A02A3 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8A894FCFC6B704603F97F17 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		FB44D173F8F0EB6C3562B704 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		A9F7C259C5E8C418118D2198 /* Pods_RandomHighwaySign.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RandomHighwaySign.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB56268A6A511697914B393F /* Pods-RandomHighwaySign.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RandomHighwaySign.release.xcconfig"; path = "Pods/Target Support Files/Pods-RandomHighwaySign/Pods-RandomHighwaySign.release.xcconfig"; sourceTree = "<group>"; };
+		EF6167349228FD1042C876E9 /* Pods-RandomHighwaySign.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RandomHighwaySign.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RandomHighwaySign/Pods-RandomHighwaySign.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,7 +98,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52FDF04C1B37B5A900AEF5B0 /* MapKit.framework in Frameworks */,
-				F8981A9D8BA13C1C25B16549 /* Pods.framework in Frameworks */,
+				222EB714F6A64EF5BAC5CA82 /* Pods_RandomHighwaySign.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,8 +127,8 @@
 				5228AB351AE4574800A664D4 /* RandomHighwaySign */,
 				5228AB4E1AE4574800A664D4 /* RandomHighwaySignTests */,
 				5228AB341AE4574800A664D4 /* Products */,
-				DC4197F80D9AA5E0CEF8ABD6 /* Pods */,
 				60F1A6E0C6E236C5EFF14CD8 /* Frameworks */,
+				6AF535AD91F43D72ED7BAE49 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -235,15 +236,16 @@
 				52BF230E1C191D3F00161545 /* SwiftyJSON.framework */,
 				52FDF04B1B37B5A900AEF5B0 /* MapKit.framework */,
 				6FF973186E078D92DD5A02A3 /* Pods.framework */,
+				A9F7C259C5E8C418118D2198 /* Pods_RandomHighwaySign.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		DC4197F80D9AA5E0CEF8ABD6 /* Pods */ = {
+		6AF535AD91F43D72ED7BAE49 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				FB44D173F8F0EB6C3562B704 /* Pods.debug.xcconfig */,
-				B8A894FCFC6B704603F97F17 /* Pods.release.xcconfig */,
+				EF6167349228FD1042C876E9 /* Pods-RandomHighwaySign.debug.xcconfig */,
+				CB56268A6A511697914B393F /* Pods-RandomHighwaySign.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -255,13 +257,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5228AB551AE4574800A664D4 /* Build configuration list for PBXNativeTarget "RandomHighwaySign" */;
 			buildPhases = (
-				5C29B362C7E0ED17F2D46235 /* Check Pods Manifest.lock */,
+				D86120FD38EE6F5C1B1FFA3D /* [CP] Check Pods Manifest.lock */,
 				5228AB2F1AE4574800A664D4 /* Sources */,
 				5228AB301AE4574800A664D4 /* Frameworks */,
 				5228AB311AE4574800A664D4 /* Resources */,
-				4A49E51A6B1E9E67F4744CAF /* Embed Pods Frameworks */,
-				0527327A0ADE77BE27560AE7 /* Copy Pods Resources */,
 				52BF23141C191D9B00161545 /* CopyFiles */,
+				3F91590F2E9983A3845D24DE /* [CP] Embed Pods Frameworks */,
+				73AD773F8DB64D3A038662CB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -304,9 +306,11 @@
 					5228AB321AE4574800A664D4 = {
 						CreatedOnToolsVersion = 6.3;
 						DevelopmentTeam = 66YLYEUCDM;
+						LastSwiftMigration = 0800;
 					};
 					5228AB4A1AE4574800A664D4 = {
 						CreatedOnToolsVersion = 6.3;
+						LastSwiftMigration = 0800;
 						TestTargetID = 5228AB321AE4574800A664D4;
 					};
 				};
@@ -355,49 +359,49 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0527327A0ADE77BE27560AE7 /* Copy Pods Resources */ = {
+		3F91590F2E9983A3845D24DE /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RandomHighwaySign/Pods-RandomHighwaySign-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4A49E51A6B1E9E67F4744CAF /* Embed Pods Frameworks */ = {
+		73AD773F8DB64D3A038662CB /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RandomHighwaySign/Pods-RandomHighwaySign-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5C29B362C7E0ED17F2D46235 /* Check Pods Manifest.lock */ = {
+		D86120FD38EE6F5C1B1FFA3D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -490,11 +494,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -529,10 +534,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -540,7 +546,7 @@
 		};
 		5228AB561AE4574800A664D4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FB44D173F8F0EB6C3562B704 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = EF6167349228FD1042C876E9 /* Pods-RandomHighwaySign.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -555,12 +561,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sagebrushgis.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		5228AB571AE4574800A664D4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B8A894FCFC6B704603F97F17 /* Pods.release.xcconfig */;
+			baseConfigurationReference = CB56268A6A511697914B393F /* Pods-RandomHighwaySign.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -575,6 +582,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sagebrushgis.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -594,6 +602,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sagebrushgis.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RandomHighwaySign.app/RandomHighwaySign";
 			};
 			name = Debug;
@@ -610,6 +619,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sagebrushgis.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RandomHighwaySign.app/RandomHighwaySign";
 			};
 			name = Release;

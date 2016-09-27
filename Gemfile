@@ -1,3 +1,3 @@
 source 'http://rubygems.org'
-gem 'cocoapods', '~> 0.37.2'
+gem 'cocoapods', '1.1.0.rc.2'
 gem 'rake'
