@@ -32,12 +32,11 @@ class SignImage: UIView, UIScrollViewDelegate {
     }
     
     func setImageData(_ imageUrl:String){
-        Alamofire.request(.GET, imageUrl).response() {
-            (_, _, data, _) in
+        Alamofire.request(imageUrl).responseImage() {
+            response in
             
-            let image = UIImage(data:data! as! Data)
-            self.imageView.image = image
-            self.imageView.frame = self.centerFrameFromImage(image)
+            self.imageView.image = response.result.value
+            self.imageView.frame = self.centerFrameFromImage(self.imageView.image)
             
             self.centerScrollViewContents()
         }
@@ -129,8 +128,7 @@ class SignImage: UIView, UIScrollViewDelegate {
         //scrollView.setTranslatesAutoresizingMaskIntoConstraints(false)
         
         //Set contraints
-        let bindings = ["scrollView": scrollView, "view": view, "imageView": imageView]
-        
+        let bindings: [String:UIView] = ["scrollView": scrollView, "view": view, "imageView": imageView]
         
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[scrollView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: bindings))
         

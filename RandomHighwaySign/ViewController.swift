@@ -54,7 +54,7 @@ class ViewController: UIViewController {
     func randomSignRequest(){
         self.view.addSubview(loadingIndicatorView)
         self.loadingIndicatorView.showActivity()
-        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.high).async{
+        DispatchQueue.global(qos: .background).async{
             Sign.getRandom() {
                 (sign:Sign) in
                 self.sign = sign

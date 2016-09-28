@@ -31,7 +31,7 @@ class HighwayTableViewCell: UITableViewCell {
         let newUrl = highway.url.replacingOccurrences(of: "/20x", with: "")
         
         
-        self.request = Alamofire.request(.GET, newUrl)
+        self.request = Alamofire.request(newUrl)
             .responseImage {
                 response  in
                 DispatchQueue.main.async(execute: {

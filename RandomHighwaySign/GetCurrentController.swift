@@ -13,6 +13,7 @@ import AlamofireImage
 import SwiftyJSON
 import FontAwesomeIconFactory
 import GooglePlacesAutocomplete
+
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
   case let (l?, r?):
@@ -45,7 +46,6 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     
     var currentPage = 1;
     var totalPages = 1;
-    var modal : UIViewController!
     var isLoading = false
     
     var signs : Array<Sign> = [Sign]()
@@ -233,7 +233,7 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         }
         
         Alamofire.request(RandomRequestRouter.geo(latitude:self.latitude,longitude:self.longitude,radius:radius,page:currentPage))
-            .responseObject{(response: Response<SignCollectionResult, NSError>)in
+            .responseObject{(response: DataResponse<SignCollectionResult>)in
                 if response.result.error == nil{
                     DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.high).async{
                         self.currentPage = response.result.value!.currentPage;
@@ -350,7 +350,7 @@ class ResultTableViewCell : UITableViewCell{
         self.descLabel?.text = sign.imageDescription
         self.descLabel?.sizeToFit()
         
-        self.request = Alamofire.request(.GET, sign.thumbnail).responseImage {
+        self.request = Alamofire.request(sign.thumbnail).responseImage {
             response in
                 self.thumbnailImageView!.image = response.result.value
         }
