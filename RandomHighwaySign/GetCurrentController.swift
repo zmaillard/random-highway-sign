@@ -75,18 +75,21 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         let fact = NIKFontAwesomeIconFactory.barButtonItem()
         fact.colors = [self.view.tintColor]
         currentLocationButton.title = ""
-        currentLocationButton.image = fact.createImageForIcon(.Bullseye)
+        currentLocationButton.image = fact.createImage(for: .bullseye)
         
 
         navigationController?.setNavigationBarHidden(false, animated: true)
         
         var toolbarItems:Array<UIBarButtonItem> = []
         
-        let leftFlex:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+        let leftFlex:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
 
+        let browseButton:UIBarButtonItem = UIBarButtonItem(title: title, style: .plain, target: self, action: #selector(browse))
+        browseButton.image = fact.createImage(for: .navicon)
         
-        let randomButton:UIBarButtonItem = UIBarButtonItem(title: title, style: .Plain, target: self, action: "showRandom:")
-        randomButton.image = fact.createImageForIcon(.Random)
+        let randomButton:UIBarButtonItem = UIBarButtonItem(title: title, style: .plain, target: self, action: #selector(showRandom))
+        randomButton.image = fact.createImage(for: .random)
+        toolbarItems.append(browseButton)
         toolbarItems.append(leftFlex)
         toolbarItems.append(randomButton)
         self.setToolbarItems(toolbarItems, animated: false)
@@ -94,8 +97,9 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         navigationController?.setToolbarHidden(false, animated: true)
         
         
-        loadingIndicatorView = LoadingIndicatorView(frame:CGRectMake(0, 0, 80, 80))
->>>>>>> a1e8ab8... Added shuffle to right of toolbar
+        loadingIndicatorView = LoadingIndicatorView(frame:CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: 80, height: 80)))
+        
+
         loadingIndicatorView.center = self.tableView.center
         
         
@@ -115,9 +119,12 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     }
     
     func showRandom(sender:UIBarButtonItem){
-        performSegueWithIdentifier("randomSign", sender: self)
+        performSegue(withIdentifier: "randomSign", sender: self)
     }
     
+    func browse(sender:UIBarButtonItem){
+        //performSegue(withIdentifier: "randomSign", sender: self) //Need to wire
+    }
     
     @IBAction func getCurrentLocationClicked(sender:AnyObject){
         refresh()
@@ -125,7 +132,7 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     
 
     @IBAction func searchClicked(sender: AnyObject) {
-        presentViewController(gpaViewController, animated: true, completion: nil)
+        present(gpaViewController, animated: true, completion: nil)
     }
     
     
