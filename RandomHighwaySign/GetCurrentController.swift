@@ -235,7 +235,7 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         Alamofire.request(RandomRequestRouter.geo(latitude:self.latitude,longitude:self.longitude,radius:radius,page:currentPage))
             .responseObject{(response: DataResponse<SignCollectionResult>)in
                 if response.result.error == nil{
-                    DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.high).async{
+                    DispatchQueue.global(qos: .background).async{
                         self.currentPage = response.result.value!.currentPage;
                         self.totalPages = response.result.value!.totalPages;
                     
