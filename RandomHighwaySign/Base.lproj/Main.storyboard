@@ -6,6 +6,54 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Browse Country Table View-->
+        <scene sceneID="wHe-9C-VMJ">
+            <objects>
+                <tableViewController id="EKW-Jm-Bvs" customClass="BrowseCountryTableView" customModule="RandomHighwaySign" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="3kA-PE-o6G">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" textLabel="KA5-47-cXH" style="IBUITableViewCellStyleDefault" id="vl7-rV-0AJ">
+                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vl7-rV-0AJ" id="iSb-Hq-TJV">
+                                    <frame key="frameInset" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="KA5-47-cXH">
+                                            <frame key="frameInset" minX="15" width="345" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FakeCell" id="wDE-dM-e8l">
+                                <rect key="frame" x="0.0" y="136" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wDE-dM-e8l" id="KBW-xj-Rb0">
+                                    <frame key="frameInset" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="EKW-Jm-Bvs" kind="show" identifier="showNextPage" id="6ua-S3-1pu"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="EKW-Jm-Bvs" id="ezL-2x-ffj"/>
+                            <outlet property="delegate" destination="EKW-Jm-Bvs" id="ivu-sK-7wv"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="og8-9o-x3s" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1873" y="-1330"/>
+        </scene>
         <!--Sign-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -120,6 +168,7 @@
                         <outlet property="currentLocationButton" destination="Z7Z-pO-HNH" id="I9I-86-ydQ"/>
                         <segue destination="dl2-wm-MQ3" kind="show" identifier="OpenDetail" id="vCM-TB-aDp"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="randomSign" id="LIg-kN-XgN"/>
+                        <segue destination="EKW-Jm-Bvs" kind="show" identifier="browse" id="kqI-t3-df1"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ADb-Qh-gqv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -293,6 +342,7 @@
         <image name="US-20.png" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="kqI-t3-df1"/>
         <segue reference="5Mr-A8-HgE"/>
     </inferredMetricsTieBreakers>
 </document>

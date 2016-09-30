@@ -56,6 +56,8 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     var noResultsToDisplay = false
     var noLocation = false
     
+    var browseItems = [Browse]();
+    
     let gpaViewController = GooglePlacesAutocomplete(
         apiKey: valueForApiKey(keyName:  "PLACES"),
         placeType: .cities
@@ -123,7 +125,20 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     }
     
     func browse(sender:UIBarButtonItem){
-        //performSegue(withIdentifier: "randomSign", sender: self) //Need to wire
+        
+        
+        Browse.GetSubdivisions(completion: {
+            result in
+            
+            self.browseItems = result
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "browse", sender: sender)
+            }
+        
+        })
+        
+
+    
     }
     
     @IBAction func getCurrentLocationClicked(sender:AnyObject){
@@ -319,6 +334,13 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
                 
                 }
         }
+        else if (segue.identifier == "browse"){
+            
+             if let browseCountry = segue.destination as? BrowseCountryTableView{
+                browseCountry.browse = self.browseItems
+             }
+        }
+
     }
 }
 

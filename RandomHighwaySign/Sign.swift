@@ -211,10 +211,6 @@ final class Sign : ResponseObjectSerializable, ResponseCollectionSerializable{
     var title : String = ""
     
     
-    /*.responseObject{(response: DataResponse<SignCollectionResult>)in*/
-    
-    /*.responseObject{(response: DataResponse<SignCollectionResult>)in*/
-    
     static func  getRandom(completion: @escaping(Sign) -> Void) {
         let _ = Alamofire.request(RandomRequestRouter.single())
             .responseCollection { (response: DataResponse<[Sign]>) in
