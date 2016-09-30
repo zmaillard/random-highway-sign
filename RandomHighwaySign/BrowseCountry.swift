@@ -22,6 +22,8 @@ class BrowseCountryTableView : UITableViewController /*, SubdivisionLoader*/{
     var browse:[Browse]?
     var currentItem:SubdivisionType = .country
     
+    var nextBrowseItems:[Browse]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -56,9 +58,31 @@ class BrowseCountryTableView : UITableViewController /*, SubdivisionLoader*/{
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     
+        let browse = self.browse?[(indexPath as NSIndexPath).row]
+        
         //Cannot go deeper than county
         if (self.currentItem != .county){
-            self.performSegue(withIdentifier: "showNextPage", sender: self)
+            
+            var next:SubdivisionType
+            if (self.currentItem == .country){
+                next = .state
+            }
+            else{
+                next = .county
+            }
+            
+            
+            browse?.GetSubdivisions(byType:next, completion: {
+                result in
+                
+                self.nextBrowseItems = result
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: "showNextPage", sender: self)
+                }
+                
+            })
+            
+            
         }
     }
     
@@ -77,6 +101,7 @@ class BrowseCountryTableView : UITableViewController /*, SubdivisionLoader*/{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "showNextPage"){
             if let browseCountry = segue.destination as? BrowseCountryTableView{
+                browseCountry.browse = nextBrowseItems
                 if (self.currentItem == .country){
                     browseCountry.currentItem = .state
                 }else if (self.currentItem == .state){

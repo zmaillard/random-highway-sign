@@ -13,13 +13,14 @@ enum SubdivisionType : String{
     case country = "Country"
     case state = "State"
     case county = "County"
+    
+
 }
 
 final class Browse : ResponseCollectionSerializable, ResponseObjectSerializable {
     var Name:String = ""
     var Slug:String = ""
     var BrowseType:SubdivisionType = .country
-    var Parent:Browse?
     
     required init(response: HTTPURLResponse, representation: AnyObject){
         
@@ -38,29 +39,36 @@ final class Browse : ResponseCollectionSerializable, ResponseObjectSerializable 
         return browseResults
     }
     
+
     
     func HasSubdivisions() -> Bool {
         return BrowseType != .country
     }
     
-    func GetSubdivisions() -> [Browse]{
-    
+    func GetSubdivisions(byType: SubdivisionType, completion: @escaping([Browse]) -> Void){
         
-        let _ = Alamofire.request(BrowseRequestRouter.countries())
-            .responseCollection { (response: DataResponse<[Browse]>) in
-                return response.result
-                
+        var url:URLRequestConvertible
+        
+        switch byType {
+        case .country:
+            url = BrowseRequestRouter.countries()
+        case .state:
+            url = BrowseRequestRouter.states( country: self.Slug)
+        case .county:
+            url = BrowseRequestRouter.counties(state: self.Slug )
         }
         
-        return [Browse]();
+        let _ = Alamofire.request(url)
+            .responseCollection { (response: DataResponse<[Browse]>) in
+                let res = response.result.value!;
+                completion(res)
+        }
+        
     }
     
+    static func GetCountrySubdivisions(completion: @escaping([Browse]) -> Void){
     
-    //(completion: @escaping(Sign) -> Void)
-    
-    static func GetSubdivisions(completion: @escaping([Browse]) -> Void){
-    
-        
+
         let _ = Alamofire.request(BrowseRequestRouter.countries())
             .responseCollection { (response: DataResponse<[Browse]>) in
                     let res = response.result.value!;
@@ -68,13 +76,15 @@ final class Browse : ResponseCollectionSerializable, ResponseObjectSerializable 
         }
     
     }
+    
+    
 }
 
 enum BrowseRequestRouter : URLRequestConvertible{
     
     case countries()
     case states(country:String)
-    case counties(country:String, state:String)
+    case counties(state:String)
     
     static let baseUrl = "http://www.sagebrushgis.com/"
     
@@ -83,10 +93,10 @@ enum BrowseRequestRouter : URLRequestConvertible{
             switch self{
             case .countries():
                 return ("/api/list/countries/",["format":"json" as AnyObject])
-            case .states(let _):
-                return ("/api/list/countries/",["format":"json" as AnyObject])
-            case .counties(let _, let _):
-                return ("/api/list/countries/",["format":"json" as AnyObject])
+            case .states(let country):
+                return ("/api/list/states/" + country,["format":"json" as AnyObject])
+            case .counties(let state):
+                return ("/api/list/county/" + state,["format":"json" as AnyObject])
             }
         }()
         

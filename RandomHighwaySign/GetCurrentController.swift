@@ -126,8 +126,7 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     
     func browse(sender:UIBarButtonItem){
         
-        
-        Browse.GetSubdivisions(completion: {
+        Browse.GetCountrySubdivisions(completion: {
             result in
             
             self.browseItems = result
@@ -136,9 +135,6 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
             }
         
         })
-        
-
-    
     }
     
     @IBAction func getCurrentLocationClicked(sender:AnyObject){
