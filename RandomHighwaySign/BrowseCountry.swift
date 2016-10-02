@@ -8,21 +8,16 @@
 
 import Foundation
 import UIKit
+import Alamofire
 
-/*
-protocol SubdivisionLoader {
-    func LoadNextLevel()
-    
-    func LoadNextLevel(fromSelectedItem:selectedItem)
-}
- */
-
-class BrowseCountryTableView : UITableViewController /*, SubdivisionLoader*/{
+class BrowseCountryTableView : UITableViewController{
 
     var browse:[Browse]?
     var currentItem:SubdivisionType = .country
-    
     var nextBrowseItems:[Browse]?
+    var parentBrowse:Browse?
+    var selectedBrowse:Browse?
+    var signs:[Sign] = [Sign]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +53,7 @@ class BrowseCountryTableView : UITableViewController /*, SubdivisionLoader*/{
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     
-        let browse = self.browse?[(indexPath as NSIndexPath).row]
+        self.selectedBrowse = self.browse?[(indexPath as NSIndexPath).row]
         
         //Cannot go deeper than county
         if (self.currentItem != .county){
@@ -72,7 +67,7 @@ class BrowseCountryTableView : UITableViewController /*, SubdivisionLoader*/{
             }
             
             
-            browse?.GetSubdivisions(byType:next, completion: {
+            self.selectedBrowse?.GetSubdivisions(byType:next, completion: {
                 result in
                 
                 self.nextBrowseItems = result
@@ -83,6 +78,25 @@ class BrowseCountryTableView : UITableViewController /*, SubdivisionLoader*/{
             })
             
             
+        }else{
+            var url = RandomRequestRouter.county(state:(self.parentBrowse?.Slug)!,county:(self.selectedBrowse?.Slug)!,page:1);
+            
+            let _ = Alamofire.request(url)
+                .responseObject{(response: DataResponse<SignCollectionResult>)in
+                    if response.result.error == nil{
+                            //self.currentPage = response.result.value!.currentPage;
+                            //self.totalPages = response.result.value!.totalPages;
+                            
+                            
+                            for s in response.result.value!.signs{
+                                self.signs.append(s)
+                            }
+                        
+                        
+                    }
+            }
+            
+            self.performSegue(withIdentifier: "showCountySigns", sender: self)
         }
     }
     
@@ -101,12 +115,17 @@ class BrowseCountryTableView : UITableViewController /*, SubdivisionLoader*/{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "showNextPage"){
             if let browseCountry = segue.destination as? BrowseCountryTableView{
+                browseCountry.parentBrowse = self.selectedBrowse
                 browseCountry.browse = nextBrowseItems
                 if (self.currentItem == .country){
                     browseCountry.currentItem = .state
                 }else if (self.currentItem == .state){
                     browseCountry.currentItem = .county
                 }
+            }
+        }else if (segue.identifier == "showCountySigns"){
+            if let browseCounty = segue.destination as? BrowseCountyViewController{
+                browseCounty.signs = signs
             }
         }
     }

@@ -275,7 +275,7 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
             tableView.tableFooterView = pagingSpinner
         }
         
-        Alamofire.request(RandomRequestRouter.geo(latitude:self.latitude,longitude:self.longitude,radius:radius,page:currentPage))
+        let _ = Alamofire.request(RandomRequestRouter.geo(latitude:self.latitude,longitude:self.longitude,radius:radius,page:currentPage))
             .responseObject{(response: DataResponse<SignCollectionResult>)in
                 if response.result.error == nil{
                     DispatchQueue.global(qos: .background).async{

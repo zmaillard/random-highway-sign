@@ -91,6 +91,7 @@ enum RandomRequestRouter : URLRequestConvertible{
     
     case single()
     case geo(latitude:Double, longitude:Double, radius:Int, page:Int)
+    case county(state:String, county:String, page:Int)
     
     static let baseUrl = "http://www.sagebrushgis.com/"
     
@@ -98,12 +99,14 @@ enum RandomRequestRouter : URLRequestConvertible{
         let result: (path:String, parameters: Parameters)  = {
             switch self{
             case .single():
-                return ("/random/",["format":"json" as AnyObject])
+                return ("/api/list/random/",["format":"json" as AnyObject])
             case .geo(let latitude, let longitude, let radius, let page) where page > 1:
-                return ("/query/", ["type":"geo" as AnyObject,"lat": latitude as AnyObject, "lon":longitude as AnyObject, "radius":radius as AnyObject, "page":page as AnyObject])
+                return ("/api/list/location/", ["lat": latitude as AnyObject, "lon":longitude as AnyObject, "radius":radius as AnyObject, "page":page as AnyObject])
             case .geo(let latitude, let longitude, let radius, _):
-                return ("/query/", ["type":"geo" as AnyObject,"lat": latitude as AnyObject, "lon":longitude as AnyObject, "radius":radius as AnyObject])
-            }
+                return ("/api/list/location/", ["lat": latitude as AnyObject, "lon":longitude as AnyObject, "radius":radius as AnyObject])
+            case .county(let state, let county, _):
+                return ("/api/list/countysign/" + state + "/" + county + "/",["format":"json" as AnyObject])
+            } 
         }()
         
         let url = try RandomRequestRouter.baseUrl.asURL()
@@ -115,26 +118,6 @@ enum RandomRequestRouter : URLRequestConvertible{
     }
 
     
-}
-
-final class County : NSObject, ResponseObjectSerializable{
-    var name : String = ""
-    var slug : String = ""
-    var stateName : String = ""
-    var stateSlug : String = ""
-    var type : String = ""
-    
-    
-    @objc required init(response: HTTPURLResponse, representation: AnyObject){
-        
-        self.name = representation.value(forKeyPath: "name") as! String
-        self.slug = representation.value(forKeyPath: "slug") as! String
-        self.stateName = representation.value(forKeyPath: "statename") as! String
-        self.stateSlug = representation.value(forKeyPath: "stateslug") as! String
-        self.type = representation.value(forKeyPath: "type") as! String
-
-    }
-
 }
 
 final class Highway : NSObject, ResponseObjectSerializable, ResponseCollectionSerializable{
@@ -149,18 +132,19 @@ final class Highway : NSObject, ResponseObjectSerializable, ResponseCollectionSe
     
     @objc required init(response: HTTPURLResponse, representation: AnyObject){
         
-        self.highway = representation.value(forKeyPath: "highway") as! String
-        self.highwaySlug = representation.value(forKeyPath: "highwayslug") as! String
-        self.milepost = representation.value(forKeyPath: "milepost") as! Double
-        self.sort = representation.value(forKeyPath: "sort") as! Int
-        self.type = representation.value(forKeyPath: "type") as! String
-        self.typeSlug = representation.value(forKeyPath: "typeslug") as! String
-        self.url = representation.value(forKeyPath: "url") as! String
+        self.highway = representation.value(forKeyPath: "Highway") as! String
+        self.highwaySlug = representation.value(forKeyPath: "HighwaySlug") as! String
+        self.milepost = representation.value(forKeyPath: "Milepost") as! Double
+        self.sort = representation.value(forKeyPath: "StateSort") as! Int
+        self.type = representation.value(forKeyPath: "Type") as! String
+        self.typeSlug = representation.value(forKeyPath: "TypeSlug") as! String
+        self.url = representation.value(forKeyPath: "Url") as! String
     }
-    
+
+ 
     @objc static func collection(response: HTTPURLResponse, representation: AnyObject) -> [Highway]{
         let highwayArray = representation as! [AnyObject]
-        
+ 
         return highwayArray.map({Highway(response: response, representation: $0)})
     }
     
@@ -176,7 +160,7 @@ final class SignCollectionResult : NSObject, ResponseObjectSerializable{
 
         self.signs = Sign.collection(response: response, representation: representation)
         
-        
+        /*
         if let tempPage = representation.value(forKeyPath: "page") as? String{
             self.currentPage = Int(tempPage)!
         }else{
@@ -186,6 +170,7 @@ final class SignCollectionResult : NSObject, ResponseObjectSerializable{
     
         
         self.totalPages = representation.value(forKeyPath: "pages") as! Int
+ */
 
 
         
@@ -195,11 +180,11 @@ final class SignCollectionResult : NSObject, ResponseObjectSerializable{
 
 final class Sign : ResponseObjectSerializable, ResponseCollectionSerializable{
     var country : String = ""
-    var county : County?
+    //var county : County?
     var date : String = ""
     var imageDescription : String = ""
     var highways : Array<Highway> = [Highway]()
-    var id : Int = 0
+    var id : String = ""
     var largeImage : String = ""
     var latitude : Double = 0.0
     var longitude : Double = 0.0
@@ -224,31 +209,32 @@ final class Sign : ResponseObjectSerializable, ResponseCollectionSerializable{
     
     required init(response: HTTPURLResponse, representation: AnyObject){
         
-        self.country = representation.value(forKeyPath: "title") as! String
-        self.date = representation.value(forKeyPath: "date") as! String
-        if let desc = representation.value(forKeyPath: "description") as? String{
+        self.country = representation.value(forKeyPath: "Title") as! String
+        self.date = representation.value(forKeyPath: "DateTaken") as! String
+        if let desc = representation.value(forKeyPath: "Description") as? String{
             self.imageDescription =  desc
         }
-        self.id = representation.value(forKeyPath: "id") as! Int
-        self.largeImage = representation.value(forKeyPath: "largeimage") as! String
-        self.latitude = representation.value(forKeyPath: "latitude") as! Double
-        self.longitude = representation.value(forKeyPath: "longitude") as! Double
-        self.mediumImage = representation.value(forKeyPath: "mediumimage") as! String
-        self.place = representation.value(forKeyPath: "place") as! String
-        self.smallImage = representation.value(forKeyPath: "smallimage") as! String
-        self.state = representation.value(forKeyPath: "state") as! String
+        self.id = representation.value(forKeyPath: "ImageID") as! String
+        self.largeImage = representation.value(forKeyPath: "large") as! String
+        self.mediumImage = representation.value(forKeyPath: "medium") as! String
+        self.place = representation.value(forKeyPath: "Place") as! String
+        self.smallImage = representation.value(forKeyPath: "small") as! String
+        self.state = representation.value(forKeyPath: "State") as! String
         self.thumbnail = representation.value(forKeyPath: "thumbnail") as! String
-        self.title = representation.value(forKeyPath: "title") as! String
+        self.title = representation.value(forKeyPath: "Title") as! String
         
-        self.county =  County(response:response, representation:representation.value(forKeyPath: "county")! as AnyObject)
-        self.highways = Highway.collection(response: response, representation: representation.value(forKeyPath: "highways")! as AnyObject)
+        
+        self.latitude = representation.value(forKeyPath: "Latitude") as! Double
+        self.longitude = representation.value(forKeyPath: "Longitude") as! Double
+ 
+        self.highways = Highway.collection(response: response, representation: representation.value(forKeyPath: "HighwaySorting")! as AnyObject)
     
     }
     
     static func collection(response: HTTPURLResponse, representation: AnyObject) -> [Sign]{
         var signs = [Sign]()
 
-        for sign in representation.value(forKeyPath: "signs") as! [NSDictionary]{
+        for sign in representation.value(forKeyPath: "results") as! [NSDictionary]{
             signs.append(Sign(response: response, representation: sign))
         }
         
