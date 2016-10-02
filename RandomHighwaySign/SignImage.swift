@@ -21,8 +21,7 @@ class SignImage: UIView, UIScrollViewDelegate {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.view = Bundle.main.loadNibNamed("SignImage", owner: self, options: nil)?[0] as! UIView
-        
+        Bundle.main.loadNibNamed("SignImage", owner: self, options: nil)
         self.addSubview(self.view);    // adding the top level view to the view hierarchy
     }
     
