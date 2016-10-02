@@ -19,6 +19,8 @@ class BrowseCountryTableView : UITableViewController{
     var selectedBrowse:Browse?
     var signs:[Sign] = [Sign]()
     
+    var loadingIndicatorView:LoadingIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,6 +34,11 @@ class BrowseCountryTableView : UITableViewController{
         }
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
+        
+        loadingIndicatorView = LoadingIndicatorView(frame:CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: 80, height: 80)))
+        
+        
+        loadingIndicatorView.center = self.tableView.center
         
     }
     
@@ -55,6 +62,9 @@ class BrowseCountryTableView : UITableViewController{
     
         self.selectedBrowse = self.browse?[(indexPath as NSIndexPath).row]
         
+        self.view.addSubview(loadingIndicatorView)
+        loadingIndicatorView.showActivity()
+        
         //Cannot go deeper than county
         if (self.currentItem != .county){
             
@@ -69,6 +79,9 @@ class BrowseCountryTableView : UITableViewController{
             
             self.selectedBrowse?.GetSubdivisions(byType:next, completion: {
                 result in
+                
+                self.loadingIndicatorView.removeFromSuperview()
+                self.loadingIndicatorView.hideActivity()
                 
                 self.nextBrowseItems = result
                 DispatchQueue.main.async {
@@ -86,7 +99,9 @@ class BrowseCountryTableView : UITableViewController{
                     if response.result.error == nil{
                             //self.currentPage = response.result.value!.currentPage;
                             //self.totalPages = response.result.value!.totalPages;
-                            
+                        
+                        self.loadingIndicatorView.removeFromSuperview()
+                        self.loadingIndicatorView.hideActivity()
                             
                             for s in response.result.value!.signs{
                                 self.signs.append(s)
