@@ -79,7 +79,7 @@ class BrowseCountryTableView : UITableViewController{
             
             
         }else{
-            var url = RandomRequestRouter.county(state:(self.parentBrowse?.Slug)!,county:(self.selectedBrowse?.Slug)!,page:1);
+            let url = RandomRequestRouter.county(state:(self.parentBrowse?.Slug)!,county:(self.selectedBrowse?.Slug)!,page:1);
             
             let _ = Alamofire.request(url)
                 .responseObject{(response: DataResponse<SignCollectionResult>)in
@@ -92,11 +92,11 @@ class BrowseCountryTableView : UITableViewController{
                                 self.signs.append(s)
                             }
                         
+                        self.performSegue(withIdentifier: "showCountySigns", sender: self)
                         
                     }
             }
             
-            self.performSegue(withIdentifier: "showCountySigns", sender: self)
         }
     }
     
