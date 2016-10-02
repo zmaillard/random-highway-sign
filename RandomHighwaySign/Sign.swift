@@ -90,8 +90,9 @@ extension DataRequest {
 enum RandomRequestRouter : URLRequestConvertible{
     
     case single()
-    case geo(latitude:Double, longitude:Double, radius:Int, page:Int)
-    case county(state:String, county:String, page:Int)
+    case geo(latitude:Double, longitude:Double, radius:Int)
+    case county(state:String, county:String)
+    case next(nextUrl:String)
     
     static let baseUrl = "http://www.sagebrushgis.com/"
     
@@ -100,12 +101,12 @@ enum RandomRequestRouter : URLRequestConvertible{
             switch self{
             case .single():
                 return ("/api/list/random/",["format":"json" as AnyObject])
-            case .geo(let latitude, let longitude, let radius, let page) where page > 1:
-                return ("/api/list/location/", ["lat": latitude as AnyObject, "lon":longitude as AnyObject, "radius":radius as AnyObject, "page":page as AnyObject])
-            case .geo(let latitude, let longitude, let radius, _):
+            case .geo(let latitude, let longitude, let radius):
                 return ("/api/list/location/", ["lat": latitude as AnyObject, "lon":longitude as AnyObject, "radius":radius as AnyObject])
-            case .county(let state, let county, _):
+            case .county(let state, let county):
                 return ("/api/list/countysign/" + state + "/" + county + "/",["format":"json" as AnyObject])
+            case .next(let nextUrl):
+                return(nextUrl,["format":"json" as AnyObject] )
             } 
         }()
         
@@ -153,27 +154,12 @@ final class Highway : NSObject, ResponseObjectSerializable, ResponseCollectionSe
 
 final class SignCollectionResult : NSObject, ResponseObjectSerializable{
     var signs : Array<Sign> = [Sign]()
-    var currentPage : Int = 0;
-    var totalPages : Int = 0;
+    var nextPage: String?
     
     @objc required init(response: HTTPURLResponse, representation: AnyObject){
 
         self.signs = Sign.collection(response: response, representation: representation)
-        
-        /*
-        if let tempPage = representation.value(forKeyPath: "page") as? String{
-            self.currentPage = Int(tempPage)!
-        }else{
-            self.currentPage = representation.value(forKeyPath: "page") as! Int
-        }
-        
-    
-        
-        self.totalPages = representation.value(forKeyPath: "pages") as! Int
- */
-
-
-        
+        self.nextPage = representation.value(forKeyPath: "next") as? String        
     }
     
 }

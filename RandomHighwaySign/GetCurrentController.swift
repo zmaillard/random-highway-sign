@@ -44,8 +44,7 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     
     var randomSign:Sign!
     
-    var currentPage = 1;
-    var totalPages = 1;
+    var nextPage:String?
     var isLoading = false
     
     var signs : Array<Sign> = [Sign]()
@@ -159,8 +158,7 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     }
     
     func refresh(){
-        self.currentPage = 1
-        self.totalPages = 1
+        self.nextPage = nil
         self.signs = [Sign]()
         locationManager.startUpdatingLocation()
         self.view.addSubview(loadingIndicatorView)
@@ -170,8 +168,7 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     
     func reloadCurrentLocation(){
         if (latitude != nil && longitude != nil){
-            self.currentPage = 1
-            self.totalPages = 1
+            self.nextPage = nil
             self.signs = [Sign]()
             makeRequest()
         }
@@ -228,9 +225,8 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
             
             let rowsToLoadFromBottom = 5;
             let rowsLoaded = self.signs.count
-            if (!self.isLoading &&  self.currentPage < self.totalPages && ((indexPath as NSIndexPath).row >= (rowsLoaded - rowsToLoadFromBottom)))
+            if (!self.isLoading &&  self.nextPage != nil && ((indexPath as NSIndexPath).row >= (rowsLoaded - rowsToLoadFromBottom)))
             {
-                self.currentPage += 1
                 self.makeRequest()
             }
             return cell
@@ -272,22 +268,24 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         let userDefaults = UserDefaults.standard
         let radius = userDefaults.integer(forKey: "search_radius")
         
-        if (self.currentPage > 1){
+        var url : URLRequestConvertible = RandomRequestRouter.geo(latitude:self.latitude,longitude:self.longitude,radius:radius)
+        
+        if (self.nextPage != nil){
             let pagingSpinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
             pagingSpinner.startAnimating()
             pagingSpinner.color = UIColor(red: 22.0/255.0, green: 106.0/255.0, blue: 176.0/255.0, alpha: 1.0)
             pagingSpinner.hidesWhenStopped = true
             tableView.tableFooterView = pagingSpinner
+            url = RandomRequestRouter.next(nextUrl: self.nextPage!)
         }
         
-        let _ = Alamofire.request(RandomRequestRouter.geo(latitude:self.latitude,longitude:self.longitude,radius:radius,page:currentPage))
+        
+        let _ = Alamofire.request(url)
             .responseObject{(response: DataResponse<SignCollectionResult>)in
                 if response.result.error == nil{
                     DispatchQueue.global(qos: .background).async{
-                        self.currentPage = response.result.value!.currentPage;
-                        self.totalPages = response.result.value!.totalPages;
-                    
-                        
+                        self.nextPage = response.result.value!.nextPage;
+
                         for s in response.result.value!.signs{
                             self.signs.append(s)
                         }
@@ -368,8 +366,7 @@ extension GetCurrentController : GooglePlacesAutocompleteDelegate{
                 
             }
             
-            self.currentPage = 1
-            self.totalPages = 1
+            self.nextPage = nil
             self.signs = [Sign]()
             self.dismiss(animated: true, completion: nil)
             self.makeRequest()

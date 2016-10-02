@@ -92,7 +92,7 @@ class BrowseCountryTableView : UITableViewController{
             
             
         }else{
-            let url = RandomRequestRouter.county(state:(self.parentBrowse?.Slug)!,county:(self.selectedBrowse?.Slug)!,page:1);
+            let url = RandomRequestRouter.county(state:(self.parentBrowse?.Slug)!,county:(self.selectedBrowse?.Slug)!);
             
             let _ = Alamofire.request(url)
                 .responseObject{(response: DataResponse<SignCollectionResult>)in
