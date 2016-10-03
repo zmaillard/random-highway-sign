@@ -18,6 +18,7 @@ class BrowseCountryTableView : UITableViewController{
     var parentBrowse:Browse?
     var selectedBrowse:Browse?
     var signs:[Sign] = [Sign]()
+    var isLoading = false
     
     var loadingIndicatorView:LoadingIndicatorView!
     
@@ -28,9 +29,9 @@ class BrowseCountryTableView : UITableViewController{
         if (currentItem == .country){
             self.title = "Choose Country"
         }else if (currentItem == .state){
-            self.title = "Choose State"
+            self.title = "Choose State In " + (parentBrowse?.Name)!
         }else{
-            self.title = "Choose All"
+            self.title = "Choose County In " + (parentBrowse?.Name)!
         }
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
@@ -62,6 +63,7 @@ class BrowseCountryTableView : UITableViewController{
     
         self.selectedBrowse = self.browse?[(indexPath as NSIndexPath).row]
         
+        self.isLoading = true
         self.view.addSubview(loadingIndicatorView)
         loadingIndicatorView.showActivity()
         
@@ -82,6 +84,7 @@ class BrowseCountryTableView : UITableViewController{
                 
                 self.loadingIndicatorView.removeFromSuperview()
                 self.loadingIndicatorView.hideActivity()
+                self.isLoading = false
                 
                 self.nextBrowseItems = result
                 DispatchQueue.main.async {
@@ -138,6 +141,7 @@ class BrowseCountryTableView : UITableViewController{
             }
         }else if (segue.identifier == "showCountySigns"){
             if let browseCounty = segue.destination as? BrowseCountyViewController{
+                browseCounty.title = "Signs In " + (self.selectedBrowse?.Name)! + " County"
                 browseCounty.signs = signs
             }
         }

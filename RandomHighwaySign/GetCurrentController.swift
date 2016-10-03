@@ -125,14 +125,21 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     
     func browse(sender:UIBarButtonItem){
         
+        //Prevent multiple requests
+        //if (self.isLoading){
+        //    return
+        //}
+        
         self.view.addSubview(loadingIndicatorView)
         loadingIndicatorView.showActivity()
+        self.isLoading = true
         
         Browse.GetCountrySubdivisions(completion: {
             result in
             
             self.loadingIndicatorView.removeFromSuperview()
             self.loadingIndicatorView.hideActivity()
+            self.isLoading = false
             self.browseItems = result
             DispatchQueue.main.async {
                 self.performSegue(withIdentifier: "browse", sender: sender)
