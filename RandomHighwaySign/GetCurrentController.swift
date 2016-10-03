@@ -331,7 +331,7 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
                      signViewController.sign = tableCell.sign
                 }
                 
-                }
+            }
         }
         else if (segue.identifier == "browse"){
             

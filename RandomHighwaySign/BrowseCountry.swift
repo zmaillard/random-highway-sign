@@ -97,9 +97,7 @@ class BrowseCountryTableView : UITableViewController{
             let _ = Alamofire.request(url)
                 .responseObject{(response: DataResponse<SignCollectionResult>)in
                     if response.result.error == nil{
-                            //self.currentPage = response.result.value!.currentPage;
-                            //self.totalPages = response.result.value!.totalPages;
-                        
+                        self.signs = [Sign]()
                         self.loadingIndicatorView.removeFromSuperview()
                         self.loadingIndicatorView.hideActivity()
                             

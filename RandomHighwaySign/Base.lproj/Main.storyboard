@@ -408,10 +408,44 @@
                             <outlet property="delegate" destination="s2d-cK-2AC" id="Xed-OJ-s10"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="CDm-ga-NZr" kind="show" identifier="countySignDetail" id="sh5-8c-2g7"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vpR-TQ-J12" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3030" y="-1371"/>
+        </scene>
+        <!--Browse Sign Details Controller-->
+        <scene sceneID="JXH-77-koS">
+            <objects>
+                <viewController id="CDm-ga-NZr" userLabel="Browse Sign Details Controller" customClass="BrowseSignViewController" customModule="RandomHighwaySign" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kGT-8h-akV"/>
+                        <viewControllerLayoutGuide type="bottom" id="PBS-dL-EQj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0ql-v4-crC" customClass="SignImage" customModule="RandomHighwaySign" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems>
+                        <barButtonItem title="Item" id="uzz-kJ-YIY">
+                            <connections>
+                                <segue destination="giy-LP-SRL" kind="show" identifier="showBrowseSignDetails" id="ILr-ro-Nls"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Title" id="FvL-Yy-2aF"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="detailsButton" destination="uzz-kJ-YIY" id="6yP-uL-B8X"/>
+                        <outlet property="signImage" destination="0ql-v4-crC" id="Ujl-Rx-RbM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tvq-jN-1Cu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4266" y="-1371"/>
         </scene>
     </scenes>
     <resources>
@@ -419,6 +453,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="kqI-t3-df1"/>
-        <segue reference="5Mr-A8-HgE"/>
+        <segue reference="ILr-ro-Nls"/>
     </inferredMetricsTieBreakers>
 </document>

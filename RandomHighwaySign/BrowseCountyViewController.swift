@@ -39,6 +39,10 @@ class BrowseCountyViewController: UITableViewController {
         return 1
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "countySignDetail", sender: self)
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows in the section.
         return self.signs.count
@@ -61,6 +65,18 @@ class BrowseCountyViewController: UITableViewController {
         }
         */
         return cell
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "countySignDetail"){
+            if let signViewController = segue.destination as? BrowseSignViewController{
+                let indexPath = tableView.indexPathForSelectedRow
+                if let tableCell = tableView.cellForRow(at: indexPath!) as? ResultTableViewCell{
+                    signViewController.sign = tableCell.sign
+                }
+                
+            }
+        }
     }
     
     /*
