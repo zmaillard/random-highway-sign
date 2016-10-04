@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		222EB714F6A64EF5BAC5CA82 /* Pods_RandomHighwaySign.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9F7C259C5E8C418118D2198 /* Pods_RandomHighwaySign.framework */; };
 		5209C18D1AE5C6870078D43A /* Sign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5209C18C1AE5C6870078D43A /* Sign.swift */; };
 		521B29B61B0021CB00A003AE /* GetCurrentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521B29B51B0021CB00A003AE /* GetCurrentController.swift */; };
 		52246BD31B3C2F0F0099A9C5 /* US-20.png in Resources */ = {isa = PBXBuildFile; fileRef = 52246BD21B3C2F0F0099A9C5 /* US-20.png */; };
@@ -24,12 +25,17 @@
 		527CEC501B33A80A00A2BBD6 /* SignImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527CEC4F1B33A80A00A2BBD6 /* SignImage.xib */; };
 		527CEC521B33A85200A2BBD6 /* SignImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527CEC511B33A85200A2BBD6 /* SignImage.swift */; };
 		527CEC561B33B49A00A2BBD6 /* SignImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527CEC551B33B49A00A2BBD6 /* SignImageViewController.swift */; };
+		52B0C1301DA1CB7B00EB30A9 /* BrowseSignViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B0C12F1DA1CB7B00EB30A9 /* BrowseSignViewController.swift */; };
 		52BAA4261B53EC66000F1FB2 /* LoadingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BAA4251B53EC66000F1FB2 /* LoadingIndicatorView.swift */; };
+		52BD62491D9F29BC00DBC94B /* SignTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BD62471D9F29BC00DBC94B /* SignTableViewCell.swift */; };
+		52BD624A1D9F29BC00DBC94B /* SignTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52BD62481D9F29BC00DBC94B /* SignTableViewCell.xib */; };
+		52BD624C1DA0003900DBC94B /* BrowseCountyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BD624B1DA0003900DBC94B /* BrowseCountyViewController.swift */; };
+		52EAF8BB1D9C8BF90079DDF3 /* BrowseCountry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EAF8BA1D9C8BF90079DDF3 /* BrowseCountry.swift */; };
+		52EAF8BD1D9C98390079DDF3 /* Browse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EAF8BC1D9C98390079DDF3 /* Browse.swift */; };
 		52FDF0471B3742E600AEF5B0 /* HighwayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDF0461B3742E600AEF5B0 /* HighwayTableViewCell.swift */; };
 		52FDF04A1B37B46D00AEF5B0 /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDF0491B37B46D00AEF5B0 /* MapTableViewCell.swift */; };
 		52FDF04C1B37B5A900AEF5B0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52FDF04B1B37B5A900AEF5B0 /* MapKit.framework */; };
 		52FDF04E1B39888E00AEF5B0 /* DescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDF04D1B39888E00AEF5B0 /* DescriptionTableViewCell.swift */; };
-		F8981A9D8BA13C1C25B16549 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FF973186E078D92DD5A02A3 /* Pods.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,19 +82,26 @@
 		527CEC4F1B33A80A00A2BBD6 /* SignImage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignImage.xib; sourceTree = "<group>"; };
 		527CEC511B33A85200A2BBD6 /* SignImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignImage.swift; sourceTree = "<group>"; };
 		527CEC551B33B49A00A2BBD6 /* SignImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignImageViewController.swift; sourceTree = "<group>"; };
+		52B0C12F1DA1CB7B00EB30A9 /* BrowseSignViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowseSignViewController.swift; sourceTree = "<group>"; };
 		52BAA4251B53EC66000F1FB2 /* LoadingIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorView.swift; sourceTree = "<group>"; };
+		52BD62471D9F29BC00DBC94B /* SignTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignTableViewCell.swift; sourceTree = "<group>"; };
+		52BD62481D9F29BC00DBC94B /* SignTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignTableViewCell.xib; sourceTree = "<group>"; };
+		52BD624B1DA0003900DBC94B /* BrowseCountyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowseCountyViewController.swift; sourceTree = "<group>"; };
 		52BF230A1C191D3F00161545 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "Pods/../build/Debug-iphoneos/Alamofire.framework"; sourceTree = "<group>"; };
 		52BF230B1C191D3F00161545 /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = "Pods/../build/Debug-iphoneos/AlamofireImage.framework"; sourceTree = "<group>"; };
 		52BF230C1C191D3F00161545 /* FontAwesomeIconFactory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FontAwesomeIconFactory.framework; path = "Pods/../build/Debug-iphoneos/FontAwesomeIconFactory.framework"; sourceTree = "<group>"; };
 		52BF230D1C191D3F00161545 /* GooglePlacesAutocomplete.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GooglePlacesAutocomplete.framework; path = "Pods/../build/Debug-iphoneos/GooglePlacesAutocomplete.framework"; sourceTree = "<group>"; };
 		52BF230E1C191D3F00161545 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Debug-iphoneos/SwiftyJSON.framework"; sourceTree = "<group>"; };
+		52EAF8BA1D9C8BF90079DDF3 /* BrowseCountry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowseCountry.swift; sourceTree = "<group>"; };
+		52EAF8BC1D9C98390079DDF3 /* Browse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Browse.swift; sourceTree = "<group>"; };
 		52FDF0461B3742E600AEF5B0 /* HighwayTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HighwayTableViewCell.swift; path = RandomHighwaySign/HighwayTableViewCell.swift; sourceTree = "<group>"; };
 		52FDF0491B37B46D00AEF5B0 /* MapTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapTableViewCell.swift; path = RandomHighwaySign/MapTableViewCell.swift; sourceTree = "<group>"; };
 		52FDF04B1B37B5A900AEF5B0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		52FDF04D1B39888E00AEF5B0 /* DescriptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DescriptionTableViewCell.swift; path = RandomHighwaySign/DescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		6FF973186E078D92DD5A02A3 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B8A894FCFC6B704603F97F17 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
-		FB44D173F8F0EB6C3562B704 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		A9F7C259C5E8C418118D2198 /* Pods_RandomHighwaySign.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RandomHighwaySign.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB56268A6A511697914B393F /* Pods-RandomHighwaySign.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RandomHighwaySign.release.xcconfig"; path = "Pods/Target Support Files/Pods-RandomHighwaySign/Pods-RandomHighwaySign.release.xcconfig"; sourceTree = "<group>"; };
+		EF6167349228FD1042C876E9 /* Pods-RandomHighwaySign.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RandomHighwaySign.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RandomHighwaySign/Pods-RandomHighwaySign.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,7 +110,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52FDF04C1B37B5A900AEF5B0 /* MapKit.framework in Frameworks */,
-				F8981A9D8BA13C1C25B16549 /* Pods.framework in Frameworks */,
+				222EB714F6A64EF5BAC5CA82 /* Pods_RandomHighwaySign.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,8 +139,8 @@
 				5228AB351AE4574800A664D4 /* RandomHighwaySign */,
 				5228AB4E1AE4574800A664D4 /* RandomHighwaySignTests */,
 				5228AB341AE4574800A664D4 /* Products */,
-				DC4197F80D9AA5E0CEF8ABD6 /* Pods */,
 				60F1A6E0C6E236C5EFF14CD8 /* Frameworks */,
+				6AF535AD91F43D72ED7BAE49 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -143,6 +156,7 @@
 		5228AB351AE4574800A664D4 /* RandomHighwaySign */ = {
 			isa = PBXGroup;
 			children = (
+				52EAF8B91D9C8BE00079DDF3 /* BrowseView */,
 				52BAA4241B53EC3D000F1FB2 /* ActivityView */,
 				52C6C9D41B4EA2F70076B328 /* MainTableView */,
 				52C6C9D11B4E9F5E0076B328 /* ImageView */,
@@ -155,6 +169,8 @@
 				5228AB361AE4574800A664D4 /* Supporting Files */,
 				5209C18C1AE5C6870078D43A /* Sign.swift */,
 				521B29B51B0021CB00A003AE /* GetCurrentController.swift */,
+				52BD62471D9F29BC00DBC94B /* SignTableViewCell.swift */,
+				52BD62481D9F29BC00DBC94B /* SignTableViewCell.xib */,
 				527CEC4F1B33A80A00A2BBD6 /* SignImage.xib */,
 				52246BD61B4414EC0099A9C5 /* ApiKeys.swift */,
 				523512C51B59F90300925C4C /* LaunchScreen.storyboard */,
@@ -213,6 +229,17 @@
 			name = MainTableView;
 			sourceTree = "<group>";
 		};
+		52EAF8B91D9C8BE00079DDF3 /* BrowseView */ = {
+			isa = PBXGroup;
+			children = (
+				52EAF8BA1D9C8BF90079DDF3 /* BrowseCountry.swift */,
+				52EAF8BC1D9C98390079DDF3 /* Browse.swift */,
+				52BD624B1DA0003900DBC94B /* BrowseCountyViewController.swift */,
+				52B0C12F1DA1CB7B00EB30A9 /* BrowseSignViewController.swift */,
+			);
+			name = BrowseView;
+			sourceTree = "<group>";
+		};
 		52FDF0481B37B44200AEF5B0 /* SignDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -235,15 +262,16 @@
 				52BF230E1C191D3F00161545 /* SwiftyJSON.framework */,
 				52FDF04B1B37B5A900AEF5B0 /* MapKit.framework */,
 				6FF973186E078D92DD5A02A3 /* Pods.framework */,
+				A9F7C259C5E8C418118D2198 /* Pods_RandomHighwaySign.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		DC4197F80D9AA5E0CEF8ABD6 /* Pods */ = {
+		6AF535AD91F43D72ED7BAE49 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				FB44D173F8F0EB6C3562B704 /* Pods.debug.xcconfig */,
-				B8A894FCFC6B704603F97F17 /* Pods.release.xcconfig */,
+				EF6167349228FD1042C876E9 /* Pods-RandomHighwaySign.debug.xcconfig */,
+				CB56268A6A511697914B393F /* Pods-RandomHighwaySign.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -255,13 +283,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5228AB551AE4574800A664D4 /* Build configuration list for PBXNativeTarget "RandomHighwaySign" */;
 			buildPhases = (
-				5C29B362C7E0ED17F2D46235 /* Check Pods Manifest.lock */,
+				D86120FD38EE6F5C1B1FFA3D /* [CP] Check Pods Manifest.lock */,
 				5228AB2F1AE4574800A664D4 /* Sources */,
 				5228AB301AE4574800A664D4 /* Frameworks */,
 				5228AB311AE4574800A664D4 /* Resources */,
-				4A49E51A6B1E9E67F4744CAF /* Embed Pods Frameworks */,
-				0527327A0ADE77BE27560AE7 /* Copy Pods Resources */,
 				52BF23141C191D9B00161545 /* CopyFiles */,
+				3F91590F2E9983A3845D24DE /* [CP] Embed Pods Frameworks */,
+				73AD773F8DB64D3A038662CB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -298,15 +326,17 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = SagebrushGIS;
 				TargetAttributes = {
 					5228AB321AE4574800A664D4 = {
 						CreatedOnToolsVersion = 6.3;
 						DevelopmentTeam = 66YLYEUCDM;
+						LastSwiftMigration = 0800;
 					};
 					5228AB4A1AE4574800A664D4 = {
 						CreatedOnToolsVersion = 6.3;
+						LastSwiftMigration = 0800;
 						TestTargetID = 5228AB321AE4574800A664D4;
 					};
 				};
@@ -337,6 +367,7 @@
 			files = (
 				52246BD31B3C2F0F0099A9C5 /* US-20.png in Resources */,
 				5228AB411AE4574800A664D4 /* Main.storyboard in Resources */,
+				52BD624A1D9F29BC00DBC94B /* SignTableViewCell.xib in Resources */,
 				527CEC501B33A80A00A2BBD6 /* SignImage.xib in Resources */,
 				523512C61B59F90300925C4C /* LaunchScreen.storyboard in Resources */,
 				5228AB431AE4574800A664D4 /* Images.xcassets in Resources */,
@@ -355,49 +386,49 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0527327A0ADE77BE27560AE7 /* Copy Pods Resources */ = {
+		3F91590F2E9983A3845D24DE /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RandomHighwaySign/Pods-RandomHighwaySign-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4A49E51A6B1E9E67F4744CAF /* Embed Pods Frameworks */ = {
+		73AD773F8DB64D3A038662CB /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RandomHighwaySign/Pods-RandomHighwaySign-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5C29B362C7E0ED17F2D46235 /* Check Pods Manifest.lock */ = {
+		D86120FD38EE6F5C1B1FFA3D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -410,15 +441,20 @@
 				527CEC561B33B49A00A2BBD6 /* SignImageViewController.swift in Sources */,
 				522C78261AF1C7CA0001121F /* SignDetailsViewController.swift in Sources */,
 				5228AB3E1AE4574800A664D4 /* ViewController.swift in Sources */,
+				52B0C1301DA1CB7B00EB30A9 /* BrowseSignViewController.swift in Sources */,
 				52FDF0471B3742E600AEF5B0 /* HighwayTableViewCell.swift in Sources */,
+				52EAF8BB1D9C8BF90079DDF3 /* BrowseCountry.swift in Sources */,
 				52FDF04E1B39888E00AEF5B0 /* DescriptionTableViewCell.swift in Sources */,
+				52BD62491D9F29BC00DBC94B /* SignTableViewCell.swift in Sources */,
 				5209C18D1AE5C6870078D43A /* Sign.swift in Sources */,
 				52FDF04A1B37B46D00AEF5B0 /* MapTableViewCell.swift in Sources */,
+				52BD624C1DA0003900DBC94B /* BrowseCountyViewController.swift in Sources */,
 				52246BD71B4414EC0099A9C5 /* ApiKeys.swift in Sources */,
 				5228AB391AE4574800A664D4 /* AppDelegate.swift in Sources */,
 				52BAA4261B53EC66000F1FB2 /* LoadingIndicatorView.swift in Sources */,
 				521B29B61B0021CB00A003AE /* GetCurrentController.swift in Sources */,
 				527CEC521B33A85200A2BBD6 /* SignImage.swift in Sources */,
+				52EAF8BD1D9C98390079DDF3 /* Browse.swift in Sources */,
 				5228AB3C1AE4574800A664D4 /* RandomHighwaySign.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -466,8 +502,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -490,11 +528,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -512,8 +551,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -529,10 +570,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -540,8 +583,9 @@
 		};
 		5228AB561AE4574800A664D4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FB44D173F8F0EB6C3562B704 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = EF6167349228FD1042C876E9 /* Pods-RandomHighwaySign.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -555,13 +599,15 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sagebrushgis.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		5228AB571AE4574800A664D4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B8A894FCFC6B704603F97F17 /* Pods.release.xcconfig */;
+			baseConfigurationReference = CB56268A6A511697914B393F /* Pods-RandomHighwaySign.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -575,6 +621,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sagebrushgis.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -594,6 +641,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sagebrushgis.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RandomHighwaySign.app/RandomHighwaySign";
 			};
 			name = Debug;
@@ -610,6 +658,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sagebrushgis.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RandomHighwaySign.app/RandomHighwaySign";
 			};
 			name = Release;

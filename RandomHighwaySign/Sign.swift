@@ -11,37 +11,46 @@ import SwiftyJSON
 import Alamofire
 import AlamofireImage
 
+enum BackendError: Error {
+    case network(error: Error) // Capture any underlying Error from the URLSession API
+    case dataSerialization(error: Error)
+    case jsonSerialization(error: Error)
+    case xmlSerialization(error: Error)
+    case objectSerialization(reason: String)
+}
+
 public protocol ResponseObjectSerializable {
-    init?(response: NSHTTPURLResponse, representation: AnyObject)
+    init?(response: HTTPURLResponse, representation: AnyObject)
 }
 
 public protocol ResponseCollectionSerializable {
-    static func collection(response response: NSHTTPURLResponse, representation: AnyObject) -> [Self]
+    static func collection(response: HTTPURLResponse, representation: AnyObject) -> [Self]
 }
 
 
-extension Alamofire.Request{
-    public func responseObject<T: ResponseObjectSerializable>(completionHandler: Response<T, NSError> -> Void) -> Self {
-        let responseSerializer = ResponseSerializer<T, NSError> { request, response, data, error in
-            guard error == nil else { return .Failure(error!) }
+extension DataRequest {
+    public func responseObject<T: ResponseObjectSerializable>(queue: DispatchQueue? = nil, completionHandler: @escaping(DataResponse<T>) -> Void) ->Self {
+        
+        let responseSerializer = DataResponseSerializer<T> { request, response, data, error in
+            guard error == nil else { return .failure(error!) }
             
-            let JSONResponseSerializer = Request.JSONResponseSerializer(options: .AllowFragments)
+            let JSONResponseSerializer = DataRequest.jsonResponseSerializer(options: .allowFragments)
             let result = JSONResponseSerializer.serializeResponse(request, response, data, error)
             
             switch result {
-            case .Success(let value):
+            case .success(let value):
                 if let
                     response = response,
-                    responseObject = T(response: response, representation: value)
+                    let responseObject = T(response: response, representation: value as AnyObject)
                 {
-                    return .Success(responseObject)
+                    return .success(responseObject)
                 } else {
                     let failureReason = "JSON could not be serialized into response object: \(value)"
-                    let error = Error.errorWithCode(.JSONSerializationFailed, failureReason: failureReason)
-                    return .Failure(error)
+                    
+                    return .failure(BackendError.objectSerialization(reason: failureReason));
                 }
-            case .Failure(let error):
-                return .Failure(error)
+            case .failure(let error):
+                return .failure(error)
             }
         }
         
@@ -51,25 +60,24 @@ extension Alamofire.Request{
 
 
 
-extension Alamofire.Request {
-    public func responseCollection<T: ResponseCollectionSerializable>(completionHandler: Response<[T], NSError> -> Void) -> Self {
-        let responseSerializer = ResponseSerializer<[T], NSError> { request, response, data, error in
-            guard error == nil else { return .Failure(error!) }
+extension DataRequest {
+    public func responseCollection<T: ResponseCollectionSerializable>(queue: DispatchQueue? = nil, completionHandler: @escaping(DataResponse<[T]>) -> Void) -> Self {
+        let responseSerializer = DataResponseSerializer<[T]> { request, response, data, error in
+            guard error == nil else { return .failure(error!) }
             
-            let JSONSerializer = Request.JSONResponseSerializer(options: .AllowFragments)
+            let JSONSerializer = DataRequest.jsonResponseSerializer(options: .allowFragments)
             let result = JSONSerializer.serializeResponse(request, response, data, error)
             
             switch result {
-            case .Success(let value):
+            case .success(let value):
                 if let response = response {
-                    return .Success(T.collection(response: response, representation: value))
+                    return .success(T.collection(response: response, representation: value as AnyObject))
                 } else {
                     let failureReason = "Response collection could not be serialized due to nil response"
-                    let error = Error.errorWithCode(.JSONSerializationFailed, failureReason: failureReason)
-                    return .Failure(error)
+                    return .failure(BackendError.objectSerialization(reason: failureReason));
                 }
-            case .Failure(let error):
-                return .Failure(error)
+            case .failure(let error):
+                return .failure(error)
             }
         }
         
@@ -80,52 +88,37 @@ extension Alamofire.Request {
 
 
 enum RandomRequestRouter : URLRequestConvertible{
+    
+    case single()
+    case geo(latitude:Double, longitude:Double, radius:Int)
+    case county(state:String, county:String)
+    case next(nextUrl:String)
+    
     static let baseUrl = "http://www.sagebrushgis.com/"
     
-    case Single()
-    case Geo(latitude:Double, longitude:Double, radius:Int, page:Int)
-    
-    var URLRequest: NSMutableURLRequest{
-        let (path, parameters): (String, [String: AnyObject]?) = {
+    func asURLRequest() throws -> URLRequest {
+        let result: (path:String, parameters: Parameters)  = {
             switch self{
-            case .Single():
-                return ("/random/",["format":"json"])
-            case .Geo(let latitude, let longitude, let radius, let page) where page > 1:
-                return ("/query/", ["type":"geo","lat": latitude, "lon":longitude, "radius":radius, "page":page])
-            case .Geo(let latitude, let longitude, let radius, _):
-                return ("/query/", ["type":"geo","lat": latitude, "lon":longitude, "radius":radius])
-        }
+            case .single():
+                return ("/api/list/random/",["format":"json" as AnyObject])
+            case .geo(let latitude, let longitude, let radius):
+                return ("/api/list/location/", ["lat": latitude as AnyObject, "lon":longitude as AnyObject, "radius":radius as AnyObject])
+            case .county(let state, let county):
+                return ("/api/list/countysign/" + state + "/" + county + "/",["format":"json" as AnyObject])
+            case .next(let nextUrl):
+                return(nextUrl,["format":"json" as AnyObject] )
+            } 
         }()
         
-        let URL =   NSURL(string: RandomRequestRouter.baseUrl)
-        let URLRequest = NSURLRequest(URL: URL!.URLByAppendingPathComponent(path))
-        let encoding = Alamofire.ParameterEncoding.URL
+        let url = try RandomRequestRouter.baseUrl.asURL()
         
-        let resp =  encoding.encode(URLRequest, parameters: parameters).0
-        print(resp)
-        return resp
-    }
-    
-}
+        let urlRequest = Foundation.URLRequest(url: url.appendingPathComponent(result.path))
 
-final class County : NSObject, ResponseObjectSerializable{
-    var name : String = ""
-    var slug : String = ""
-    var stateName : String = ""
-    var stateSlug : String = ""
-    var type : String = ""
-    
-    
-    @objc required init(response: NSHTTPURLResponse, representation: AnyObject){
-        
-        self.name = representation.valueForKeyPath("name") as! String
-        self.slug = representation.valueForKeyPath("slug") as! String
-        self.stateName = representation.valueForKeyPath("statename") as! String
-        self.stateSlug = representation.valueForKeyPath("stateslug") as! String
-        self.type = representation.valueForKeyPath("type") as! String
+        return try URLEncoding.default.encode(urlRequest, with: result.parameters)
 
     }
 
+    
 }
 
 final class Highway : NSObject, ResponseObjectSerializable, ResponseCollectionSerializable{
@@ -138,20 +131,21 @@ final class Highway : NSObject, ResponseObjectSerializable, ResponseCollectionSe
     var url : String = ""
 
     
-    @objc required init(response: NSHTTPURLResponse, representation: AnyObject){
+    @objc required init(response: HTTPURLResponse, representation: AnyObject){
         
-        self.highway = representation.valueForKeyPath("highway") as! String
-        self.highwaySlug = representation.valueForKeyPath("highwayslug") as! String
-        self.milepost = representation.valueForKeyPath("milepost") as! Double
-        self.sort = representation.valueForKeyPath("sort") as! Int
-        self.type = representation.valueForKeyPath("type") as! String
-        self.typeSlug = representation.valueForKeyPath("typeslug") as! String
-        self.url = representation.valueForKeyPath("url") as! String
+        self.highway = representation.value(forKeyPath: "Highway") as! String
+        self.highwaySlug = representation.value(forKeyPath: "HighwaySlug") as! String
+        self.milepost = representation.value(forKeyPath: "Milepost") as! Double
+        self.sort = representation.value(forKeyPath: "StateSort") as! Int
+        self.type = representation.value(forKeyPath: "Type") as! String
+        self.typeSlug = representation.value(forKeyPath: "TypeSlug") as! String
+        self.url = representation.value(forKeyPath: "Url") as! String
     }
-    
-    @objc static func collection(response response: NSHTTPURLResponse, representation: AnyObject) -> [Highway]{
+
+ 
+    @objc static func collection(response: HTTPURLResponse, representation: AnyObject) -> [Highway]{
         let highwayArray = representation as! [AnyObject]
-        
+ 
         return highwayArray.map({Highway(response: response, representation: $0)})
     }
     
@@ -160,37 +154,23 @@ final class Highway : NSObject, ResponseObjectSerializable, ResponseCollectionSe
 
 final class SignCollectionResult : NSObject, ResponseObjectSerializable{
     var signs : Array<Sign> = [Sign]()
-    var currentPage : Int = 0;
-    var totalPages : Int = 0;
+    var nextPage: String?
     
-    @objc required init(response: NSHTTPURLResponse, representation: AnyObject){
+    @objc required init(response: HTTPURLResponse, representation: AnyObject){
 
         self.signs = Sign.collection(response: response, representation: representation)
-        
-        
-        if let tempPage = representation.valueForKeyPath("page") as? String{
-            self.currentPage = Int(tempPage)!
-        }else{
-            self.currentPage = representation.valueForKeyPath("page") as! Int
-        }
-        
-    
-        
-        self.totalPages = representation.valueForKeyPath("pages") as! Int
-
-
-        
+        self.nextPage = representation.value(forKeyPath: "next") as? String        
     }
     
 }
 
-final class Sign : NSObject, ResponseObjectSerializable, ResponseCollectionSerializable{
+final class Sign : ResponseObjectSerializable, ResponseCollectionSerializable{
     var country : String = ""
-    var county : County?
+    //var county : County?
     var date : String = ""
     var imageDescription : String = ""
     var highways : Array<Highway> = [Highway]()
-    var id : Int = 0
+    var id : String = ""
     var largeImage : String = ""
     var latitude : Double = 0.0
     var longitude : Double = 0.0
@@ -201,41 +181,46 @@ final class Sign : NSObject, ResponseObjectSerializable, ResponseCollectionSeria
     var thumbnail : String = ""
     var title : String = ""
     
-    static func  getRandom(callback:(sign:Sign) -> Void ) {
-        Alamofire.request(RandomRequestRouter.Single())
-            .responseCollection{(response: Response<[Sign], NSError>)in
+    
+    static func  getRandom(completion: @escaping(Sign) -> Void) {
+        let _ = Alamofire.request(RandomRequestRouter.single())
+            .responseCollection { (response: DataResponse<[Sign]>) in
+                let s = response.result.value![0];
                 
-                callback( sign:response.result.value![0])
+                completion(s);
+
         }
+
     }
     
-    @objc required init(response: NSHTTPURLResponse, representation: AnyObject){
+    required init(response: HTTPURLResponse, representation: AnyObject){
         
-        self.country = representation.valueForKeyPath("title") as! String
-        self.date = representation.valueForKeyPath("date") as! String
-        if let desc = representation.valueForKeyPath("description") as? String{
+        self.country = representation.value(forKeyPath: "Title") as! String
+        self.date = representation.value(forKeyPath: "DateTaken") as! String
+        if let desc = representation.value(forKeyPath: "Description") as? String{
             self.imageDescription =  desc
         }
-        self.id = representation.valueForKeyPath("id") as! Int
-        self.largeImage = representation.valueForKeyPath("largeimage") as! String
-        self.latitude = representation.valueForKeyPath("latitude") as! Double
-        self.longitude = representation.valueForKeyPath("longitude") as! Double
-        self.mediumImage = representation.valueForKeyPath("mediumimage") as! String
-        self.place = representation.valueForKeyPath("place") as! String
-        self.smallImage = representation.valueForKeyPath("smallimage") as! String
-        self.state = representation.valueForKeyPath("state") as! String
-        self.thumbnail = representation.valueForKeyPath("thumbnail") as! String
-        self.title = representation.valueForKeyPath("title") as! String
+        self.id = representation.value(forKeyPath: "ImageID") as! String
+        self.largeImage = representation.value(forKeyPath: "large") as! String
+        self.mediumImage = representation.value(forKeyPath: "medium") as! String
+        self.place = representation.value(forKeyPath: "Place") as! String
+        self.smallImage = representation.value(forKeyPath: "small") as! String
+        self.state = representation.value(forKeyPath: "State") as! String
+        self.thumbnail = representation.value(forKeyPath: "thumbnail") as! String
+        self.title = representation.value(forKeyPath: "Title") as! String
         
-        self.county =  County(response:response, representation:representation.valueForKeyPath("county")!)
-        self.highways = Highway.collection(response: response, representation: representation.valueForKeyPath("highways")!)
+        
+        self.latitude = representation.value(forKeyPath: "Latitude") as! Double
+        self.longitude = representation.value(forKeyPath: "Longitude") as! Double
+ 
+        self.highways = Highway.collection(response: response, representation: representation.value(forKeyPath: "HighwaySorting")! as AnyObject)
     
     }
     
-    @objc static func collection(response response: NSHTTPURLResponse, representation: AnyObject) -> [Sign]{
+    static func collection(response: HTTPURLResponse, representation: AnyObject) -> [Sign]{
         var signs = [Sign]()
 
-        for sign in representation.valueForKeyPath("signs") as! [NSDictionary]{
+        for sign in representation.value(forKeyPath: "results") as! [NSDictionary]{
             signs.append(Sign(response: response, representation: sign))
         }
         

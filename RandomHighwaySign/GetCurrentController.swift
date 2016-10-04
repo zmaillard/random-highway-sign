@@ -14,18 +14,37 @@ import SwiftyJSON
 import FontAwesomeIconFactory
 import GooglePlacesAutocomplete
 
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
+
 class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UITabBarControllerDelegate {
 
-    @IBOutlet weak var randomButton: UIBarButtonItem!
+    @IBOutlet weak var currentLocationButton: UIBarButtonItem!
     
     //Url for Sign Query
     let locationManager = CLLocationManager()
     
     var randomSign:Sign!
     
-    var currentPage = 1;
-    var totalPages = 1;
-    var modal : UIViewController!
+    var nextPage:String?
     var isLoading = false
     
     var signs : Array<Sign> = [Sign]()
@@ -36,15 +55,17 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     var noResultsToDisplay = false
     var noLocation = false
     
+    var browseItems = [Browse]();
+    
     let gpaViewController = GooglePlacesAutocomplete(
         apiKey: valueForApiKey(keyName:  "PLACES"),
-        placeType: .Cities
+        placeType: .cities
     )
     
     var loadingIndicatorView:LoadingIndicatorView!
 
     deinit{
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
     override func viewDidLoad() {
@@ -52,15 +73,34 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
 
         self.tabBarController?.delegate = self
         
-        let fact = NIKFontAwesomeIconFactory.barButtonItemIconFactory()
+        let fact = NIKFontAwesomeIconFactory.barButtonItem()
         fact.colors = [self.view.tintColor]
-        randomButton.title = ""
-        randomButton.image = fact.createImageForIcon(.Random)
+        currentLocationButton.title = ""
+        currentLocationButton.image = fact.createImage(for: .bullseye)
         
 
         navigationController?.setNavigationBarHidden(false, animated: true)
         
-        loadingIndicatorView = LoadingIndicatorView(frame:CGRectMake(0, 0, 80, 80))
+        var toolbarItems:Array<UIBarButtonItem> = []
+        
+        let leftFlex:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+
+        let browseButton:UIBarButtonItem = UIBarButtonItem(title: title, style: .plain, target: self, action: #selector(browse))
+        browseButton.image = fact.createImage(for: .navicon)
+        
+        let randomButton:UIBarButtonItem = UIBarButtonItem(title: title, style: .plain, target: self, action: #selector(showRandom))
+        randomButton.image = fact.createImage(for: .random)
+        toolbarItems.append(browseButton)
+        toolbarItems.append(leftFlex)
+        toolbarItems.append(randomButton)
+        self.setToolbarItems(toolbarItems, animated: false)
+        
+        navigationController?.setToolbarHidden(false, animated: true)
+        
+        
+        loadingIndicatorView = LoadingIndicatorView(frame:CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: 80, height: 80)))
+        
+
         loadingIndicatorView.center = self.tableView.center
         
         
@@ -70,30 +110,59 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         
         self.refreshControl = UIRefreshControl()
         self.refreshControl?.attributedTitle = NSAttributedString(string: "Loading New Signs")
-        self.refreshControl?.addTarget(self, action:"refresh", forControlEvents: UIControlEvents.ValueChanged)
+        self.refreshControl?.addTarget(self, action:#selector(GetCurrentController.refresh), for: UIControlEvents.valueChanged)
     
         self.tableView.addSubview(refreshControl!)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reloadCurrentLocation", name: NSUserDefaultsDidChangeNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(GetCurrentController.reloadCurrentLocation), name: UserDefaults.didChangeNotification, object: nil)
 
     
     }
     
+    func showRandom(sender:UIBarButtonItem){
+        performSegue(withIdentifier: "randomSign", sender: self)
+    }
     
+    func browse(sender:UIBarButtonItem){
+        
+        
+        self.view.addSubview(loadingIndicatorView)
+        loadingIndicatorView.showActivity()
+        self.isLoading = true
+        
+        Browse.GetCountrySubdivisions(completion: {
+            result in
+            
+            self.loadingIndicatorView.removeFromSuperview()
+            self.loadingIndicatorView.hideActivity()
+            self.isLoading = false
+            self.browseItems = result
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier: "browse", sender: sender)
+            }
+        
+        })
+    }
+    
+    @IBAction func getCurrentLocationClicked(sender:AnyObject){
+        refresh()
+    }
     
 
     @IBAction func searchClicked(sender: AnyObject) {
-        presentViewController(gpaViewController, animated: true, completion: nil)
+        present(gpaViewController, animated: true, completion: nil)
     }
     
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         //Hide empty rows
-        self.tableView.tableFooterView  =  UIView(frame: CGRectZero)
+        self.tableView.tableFooterView  =  UIView(frame: CGRect.zero)
         gpaViewController.placeDelegate = self
     }
     
     func refresh(){
+        self.nextPage = nil
+        self.signs = [Sign]()
         locationManager.startUpdatingLocation()
         self.view.addSubview(loadingIndicatorView)
         loadingIndicatorView.showActivity()
@@ -102,14 +171,13 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     
     func reloadCurrentLocation(){
         if (latitude != nil && longitude != nil){
-            self.currentPage = 1
-            self.totalPages = 1
+            self.nextPage = nil
             self.signs = [Sign]()
             makeRequest()
         }
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         locationManager.requestWhenInUseAuthorization()
     }
 
@@ -121,12 +189,12 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
 
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         // Return the number of sections.
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // Return the number of rows in the section.
         if (noResultsToDisplay || noLocation){
             return 1
@@ -137,11 +205,11 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     }
     
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier("OpenDetail", sender: self)
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "OpenDetail", sender: self)
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if (noResultsToDisplay){
             let cell = UITableViewCell()
@@ -152,17 +220,16 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
             cell.textLabel?.text = "Cannot Determine Location"
             return cell
         }else{
-            let cell = tableView.dequeueReusableCellWithIdentifier("SignCell", forIndexPath: indexPath) as! ResultTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SignCell", for: indexPath) as! ResultTableViewCell
 
-            let sign = self.signs[indexPath.row]
+            let sign = self.signs[(indexPath as NSIndexPath).row]
         
             cell.assignSign(sign)
             
             let rowsToLoadFromBottom = 5;
             let rowsLoaded = self.signs.count
-            if (!self.isLoading &&  self.currentPage < self.totalPages && (indexPath.row >= (rowsLoaded - rowsToLoadFromBottom)))
+            if (!self.isLoading &&  self.nextPage != nil && ((indexPath as NSIndexPath).row >= (rowsLoaded - rowsToLoadFromBottom)))
             {
-                self.currentPage++
                 self.makeRequest()
             }
             return cell
@@ -171,7 +238,7 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     }
 
 
-    func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
         if let newLoc : CLLocation = locations[locations.count - 1] as CLLocation
         {
@@ -201,32 +268,34 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     
     func makeRequest(){
         isLoading = true
-        let userDefaults = NSUserDefaults.standardUserDefaults()
-        let radius = userDefaults.integerForKey("search_radius")
+        let userDefaults = UserDefaults.standard
+        let radius = userDefaults.integer(forKey: "search_radius")
         
-        if (self.currentPage > 1){
-            let pagingSpinner = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+        var url : URLRequestConvertible = RandomRequestRouter.geo(latitude:self.latitude,longitude:self.longitude,radius:radius)
+        
+        if (self.nextPage != nil){
+            let pagingSpinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
             pagingSpinner.startAnimating()
             pagingSpinner.color = UIColor(red: 22.0/255.0, green: 106.0/255.0, blue: 176.0/255.0, alpha: 1.0)
             pagingSpinner.hidesWhenStopped = true
             tableView.tableFooterView = pagingSpinner
+            url = RandomRequestRouter.next(nextUrl: self.nextPage!)
         }
         
-        Alamofire.request(RandomRequestRouter.Geo(latitude:self.latitude,longitude:self.longitude,radius:radius,page:currentPage))
-            .responseObject{(response: Response<SignCollectionResult, NSError>)in
+        
+        let _ = Alamofire.request(url)
+            .responseObject{(response: DataResponse<SignCollectionResult>)in
                 if response.result.error == nil{
-                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0)){
-                        self.currentPage = response.result.value!.currentPage;
-                        self.totalPages = response.result.value!.totalPages;
-                    
-                        
+                    DispatchQueue.global(qos: .background).async{
+                        self.nextPage = response.result.value!.nextPage;
+
                         for s in response.result.value!.signs{
                             self.signs.append(s)
                         }
                     
                         self.noResultsToDisplay = self.signs.count == 0
                         
-                        dispatch_async(dispatch_get_main_queue()){
+                        DispatchQueue.main.async{
                             self.tableView.reloadData()
                             self.loadingIndicatorView.removeFromSuperview()
                             self.loadingIndicatorView.hideActivity()
@@ -240,15 +309,15 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     }
     
 
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
-        if status == .AuthorizedWhenInUse{
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        if status == .authorizedWhenInUse{
             locationManager.startUpdatingLocation()
             self.view.addSubview(loadingIndicatorView)
             loadingIndicatorView.showActivity()
         }
     }
     
-    func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         self.loadingIndicatorView.removeFromSuperview()
         loadingIndicatorView.hideActivity()
         locationManager.stopUpdatingLocation()
@@ -257,21 +326,32 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     }
 
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "OpenDetail"){
-                if let signViewController = segue.destinationViewController as? SignImageViewController{
+                if let signViewController = segue.destination as? SignImageViewController{
                 let indexPath = tableView.indexPathForSelectedRow
-                if let tableCell = tableView.cellForRowAtIndexPath(indexPath!) as? ResultTableViewCell{
+                if let tableCell = tableView.cellForRow(at: indexPath!) as? ResultTableViewCell{
                      signViewController.sign = tableCell.sign
                 }
                 
-                }
+            }
         }
+        else if (segue.identifier == "browse"){
+            
+             if let browseCountry = segue.destination as? BrowseCountryTableView{
+                browseCountry.browse = self.browseItems
+             }
+        }else if (segue.identifier == "randomSign"){
+            if let randomSign = segue.destination as? ViewController{
+                randomSign.randomSignRequest()
+            }
+        }
+
     }
 }
 
 extension GetCurrentController : GooglePlacesAutocompleteDelegate{
-    func placeSelected(place: Place) {
+    func placeSelected(_ place: Place) {
         place.getDetails(){
             (result:PlaceDetails) in
             self.latitude = result.latitude
@@ -293,20 +373,19 @@ extension GetCurrentController : GooglePlacesAutocompleteDelegate{
                 
             }
             
-            self.currentPage = 1
-            self.totalPages = 1
+            self.nextPage = nil
             self.signs = [Sign]()
-            self.dismissViewControllerAnimated(true, completion: nil)
+            self.dismiss(animated: true, completion: nil)
             self.makeRequest()
         }
     }
     
-    func placesFound(places: [Place]) {
+    func placesFound(_ places: [Place]) {
         
     }
     
     func placeViewClosed() {
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
 
@@ -321,7 +400,7 @@ class ResultTableViewCell : UITableViewCell{
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descLabel: UILabel!
     
-    func assignSign(sign : Sign){
+    func assignSign(_ sign : Sign){
         self.sign = sign
         self.thumbnailImageView!.image = nil
         self.request?.cancel()
@@ -330,7 +409,7 @@ class ResultTableViewCell : UITableViewCell{
         self.descLabel?.text = sign.imageDescription
         self.descLabel?.sizeToFit()
         
-        self.request = Alamofire.request(.GET, sign.thumbnail).responseImage {
+        self.request = Alamofire.request(sign.thumbnail).responseImage {
             response in
                 self.thumbnailImageView!.image = response.result.value
         }

@@ -19,7 +19,7 @@ class HighwayTableViewCell: UITableViewCell {
     var request: Alamofire.Request?
     
     
-    func assignHighway(highway : Highway){
+    func assignHighway(_ highway : Highway){
         self.highway = highway
         self.highwayImage!.image = nil
         self.request?.cancel()
@@ -28,13 +28,13 @@ class HighwayTableViewCell: UITableViewCell {
         self.highwayText?.sizeToFit()
         
         //HACK
-        let newUrl = highway.url.stringByReplacingOccurrencesOfString("/20x", withString: "")
+        let newUrl = highway.url.replacingOccurrences(of: "/20x", with: "")
         
         
-        self.request = Alamofire.request(.GET, newUrl)
+        self.request = Alamofire.request(newUrl)
             .responseImage {
                 response  in
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     self.highwayImage!.image = response.result.value
                     self.setNeedsLayout()
                 })

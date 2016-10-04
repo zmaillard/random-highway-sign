@@ -12,7 +12,7 @@ import MapKit
 class MapTableViewCell: UITableViewCell {
     @IBOutlet weak var mapView: MKMapView!
     
-    func zoomTo(latitude:Double, longitude:Double){
+    func zoomTo(_ latitude:Double, longitude:Double){
         let coord = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let mapRect = MKCoordinateRegionMakeWithDistance(coord, 5000, 5000)
 

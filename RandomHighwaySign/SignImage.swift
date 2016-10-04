@@ -21,23 +21,22 @@ class SignImage: UIView, UIScrollViewDelegate {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        NSBundle.mainBundle().loadNibNamed("SignImage", owner: self, options: nil)
+        Bundle.main.loadNibNamed("SignImage", owner: self, options: nil)
         self.addSubview(self.view);    // adding the top level view to the view hierarchy
     }
     
-    func loadSign(sign:Sign){
+    func loadSign(_ sign:Sign){
         setupImage()
         setImageData(sign.largeImage)
         self.sign = sign
     }
     
-    func setImageData(imageUrl:String){
-        Alamofire.request(.GET, imageUrl).response() {
-            (_, _, data, _) in
+    func setImageData(_ imageUrl:String){
+        Alamofire.request(imageUrl).responseImage() {
+            response in
             
-            let image = UIImage(data:data! as! NSData)
-            self.imageView.image = image
-            self.imageView.frame = self.centerFrameFromImage(image)
+            self.imageView.image = response.result.value
+            self.imageView.frame = self.centerFrameFromImage(self.imageView.image)
             
             self.centerScrollViewContents()
         }
@@ -65,8 +64,8 @@ class SignImage: UIView, UIScrollViewDelegate {
     }
     
     
-    func scrollViewDoubleTapped(recognizer : UITapGestureRecognizer){
-        let pointInView = recognizer.locationInView(imageView)
+    func scrollViewDoubleTapped(_ recognizer : UITapGestureRecognizer){
+        let pointInView = recognizer.location(in: imageView)
         
         var newZoomScale = scrollView.zoomScale * 1.5
         newZoomScale = min (newZoomScale, scrollView.maximumZoomScale)
@@ -77,23 +76,23 @@ class SignImage: UIView, UIScrollViewDelegate {
         let x = pointInView.x - (w / 2.0)
         let y = pointInView.y - (h / 2.0)
         
-        let rectZoomTo = CGRectMake(x, y, w, h)
-        scrollView.zoomToRect(rectZoomTo, animated: true)
+        let rectZoomTo = CGRect(x: x, y: y, width: w, height: h)
+        scrollView.zoom(to: rectZoomTo, animated: true)
         
     }
     
-    func viewForZoomingInScrollView(scrollView: UIScrollView) -> UIView? {
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
         return imageView
     }
     
-    func scrollViewDidZoom(scrollView: UIScrollView) {
+    func scrollViewDidZoom(_ scrollView: UIScrollView) {
         centerScrollViewContents()
     }
     
     
-    func centerFrameFromImage(image: UIImage?) -> CGRect {
+    func centerFrameFromImage(_ image: UIImage?) -> CGRect {
         if image == nil {
-            return CGRectZero
+            return CGRect.zero
         }
         
         let scaleFactor = scrollView.frame.size.width / image!.size.width
@@ -118,29 +117,28 @@ class SignImage: UIView, UIScrollViewDelegate {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(scrollView)
         
-        imageView.contentMode = .ScaleAspectFit
+        imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(imageView)
         
-        var doubleTapRecognizer = UITapGestureRecognizer(target:self, action:"scrollViewDoubleTapped:")
+        let doubleTapRecognizer = UITapGestureRecognizer(target:self, action:"scrollViewDoubleTapped:")
         doubleTapRecognizer.numberOfTapsRequired = 2
         doubleTapRecognizer.numberOfTouchesRequired = 1
         scrollView.addGestureRecognizer(doubleTapRecognizer)
         //scrollView.setTranslatesAutoresizingMaskIntoConstraints(false)
         
         //Set contraints
-        let bindings = ["scrollView": scrollView, "view": view, "imageView": imageView]
+        let bindings: [String:UIView] = ["scrollView": scrollView, "view": view, "imageView": imageView]
         
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[scrollView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: bindings))
         
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[scrollView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: bindings))
-        
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[scrollView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: bindings))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[scrollView]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: bindings))
         
 
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[imageView(==view)]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: bindings))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[imageView(==view)]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: bindings))
         
         
-        view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|[imageView(==view)]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: bindings))
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|[imageView(==view)]|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: bindings))
         
     }
 

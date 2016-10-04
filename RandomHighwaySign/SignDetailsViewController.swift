@@ -18,22 +18,22 @@ class SignDetailsViewController: UITableViewController {
     
         self.title = "Sign Details"
         
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.Plain, target:nil, action:nil)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
         
         
     }
 
-    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
             return UITableViewAutomaticDimension
     }
 
 
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 6
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 0{
             return "Title"
         }else if section == 1{
@@ -52,36 +52,36 @@ class SignDetailsViewController: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.section == 3{
-            let tableCell =  tableView.dequeueReusableCellWithIdentifier("highway", forIndexPath: indexPath) as UITableViewCell
+        if (indexPath as NSIndexPath).section == 3{
+            let tableCell =  tableView.dequeueReusableCell(withIdentifier: "highway", for: indexPath) as UITableViewCell
             let highwayTableCell = tableCell as? HighwayTableViewCell
             
-            highwayTableCell?.assignHighway(sign.highways[indexPath.row])
+            highwayTableCell?.assignHighway(sign.highways[(indexPath as NSIndexPath).row])
             tableCell.layoutSubviews()
             
             return tableCell
-        }else if indexPath.section == 1{
-            let tableCell =  tableView.dequeueReusableCellWithIdentifier("desc", forIndexPath: indexPath) as UITableViewCell
+        }else if (indexPath as NSIndexPath).section == 1{
+            let tableCell =  tableView.dequeueReusableCell(withIdentifier: "desc", for: indexPath) as UITableViewCell
             let descTableCell = tableCell as? DescriptionTableViewCell
             
             descTableCell?.descriptionLabel.text = sign.imageDescription
             
             return tableCell
-        }else if indexPath.section == 5{
-            let tableCell =  tableView.dequeueReusableCellWithIdentifier("map", forIndexPath: indexPath) as? MapTableViewCell
+        }else if (indexPath as NSIndexPath).section == 5{
+            let tableCell =  tableView.dequeueReusableCell(withIdentifier: "map", for: indexPath) as? MapTableViewCell
             
             tableCell!.zoomTo(self.sign.latitude,longitude:self.sign.longitude)
             
             return tableCell!
         }else{
         
-            let tableCell =  tableView.dequeueReusableCellWithIdentifier("standard", forIndexPath: indexPath) as UITableViewCell
+            let tableCell =  tableView.dequeueReusableCell(withIdentifier: "standard", for: indexPath) as UITableViewCell
         
-            if indexPath.section == 0{
+            if (indexPath as NSIndexPath).section == 0{
                 tableCell.textLabel?.text = sign.title
-            }else if indexPath.section == 2{
+            }else if (indexPath as NSIndexPath).section == 2{
                 tableCell.textLabel?.text = sign.place + ", " + sign.state
             }
             else{
@@ -92,7 +92,7 @@ class SignDetailsViewController: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 3{
             return self.sign.highways.count
         }

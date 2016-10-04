@@ -1,17 +1,15 @@
 //
-//  DescriptionTableViewCell.swift
+//  SignTableViewCell.swift
 //  RandomHighwaySign
 //
-//  Created by Zachary Maillard on 6/23/15.
-//  Copyright (c) 2015 SagebrushGIS. All rights reserved.
+//  Created by Zachary Maillard on 9/30/16.
+//  Copyright © 2016 SagebrushGIS. All rights reserved.
 //
 
 import UIKit
 
-class DescriptionTableViewCell: UITableViewCell {
+class SignTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var descriptionLabel: UILabel!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -22,5 +20,5 @@ class DescriptionTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
 }
