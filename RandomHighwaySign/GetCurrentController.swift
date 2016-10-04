@@ -125,10 +125,6 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     
     func browse(sender:UIBarButtonItem){
         
-        //Prevent multiple requests
-        //if (self.isLoading){
-        //    return
-        //}
         
         self.view.addSubview(loadingIndicatorView)
         loadingIndicatorView.showActivity()
@@ -345,6 +341,10 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
              if let browseCountry = segue.destination as? BrowseCountryTableView{
                 browseCountry.browse = self.browseItems
              }
+        }else if (segue.identifier == "randomSign"){
+            if let randomSign = segue.destination as? ViewController{
+                randomSign.randomSignRequest()
+            }
         }
 
     }

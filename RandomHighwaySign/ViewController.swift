@@ -39,10 +39,6 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isToolbarHidden = false
-        
-        randomSignRequest()
-
-        
     }
 
     

@@ -65,10 +65,10 @@
             </objects>
             <point key="canvasLocation" x="1689" y="-1200"/>
         </scene>
-        <!--Sign-->
+        <!--Random Sign-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="randomSign" id="BYZ-38-t0r" customClass="ViewController" customModule="RandomHighwaySign" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="randomSign" id="BYZ-38-t0r" userLabel="Random Sign" customClass="ViewController" customModule="RandomHighwaySign" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -191,7 +191,7 @@
             <objects>
                 <navigationController id="Nvf-f1-Vpv" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Current Location" id="LFu-XT-7De"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="yOW-l0-v7F">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="yOW-l0-v7F">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -453,6 +453,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="kqI-t3-df1"/>
-        <segue reference="ILr-ro-Nls"/>
+        <segue reference="5Mr-A8-HgE"/>
     </inferredMetricsTieBreakers>
 </document>
