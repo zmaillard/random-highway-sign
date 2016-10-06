@@ -95,24 +95,7 @@ class BrowseCountryTableView : UITableViewController{
             
             
         }else{
-            let url = RandomRequestRouter.county(state:(self.parentBrowse?.Slug)!,county:(self.selectedBrowse?.Slug)!);
-            
-            let _ = Alamofire.request(url)
-                .responseObject{(response: DataResponse<SignCollectionResult>)in
-                    if response.result.error == nil{
-                        self.signs = [Sign]()
-                        self.loadingIndicatorView.removeFromSuperview()
-                        self.loadingIndicatorView.hideActivity()
-                            
-                            for s in response.result.value!.signs{
-                                self.signs.append(s)
-                            }
-                        
-                        self.performSegue(withIdentifier: "showCountySigns", sender: self)
-                        
-                    }
-            }
-            
+            self.performSegue(withIdentifier: "showCountySigns", sender: self)
         }
     }
     
@@ -141,6 +124,8 @@ class BrowseCountryTableView : UITableViewController{
             }
         }else if (segue.identifier == "showCountySigns"){
             if let browseCounty = segue.destination as? BrowseCountyViewController{
+                browseCounty.state = self.parentBrowse?.Slug
+                browseCounty.county = self.selectedBrowse?.Slug
                 browseCounty.title = "Signs In " + (self.selectedBrowse?.Name)! + " County"
                 browseCounty.signs = signs
             }

@@ -45,9 +45,24 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     var randomSign:Sign!
     
     var nextPage:String?
-    var isLoading = false
+    var isLoading = false{
+        didSet{
+            if (self.isLoading){
+                self.view.addSubview(loadingIndicatorView)
+                loadingIndicatorView.showActivity()
+                
+            }else{
+                self.loadingIndicatorView.removeFromSuperview()
+                self.loadingIndicatorView.hideActivity()
+            }
+        }
+    }
     
-    var signs : Array<Sign> = [Sign]()
+    var signs : [Sign] = [Sign](){
+        didSet{
+            tableView.reloadData()
+        }
+    }
 
     var latitude: Double!
     var longitude: Double!
@@ -125,16 +140,11 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     
     func browse(sender:UIBarButtonItem){
         
-        
-        self.view.addSubview(loadingIndicatorView)
-        loadingIndicatorView.showActivity()
         self.isLoading = true
         
         Browse.GetCountrySubdivisions(completion: {
             result in
             
-            self.loadingIndicatorView.removeFromSuperview()
-            self.loadingIndicatorView.hideActivity()
             self.isLoading = false
             self.browseItems = result
             DispatchQueue.main.async {
@@ -164,8 +174,7 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         self.nextPage = nil
         self.signs = [Sign]()
         locationManager.startUpdatingLocation()
-        self.view.addSubview(loadingIndicatorView)
-        loadingIndicatorView.showActivity()
+        self.isLoading = true
         self.refreshControl?.endRefreshing()
     }
     
@@ -230,13 +239,26 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
             let rowsLoaded = self.signs.count
             if (!self.isLoading &&  self.nextPage != nil && ((indexPath as NSIndexPath).row >= (rowsLoaded - rowsToLoadFromBottom)))
             {
-                self.makeRequest()
+                self.getNextPage()
             }
             return cell
         }
 
     }
 
+    func getNextPage(){
+        if self.nextPage == nil{
+            return
+        }
+        
+        self.isLoading = true
+        Sign.fetchNext(nextUrl: self.nextPage!)
+        { (result: [Sign], next: String?) in
+            self.signs = self.signs + result
+            self.isLoading = false
+            self.nextPage = next
+        }
+    }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         
@@ -271,55 +293,25 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         let userDefaults = UserDefaults.standard
         let radius = userDefaults.integer(forKey: "search_radius")
         
-        var url : URLRequestConvertible = RandomRequestRouter.geo(latitude:self.latitude,longitude:self.longitude,radius:radius)
-        
-        if (self.nextPage != nil){
-            let pagingSpinner = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-            pagingSpinner.startAnimating()
-            pagingSpinner.color = UIColor(red: 22.0/255.0, green: 106.0/255.0, blue: 176.0/255.0, alpha: 1.0)
-            pagingSpinner.hidesWhenStopped = true
-            tableView.tableFooterView = pagingSpinner
-            url = RandomRequestRouter.next(nextUrl: self.nextPage!)
+        Sign.fetch(type: RandomRequestRouter.geo(latitude:self.latitude,longitude:self.longitude,radius:radius)) { (result: [Sign], next: String?) in
+            self.signs = result
+            self.isLoading = false
+            self.nextPage = next
         }
-        
-        
-        let _ = Alamofire.request(url)
-            .responseObject{(response: DataResponse<SignCollectionResult>)in
-                if response.result.error == nil{
-                    DispatchQueue.global(qos: .background).async{
-                        self.nextPage = response.result.value!.nextPage;
 
-                        for s in response.result.value!.signs{
-                            self.signs.append(s)
-                        }
-                    
-                        self.noResultsToDisplay = self.signs.count == 0
-                        
-                        DispatchQueue.main.async{
-                            self.tableView.reloadData()
-                            self.loadingIndicatorView.removeFromSuperview()
-                            self.loadingIndicatorView.hideActivity()
-                            self.isLoading = false
-                        }
-                        
-                    }
-
-                }
-        }
+    
     }
     
 
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == .authorizedWhenInUse{
             locationManager.startUpdatingLocation()
-            self.view.addSubview(loadingIndicatorView)
-            loadingIndicatorView.showActivity()
+            self.isLoading = true
         }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        self.loadingIndicatorView.removeFromSuperview()
-        loadingIndicatorView.hideActivity()
+        self.isLoading = false
         locationManager.stopUpdatingLocation()
         noLocation = true
         self.tableView.reloadData()

@@ -1,15 +1,14 @@
 //
-//  BrowseCountyViewController.swift
+//  SignListViewController.swift
 //  RandomHighwaySign
 //
-//  Created by Zachary Maillard on 10/1/16.
+//  Created by Zachary Maillard on 10/6/16.
 //  Copyright © 2016 SagebrushGIS. All rights reserved.
 //
 
 import UIKit
 
-class BrowseCountyViewController: UITableViewController {
-
+class SignListViewController: UITableViewController {
     var loadingIndicatorView:LoadingIndicatorView!
     var nextPage:String? = nil
     var state:String? = nil
@@ -34,20 +33,20 @@ class BrowseCountyViewController: UITableViewController {
             tableView.reloadData()
         }
     }
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
-
+        
         loadingIndicatorView = LoadingIndicatorView(frame:CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: 80, height: 80)))
         
         
         loadingIndicatorView.center = self.tableView.center
         makeRequest()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -98,7 +97,7 @@ class BrowseCountyViewController: UITableViewController {
             self.nextPage = next
         }
     }
-
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "countySignDetail"){
@@ -125,9 +124,7 @@ class BrowseCountyViewController: UITableViewController {
             self.isLoading = false
             self.nextPage = next
         }
-
+        
         
     }
-    
-    
 }

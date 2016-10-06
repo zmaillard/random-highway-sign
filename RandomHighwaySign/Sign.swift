@@ -227,3 +227,45 @@ final class Sign : ResponseObjectSerializable, ResponseCollectionSerializable{
         return signs
     }
 }
+
+internal extension Sign{
+    
+    
+    internal class func fetch(type:RandomRequestRouter, completion: @escaping (_ signs:[Sign], _ next:String?) -> Void){
+        let _ = Alamofire.request(type)
+            .responseObject{(response: DataResponse<SignCollectionResult>)in
+                if response.result.error == nil{
+                    var signs = [Sign]()
+                    
+                    for s in response.result.value!.signs{
+                        signs.append(s)
+                    }
+                    
+                    let nextPage = response.result.value!.nextPage
+                    
+                    
+                    completion(signs, nextPage)
+                }
+        }
+    }
+    
+    internal class func fetchNext(nextUrl:String, completion: @escaping (_ signs:[Sign], _ next:String?) -> Void){
+        let _ = Alamofire.request(nextUrl)
+            .responseObject{(response: DataResponse<SignCollectionResult>)in
+                if response.result.error == nil{
+                    var signs = [Sign]()
+                    
+                    for s in response.result.value!.signs{
+                        signs.append(s)
+                    }
+                    
+                    let nextPage = response.result.value!.nextPage
+                    
+                    
+                    completion(signs, nextPage)
+                }
+        }
+    }
+
+
+}

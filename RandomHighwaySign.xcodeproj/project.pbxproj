@@ -30,6 +30,8 @@
 		52BD62491D9F29BC00DBC94B /* SignTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BD62471D9F29BC00DBC94B /* SignTableViewCell.swift */; };
 		52BD624A1D9F29BC00DBC94B /* SignTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 52BD62481D9F29BC00DBC94B /* SignTableViewCell.xib */; };
 		52BD624C1DA0003900DBC94B /* BrowseCountyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BD624B1DA0003900DBC94B /* BrowseCountyViewController.swift */; };
+		52C31F531DA5E333007470AE /* Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C31F521DA5E333007470AE /* Loading.swift */; };
+		52C31F551DA67F42007470AE /* SignListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C31F541DA67F42007470AE /* SignListViewController.swift */; };
 		52EAF8BB1D9C8BF90079DDF3 /* BrowseCountry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EAF8BA1D9C8BF90079DDF3 /* BrowseCountry.swift */; };
 		52EAF8BD1D9C98390079DDF3 /* Browse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EAF8BC1D9C98390079DDF3 /* Browse.swift */; };
 		52FDF0471B3742E600AEF5B0 /* HighwayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDF0461B3742E600AEF5B0 /* HighwayTableViewCell.swift */; };
@@ -92,6 +94,8 @@
 		52BF230C1C191D3F00161545 /* FontAwesomeIconFactory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FontAwesomeIconFactory.framework; path = "Pods/../build/Debug-iphoneos/FontAwesomeIconFactory.framework"; sourceTree = "<group>"; };
 		52BF230D1C191D3F00161545 /* GooglePlacesAutocomplete.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GooglePlacesAutocomplete.framework; path = "Pods/../build/Debug-iphoneos/GooglePlacesAutocomplete.framework"; sourceTree = "<group>"; };
 		52BF230E1C191D3F00161545 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Debug-iphoneos/SwiftyJSON.framework"; sourceTree = "<group>"; };
+		52C31F521DA5E333007470AE /* Loading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loading.swift; sourceTree = "<group>"; };
+		52C31F541DA67F42007470AE /* SignListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignListViewController.swift; sourceTree = "<group>"; };
 		52EAF8BA1D9C8BF90079DDF3 /* BrowseCountry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowseCountry.swift; sourceTree = "<group>"; };
 		52EAF8BC1D9C98390079DDF3 /* Browse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Browse.swift; sourceTree = "<group>"; };
 		52FDF0461B3742E600AEF5B0 /* HighwayTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HighwayTableViewCell.swift; path = RandomHighwaySign/HighwayTableViewCell.swift; sourceTree = "<group>"; };
@@ -156,6 +160,7 @@
 		5228AB351AE4574800A664D4 /* RandomHighwaySign */ = {
 			isa = PBXGroup;
 			children = (
+				52C31F511DA5E320007470AE /* View */,
 				52EAF8B91D9C8BE00079DDF3 /* BrowseView */,
 				52BAA4241B53EC3D000F1FB2 /* ActivityView */,
 				52C6C9D41B4EA2F70076B328 /* MainTableView */,
@@ -210,6 +215,15 @@
 				52BAA4251B53EC66000F1FB2 /* LoadingIndicatorView.swift */,
 			);
 			name = ActivityView;
+			sourceTree = "<group>";
+		};
+		52C31F511DA5E320007470AE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				52C31F521DA5E333007470AE /* Loading.swift */,
+				52C31F541DA67F42007470AE /* SignListViewController.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		52C6C9D11B4E9F5E0076B328 /* ImageView */ = {
@@ -440,6 +454,7 @@
 			files = (
 				527CEC561B33B49A00A2BBD6 /* SignImageViewController.swift in Sources */,
 				522C78261AF1C7CA0001121F /* SignDetailsViewController.swift in Sources */,
+				52C31F531DA5E333007470AE /* Loading.swift in Sources */,
 				5228AB3E1AE4574800A664D4 /* ViewController.swift in Sources */,
 				52B0C1301DA1CB7B00EB30A9 /* BrowseSignViewController.swift in Sources */,
 				52FDF0471B3742E600AEF5B0 /* HighwayTableViewCell.swift in Sources */,
@@ -456,6 +471,7 @@
 				527CEC521B33A85200A2BBD6 /* SignImage.swift in Sources */,
 				52EAF8BD1D9C98390079DDF3 /* Browse.swift in Sources */,
 				5228AB3C1AE4574800A664D4 /* RandomHighwaySign.xcdatamodeld in Sources */,
+				52C31F551DA67F42007470AE /* SignListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
