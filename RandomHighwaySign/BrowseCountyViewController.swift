@@ -13,49 +13,26 @@ protocol UrlRequestDelegate {
     var isValidRequest: Bool { get }
 }
 
-class BrowseCountyViewController: UITableViewController, UrlRequestDelegate {
+class BrowseCountyViewController: SignListViewController, UrlRequestDelegate {
     
     var isValidRequest: Bool {
         return state != nil && county != nil
     }
 
 
-    var loadingIndicatorView:LoadingIndicatorView!
-    var nextPage:String? = nil
     var state:String? = nil
     var county:String? = nil
     
     
-    var isLoading = false{
-        didSet{
-            if (self.isLoading){
-                self.view.addSubview(loadingIndicatorView)
-                loadingIndicatorView.showActivity()
-                
-            }else{
-                self.loadingIndicatorView.removeFromSuperview()
-                self.loadingIndicatorView.hideActivity()
-            }
-        }
-    }
     
-    var signs : [Sign] = [Sign](){
-        didSet{
-            tableView.reloadData()
-        }
-    }
 
-    
     override func viewDidLoad() {
-        super.viewDidLoad()
+        
+        self.urlRequestDelegate = self
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
-
-        loadingIndicatorView = LoadingIndicatorView(frame:CGRect(origin: CGPoint(x: 0,y :0), size: CGSize(width: 80, height: 80)))
         
-        
-        loadingIndicatorView.center = self.tableView.center
-        makeRequest()
+        super.viewDidLoad()
     }
 
     override func didReceiveMemoryWarning() {
@@ -94,23 +71,6 @@ class BrowseCountyViewController: UITableViewController, UrlRequestDelegate {
         return cell
     }
     
-    
-    func getNextPage(){
-        if self.nextPage == nil{
-            return
-        }
-        
-        self.isLoading = true
-        Sign.fetchNext(nextUrl: self.nextPage!)
-        { (result: [Sign], next: String?) in
-            DispatchQueue.global(qos: .background).async{
-                self.signs = self.signs + result
-                self.nextPage = next
-            }
-            self.isLoading = false
-        }
-
-    }
 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -127,27 +87,6 @@ class BrowseCountyViewController: UITableViewController, UrlRequestDelegate {
     
     func setUrlRequestType() -> RandomRequestRouter{
         return RandomRequestRouter.county(state:self.state!,county:self.county!)
-    }
-    
-    func makeRequest(){
-        
-        if !isValidRequest{
-            return
-        }
-
-        
-        isLoading = true
-                
-        Sign.fetch(type: setUrlRequestType()){
-            (result: [Sign], next: String?) in
-            DispatchQueue.global(qos: .background).async{
-                self.signs = result
-                self.nextPage = next
-            }
-            self.isLoading = false
-        }
-
-        
     }
     
     
