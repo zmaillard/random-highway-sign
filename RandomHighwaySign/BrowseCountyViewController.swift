@@ -8,7 +8,17 @@
 
 import UIKit
 
-class BrowseCountyViewController: UITableViewController {
+protocol UrlRequestDelegate {
+    func setUrlRequestType() -> RandomRequestRouter
+    var isValidRequest: Bool { get }
+}
+
+class BrowseCountyViewController: UITableViewController, UrlRequestDelegate {
+    
+    var isValidRequest: Bool {
+        return state != nil && county != nil
+    }
+
 
     var loadingIndicatorView:LoadingIndicatorView!
     var nextPage:String? = nil
@@ -93,10 +103,13 @@ class BrowseCountyViewController: UITableViewController {
         self.isLoading = true
         Sign.fetchNext(nextUrl: self.nextPage!)
         { (result: [Sign], next: String?) in
-            self.signs = self.signs + result
+            DispatchQueue.global(qos: .background).async{
+                self.signs = self.signs + result
+                self.nextPage = next
+            }
             self.isLoading = false
-            self.nextPage = next
         }
+
     }
 
     
@@ -112,18 +125,26 @@ class BrowseCountyViewController: UITableViewController {
         }
     }
     
+    func setUrlRequestType() -> RandomRequestRouter{
+        return RandomRequestRouter.county(state:self.state!,county:self.county!)
+    }
+    
     func makeRequest(){
-        isLoading = true
         
-        if state == nil || county == nil{
+        if !isValidRequest{
             return
         }
+
         
-        Sign.fetch(type: RandomRequestRouter.county(state:self.state!,county:self.county!)){
+        isLoading = true
+                
+        Sign.fetch(type: setUrlRequestType()){
             (result: [Sign], next: String?) in
-            self.signs = result
+            DispatchQueue.global(qos: .background).async{
+                self.signs = result
+                self.nextPage = next
+            }
             self.isLoading = false
-            self.nextPage = next
         }
 
         
