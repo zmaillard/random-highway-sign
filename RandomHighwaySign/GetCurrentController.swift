@@ -103,9 +103,14 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         let browseButton:UIBarButtonItem = UIBarButtonItem(title: title, style: .plain, target: self, action: #selector(browse))
         browseButton.image = fact.createImage(for: .navicon)
         
+        let recentButton:UIBarButtonItem = UIBarButtonItem(title: title, style: .plain, target: self, action: #selector(recent))
+        recentButton.image = fact.createImage(for: .history)
+        
+        
         let randomButton:UIBarButtonItem = UIBarButtonItem(title: title, style: .plain, target: self, action: #selector(showRandom))
         randomButton.image = fact.createImage(for: .random)
         toolbarItems.append(browseButton)
+        toolbarItems.append(recentButton)
         toolbarItems.append(leftFlex)
         toolbarItems.append(randomButton)
         self.setToolbarItems(toolbarItems, animated: false)
@@ -137,6 +142,14 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     func showRandom(sender:UIBarButtonItem){
         performSegue(withIdentifier: "randomSign", sender: self)
     }
+    
+    func recent(sender:UIBarButtonItem){
+        self.isLoading = true
+
+        self.performSegue(withIdentifier: "recent", sender: sender)
+        
+    }
+    
     
     func browse(sender:UIBarButtonItem){
         
@@ -384,29 +397,4 @@ extension GetCurrentController : GooglePlacesAutocompleteDelegate{
 }
 
 
-class ResultTableViewCell : UITableViewCell{
-    var request: Alamofire.Request?
-    var sign: Sign?
-    
-    @IBOutlet weak var thumbnailImageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var descLabel: UILabel!
-    
-    func assignSign(_ sign : Sign){
-        self.sign = sign
-        self.thumbnailImageView!.image = nil
-        self.request?.cancel()
-        
-        self.titleLabel?.text = sign.title
-        self.descLabel?.text = sign.imageDescription
-        self.descLabel?.sizeToFit()
-        
-        self.request = Alamofire.request(sign.thumbnail).responseImage {
-            response in
-                self.thumbnailImageView!.image = response.result.value
-        }
-        
-    }
-
-}
 

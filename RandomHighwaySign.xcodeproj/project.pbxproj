@@ -32,6 +32,8 @@
 		52BD624C1DA0003900DBC94B /* BrowseCountyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BD624B1DA0003900DBC94B /* BrowseCountyViewController.swift */; };
 		52C31F531DA5E333007470AE /* Loading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C31F521DA5E333007470AE /* Loading.swift */; };
 		52C31F551DA67F42007470AE /* SignListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C31F541DA67F42007470AE /* SignListViewController.swift */; };
+		52C31F581DAB27A3007470AE /* RecentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C31F571DAB27A3007470AE /* RecentViewController.swift */; };
+		52C31F5A1DAB2E61007470AE /* ResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C31F591DAB2E61007470AE /* ResultTableViewCell.swift */; };
 		52EAF8BB1D9C8BF90079DDF3 /* BrowseCountry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EAF8BA1D9C8BF90079DDF3 /* BrowseCountry.swift */; };
 		52EAF8BD1D9C98390079DDF3 /* Browse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EAF8BC1D9C98390079DDF3 /* Browse.swift */; };
 		52FDF0471B3742E600AEF5B0 /* HighwayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDF0461B3742E600AEF5B0 /* HighwayTableViewCell.swift */; };
@@ -96,6 +98,8 @@
 		52BF230E1C191D3F00161545 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Debug-iphoneos/SwiftyJSON.framework"; sourceTree = "<group>"; };
 		52C31F521DA5E333007470AE /* Loading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loading.swift; sourceTree = "<group>"; };
 		52C31F541DA67F42007470AE /* SignListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignListViewController.swift; sourceTree = "<group>"; };
+		52C31F571DAB27A3007470AE /* RecentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentViewController.swift; sourceTree = "<group>"; };
+		52C31F591DAB2E61007470AE /* ResultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultTableViewCell.swift; sourceTree = "<group>"; };
 		52EAF8BA1D9C8BF90079DDF3 /* BrowseCountry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowseCountry.swift; sourceTree = "<group>"; };
 		52EAF8BC1D9C98390079DDF3 /* Browse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Browse.swift; sourceTree = "<group>"; };
 		52FDF0461B3742E600AEF5B0 /* HighwayTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HighwayTableViewCell.swift; path = RandomHighwaySign/HighwayTableViewCell.swift; sourceTree = "<group>"; };
@@ -160,6 +164,7 @@
 		5228AB351AE4574800A664D4 /* RandomHighwaySign */ = {
 			isa = PBXGroup;
 			children = (
+				52C31F561DAB277F007470AE /* RecentView */,
 				52C31F511DA5E320007470AE /* View */,
 				52EAF8B91D9C8BE00079DDF3 /* BrowseView */,
 				52BAA4241B53EC3D000F1FB2 /* ActivityView */,
@@ -175,7 +180,6 @@
 				5209C18C1AE5C6870078D43A /* Sign.swift */,
 				521B29B51B0021CB00A003AE /* GetCurrentController.swift */,
 				52BD62471D9F29BC00DBC94B /* SignTableViewCell.swift */,
-				52BD62481D9F29BC00DBC94B /* SignTableViewCell.xib */,
 				527CEC4F1B33A80A00A2BBD6 /* SignImage.xib */,
 				52246BD61B4414EC0099A9C5 /* ApiKeys.swift */,
 				523512C51B59F90300925C4C /* LaunchScreen.storyboard */,
@@ -226,6 +230,14 @@
 			name = View;
 			sourceTree = "<group>";
 		};
+		52C31F561DAB277F007470AE /* RecentView */ = {
+			isa = PBXGroup;
+			children = (
+				52C31F571DAB27A3007470AE /* RecentViewController.swift */,
+			);
+			name = RecentView;
+			sourceTree = "<group>";
+		};
 		52C6C9D11B4E9F5E0076B328 /* ImageView */ = {
 			isa = PBXGroup;
 			children = (
@@ -239,6 +251,8 @@
 		52C6C9D41B4EA2F70076B328 /* MainTableView */ = {
 			isa = PBXGroup;
 			children = (
+				52BD62481D9F29BC00DBC94B /* SignTableViewCell.xib */,
+				52C31F591DAB2E61007470AE /* ResultTableViewCell.swift */,
 			);
 			name = MainTableView;
 			sourceTree = "<group>";
@@ -452,6 +466,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52C31F5A1DAB2E61007470AE /* ResultTableViewCell.swift in Sources */,
 				527CEC561B33B49A00A2BBD6 /* SignImageViewController.swift in Sources */,
 				522C78261AF1C7CA0001121F /* SignDetailsViewController.swift in Sources */,
 				52C31F531DA5E333007470AE /* Loading.swift in Sources */,
@@ -467,6 +482,7 @@
 				52246BD71B4414EC0099A9C5 /* ApiKeys.swift in Sources */,
 				5228AB391AE4574800A664D4 /* AppDelegate.swift in Sources */,
 				52BAA4261B53EC66000F1FB2 /* LoadingIndicatorView.swift in Sources */,
+				52C31F581DAB27A3007470AE /* RecentViewController.swift in Sources */,
 				521B29B61B0021CB00A003AE /* GetCurrentController.swift in Sources */,
 				527CEC521B33A85200A2BBD6 /* SignImage.swift in Sources */,
 				52EAF8BD1D9C98390079DDF3 /* Browse.swift in Sources */,

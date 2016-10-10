@@ -180,18 +180,47 @@
                         <segue destination="dl2-wm-MQ3" kind="show" identifier="OpenDetail" id="vCM-TB-aDp"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="randomSign" id="LIg-kN-XgN"/>
                         <segue destination="EKW-Jm-Bvs" kind="show" identifier="browse" id="kqI-t3-df1"/>
+                        <segue destination="B92-gV-nRU" kind="show" identifier="recent" id="Tsa-LV-Wj3"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ADb-Qh-gqv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="761" y="-270"/>
         </scene>
+        <!--Recent View Controller-->
+        <scene sceneID="A1D-wL-Xa2">
+            <objects>
+                <tableViewController id="B92-gV-nRU" customClass="RecentViewController" customModule="RandomHighwaySign" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="82" sectionHeaderHeight="22" sectionFooterHeight="22" id="TL5-l5-LOF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SignCell" rowHeight="86" id="y7g-aY-4pd" customClass="ResultTableViewCell" customModule="RandomHighwaySign" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="86" width="375" height="86"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="y7g-aY-4pd" id="1Yc-8o-hBn">
+                                    <frame key="frameInset" width="375" height="85"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="B92-gV-nRU" id="O2d-SR-bp1"/>
+                            <outlet property="delegate" destination="B92-gV-nRU" id="tcZ-jz-ok4"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uHR-fX-b9l" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1294" y="536"/>
+        </scene>
         <!--Current Location-->
         <scene sceneID="K5X-Io-H5a">
             <objects>
                 <navigationController id="Nvf-f1-Vpv" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Current Location" id="LFu-XT-7De"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="yOW-l0-v7F">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="yOW-l0-v7F">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>

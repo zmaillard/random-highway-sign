@@ -1,19 +1,58 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="SignTableViewCell" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <frame key="frameInset" width="320" height="43"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SignCell" rowHeight="86" id="uDH-uk-FHt" customClass="ResultTableViewCell" customModule="RandomHighwaySign" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="86"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="uDH-uk-FHt" id="Rit-tY-QGx">
+                <frame key="frameInset" width="342" height="85"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="This is some title text" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="Ha1-KZ-uIs">
+                        <frame key="frameInset" minX="105" minY="5" width="454" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GBR-Qz-XCz">
+                        <frame key="frameInset" minX="105" minY="29" width="454" height="45"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="thumbnailImageView" translatesAutoresizingMaskIntoConstraints="NO" id="daQ-AF-rDh">
+                        <constraints>
+                            <constraint firstAttribute="width" constant="89" id="Iru-kC-agN"/>
+                            <constraint firstAttribute="height" constant="69" id="i84-uc-tLq"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottomMargin" secondItem="Ha1-KZ-uIs" secondAttribute="bottom" constant="51" id="1Fg-Rh-7PT"/>
+                    <constraint firstItem="GBR-Qz-XCz" firstAttribute="leading" secondItem="daQ-AF-rDh" secondAttribute="trailing" constant="8" id="Dj5-5b-29A"/>
+                    <constraint firstItem="GBR-Qz-XCz" firstAttribute="top" secondItem="Ha1-KZ-uIs" secondAttribute="bottom" constant="3" id="Rqx-6r-s0v"/>
+                    <constraint firstItem="Ha1-KZ-uIs" firstAttribute="top" secondItem="daQ-AF-rDh" secondAttribute="top" id="fxh-Yk-Ceb"/>
+                    <constraint firstAttribute="trailing" secondItem="GBR-Qz-XCz" secondAttribute="trailing" constant="8" id="lRl-sv-yYH"/>
+                    <constraint firstItem="Ha1-KZ-uIs" firstAttribute="trailing" secondItem="Rit-tY-QGx" secondAttribute="trailingMargin" id="lcG-u8-2xY"/>
+                    <constraint firstItem="daQ-AF-rDh" firstAttribute="top" secondItem="Rit-tY-QGx" secondAttribute="top" constant="5" id="pJL-Im-q48"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="GBR-Qz-XCz" secondAttribute="bottom" constant="11" id="tdI-XV-FJe"/>
+                    <constraint firstItem="daQ-AF-rDh" firstAttribute="leading" secondItem="Rit-tY-QGx" secondAttribute="leading" constant="8" id="vc0-AZ-mrx"/>
+                    <constraint firstItem="Ha1-KZ-uIs" firstAttribute="leading" secondItem="daQ-AF-rDh" secondAttribute="trailing" constant="8" symbolic="YES" id="z0B-qs-ptq"/>
+                </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="descLabel" destination="GBR-Qz-XCz" id="Xzw-TO-bxN"/>
+                <outlet property="thumbnailImageView" destination="daQ-AF-rDh" id="4Nc-QR-UHP"/>
+                <outlet property="titleLabel" destination="Ha1-KZ-uIs" id="aFE-SS-Tgc"/>
+            </connections>
+            <point key="canvasLocation" x="109" y="257"/>
         </tableViewCell>
     </objects>
 </document>

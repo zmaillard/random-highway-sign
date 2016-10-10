@@ -90,9 +90,11 @@ extension DataRequest {
 enum RandomRequestRouter : URLRequestConvertible{
     
     case single()
+    case recent()
     case geo(latitude:Double, longitude:Double, radius:Int)
     case county(state:String, county:String)
     case next(nextUrl:String)
+    
     
     static let baseUrl = "http://www.sagebrushgis.com/"
     
@@ -101,6 +103,8 @@ enum RandomRequestRouter : URLRequestConvertible{
             switch self{
             case .single():
                 return ("/api/list/random/",["format":"json" as AnyObject])
+            case .recent():
+                return ("/api/list/recent/",["format":"json" as AnyObject])
             case .geo(let latitude, let longitude, let radius):
                 return ("/api/list/location/", ["lat": latitude as AnyObject, "lon":longitude as AnyObject, "radius":radius as AnyObject])
             case .county(let state, let county):
