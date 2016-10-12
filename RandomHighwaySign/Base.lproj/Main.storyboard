@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Nvf-f1-Vpv">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -82,7 +81,7 @@
                     <toolbarItems>
                         <barButtonItem title="Item" id="Rqg-jb-Ea6">
                             <connections>
-                                <segue destination="giy-LP-SRL" kind="show" identifier="OpenRandomDetail" id="5Mr-A8-HgE"/>
+                                <segue destination="5T1-8d-rLU" kind="show" identifier="OpenRandomDetail" id="5Mr-A8-HgE"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem style="plain" systemItem="flexibleSpace" id="0Hw-6H-S05"/>
@@ -118,44 +117,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="470-yP-CQN" id="RlO-fK-xbG">
                                     <frame key="frameInset" width="342" height="85"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="This is some title text" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="0aa-qu-9cQ">
-                                            <frame key="frameInset" minX="105" minY="5" width="454" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wRn-mW-erm">
-                                            <frame key="frameInset" minX="105" minY="29" width="454" height="45"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="thumbnailImageView" translatesAutoresizingMaskIntoConstraints="NO" id="cP9-A5-CcN">
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="89" id="ePs-je-PBh"/>
-                                                <constraint firstAttribute="height" constant="69" id="qaM-VR-tyZ"/>
-                                            </constraints>
-                                        </imageView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="wRn-mW-erm" firstAttribute="leading" secondItem="cP9-A5-CcN" secondAttribute="trailing" constant="8" id="BeQ-Tv-QrJ"/>
-                                        <constraint firstItem="0aa-qu-9cQ" firstAttribute="leading" secondItem="cP9-A5-CcN" secondAttribute="trailing" constant="8" symbolic="YES" id="Cvb-5i-4Br"/>
-                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="wRn-mW-erm" secondAttribute="bottom" constant="11" id="IrB-Qu-Sju"/>
-                                        <constraint firstItem="cP9-A5-CcN" firstAttribute="leading" secondItem="RlO-fK-xbG" secondAttribute="leading" constant="8" id="Nzh-bd-5AI"/>
-                                        <constraint firstItem="0aa-qu-9cQ" firstAttribute="trailing" secondItem="RlO-fK-xbG" secondAttribute="trailingMargin" id="UGH-yD-uCd"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="0aa-qu-9cQ" secondAttribute="bottom" constant="51" id="dGB-Q7-QyG"/>
-                                        <constraint firstItem="cP9-A5-CcN" firstAttribute="top" secondItem="RlO-fK-xbG" secondAttribute="top" constant="5" id="gBS-MH-iL8"/>
-                                        <constraint firstAttribute="trailing" secondItem="wRn-mW-erm" secondAttribute="trailing" constant="8" id="pyu-cR-j94"/>
-                                        <constraint firstItem="wRn-mW-erm" firstAttribute="top" secondItem="0aa-qu-9cQ" secondAttribute="bottom" constant="3" id="sTS-1h-iat"/>
-                                        <constraint firstItem="0aa-qu-9cQ" firstAttribute="top" secondItem="cP9-A5-CcN" secondAttribute="top" id="wwL-I0-V6I"/>
-                                    </constraints>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="descLabel" destination="wRn-mW-erm" id="txR-5j-qZT"/>
-                                    <outlet property="thumbnailImageView" destination="cP9-A5-CcN" id="mqe-vz-8Dg"/>
-                                    <outlet property="titleLabel" destination="0aa-qu-9cQ" id="Mg3-oO-2wT"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -210,6 +172,9 @@
                             <outlet property="delegate" destination="B92-gV-nRU" id="tcZ-jz-ok4"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="VuH-9H-72P" kind="show" identifier="recentDetails" id="u3Y-16-eEA"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uHR-fX-b9l" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -248,7 +213,7 @@
                     <toolbarItems>
                         <barButtonItem title="Item" id="eqT-CN-46k">
                             <connections>
-                                <segue destination="giy-LP-SRL" kind="show" identifier="signIdentify" id="G8x-nJ-3iw"/>
+                                <segue destination="5T1-8d-rLU" kind="show" identifier="signIdentify" id="G8x-nJ-3iw"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>
@@ -263,119 +228,13 @@
             </objects>
             <point key="canvasLocation" x="2947" y="136"/>
         </scene>
-        <!--Sign Details View Controller-->
-        <scene sceneID="lX2-7e-iDP">
+        <!--UITableViewController-giy-LP-SRL-->
+        <scene sceneID="Apf-UO-vrF">
             <objects>
-                <tableViewController id="giy-LP-SRL" customClass="SignDetailsViewController" customModule="RandomHighwaySign" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="IE4-aQ-na9">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="standard" selectionStyle="default" indentationWidth="10" reuseIdentifier="standard" textLabel="VBj-mC-jYd" style="IBUITableViewCellStyleDefault" id="JsJ-aP-JPS">
-                                <rect key="frame" x="0.0" y="86" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JsJ-aP-JPS" id="Esh-Ia-B0f">
-                                    <frame key="frameInset" width="375" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VBj-mC-jYd">
-                                            <frame key="frameInset" minX="15" width="345" height="43"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="desc" selectionStyle="default" indentationWidth="10" reuseIdentifier="desc" id="48v-UA-NKj" customClass="DescriptionTableViewCell" customModule="RandomHighwaySign" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="130" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="48v-UA-NKj" id="Est-8I-PeQ">
-                                    <frame key="frameInset" width="375" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O9G-XG-b9V">
-                                            <frame key="frameInset" minX="8" minY="11" width="578" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="bottomMargin" secondItem="O9G-XG-b9V" secondAttribute="bottom" constant="3" id="FRs-Z1-peB"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="O9G-XG-b9V" secondAttribute="trailing" constant="6" id="bXg-lp-cxl"/>
-                                        <constraint firstItem="O9G-XG-b9V" firstAttribute="leading" secondItem="Est-8I-PeQ" secondAttribute="leadingMargin" id="mSM-Sv-6nk"/>
-                                        <constraint firstItem="O9G-XG-b9V" firstAttribute="top" secondItem="Est-8I-PeQ" secondAttribute="topMargin" constant="3" id="siV-JS-ABP"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="descriptionLabel" destination="O9G-XG-b9V" id="yu9-xx-d4i"/>
-                                </connections>
-                            </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="highway" textLabel="JI2-bi-DdK" imageView="C57-I5-sRr" rowHeight="75" style="IBUITableViewCellStyleDefault" id="kGH-Rb-6so" customClass="HighwayTableViewCell" customModule="RandomHighwaySign" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="174" width="375" height="75"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kGH-Rb-6so" id="daI-sR-yWQ">
-                                    <frame key="frameInset" width="375" height="74"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JI2-bi-DdK">
-                                            <frame key="frameInset" minX="80" width="280" height="74"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="US-20.png" id="C57-I5-sRr">
-                                            <frame key="frameInset" minX="15" minY="12" width="50" height="50"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </imageView>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="highwayImage" destination="C57-I5-sRr" id="r0Z-rV-SIk"/>
-                                    <outlet property="highwayText" destination="JI2-bi-DdK" id="XDO-Rt-a8e"/>
-                                </connections>
-                            </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="map" rowHeight="201" id="grB-t6-Il5" customClass="MapTableViewCell" customModule="RandomHighwaySign" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="249" width="375" height="201"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="grB-t6-Il5" id="Wus-Af-rJh">
-                                    <frame key="frameInset" width="375" height="200"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="owY-TN-qxc">
-                                            <frame key="frameInset" minX="13" minY="13" width="584" height="184"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="184" id="bZE-F2-HcM"/>
-                                            </constraints>
-                                        </mapView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="owY-TN-qxc" firstAttribute="leading" secondItem="Wus-Af-rJh" secondAttribute="leadingMargin" constant="5" id="1t8-Gs-OMi"/>
-                                        <constraint firstItem="owY-TN-qxc" firstAttribute="bottom" secondItem="Wus-Af-rJh" secondAttribute="bottomMargin" constant="5" id="4LG-Zx-Tal"/>
-                                        <constraint firstItem="owY-TN-qxc" firstAttribute="trailing" secondItem="Wus-Af-rJh" secondAttribute="trailingMargin" constant="5" id="Mfx-ao-VOi"/>
-                                        <constraint firstItem="owY-TN-qxc" firstAttribute="top" secondItem="Wus-Af-rJh" secondAttribute="topMargin" constant="5" id="li9-o6-z8F"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="mapView" destination="owY-TN-qxc" id="bxa-G8-htZ"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <sections/>
-                        <connections>
-                            <outlet property="dataSource" destination="giy-LP-SRL" id="Lfa-ZP-kDL"/>
-                            <outlet property="delegate" destination="giy-LP-SRL" id="8zU-r1-Qtc"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="ZVL-xy-lsi"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="h3g-W3-a8Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="SignDetails" referencedIdentifier="UITableViewController-giy-LP-SRL" id="VuH-9H-72P" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8Iu-oy-Fr1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4431" y="124"/>
+            <point key="canvasLocation" x="2079" y="667"/>
         </scene>
         <!--Signs At County-->
         <scene sceneID="2pq-rm-aSd">
@@ -392,44 +251,7 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="nFn-og-KVD" id="y2o-Dy-36X">
                                     <frame key="frameInset" width="342" height="85"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="This is some title text" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="U3B-dQ-BEy">
-                                            <frame key="frameInset" minX="105" minY="5" width="454" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L5V-LQ-m7L">
-                                            <frame key="frameInset" minX="105" minY="29" width="454" height="45"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" restorationIdentifier="thumbnailImageView" translatesAutoresizingMaskIntoConstraints="NO" id="GPQ-uk-UDj">
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="89" id="0jm-IM-yih"/>
-                                                <constraint firstAttribute="height" constant="69" id="UWW-yc-wAK"/>
-                                            </constraints>
-                                        </imageView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="L5V-LQ-m7L" firstAttribute="leading" secondItem="GPQ-uk-UDj" secondAttribute="trailing" constant="8" id="6OT-ff-iBD"/>
-                                        <constraint firstItem="GPQ-uk-UDj" firstAttribute="leading" secondItem="y2o-Dy-36X" secondAttribute="leading" constant="8" id="8hT-J3-7uw"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="U3B-dQ-BEy" secondAttribute="bottom" constant="51" id="9la-jP-8Ng"/>
-                                        <constraint firstItem="U3B-dQ-BEy" firstAttribute="trailing" secondItem="y2o-Dy-36X" secondAttribute="trailingMargin" id="Bx0-p0-Awc"/>
-                                        <constraint firstItem="U3B-dQ-BEy" firstAttribute="top" secondItem="GPQ-uk-UDj" secondAttribute="top" id="DWw-1e-VX6"/>
-                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="L5V-LQ-m7L" secondAttribute="bottom" constant="11" id="LTC-cq-yU4"/>
-                                        <constraint firstAttribute="trailing" secondItem="L5V-LQ-m7L" secondAttribute="trailing" constant="8" id="Zcw-mX-LA2"/>
-                                        <constraint firstItem="GPQ-uk-UDj" firstAttribute="top" secondItem="y2o-Dy-36X" secondAttribute="top" constant="5" id="mWY-oz-fa0"/>
-                                        <constraint firstItem="U3B-dQ-BEy" firstAttribute="leading" secondItem="GPQ-uk-UDj" secondAttribute="trailing" constant="8" symbolic="YES" id="nfY-zW-T3h"/>
-                                        <constraint firstItem="L5V-LQ-m7L" firstAttribute="top" secondItem="U3B-dQ-BEy" secondAttribute="bottom" constant="3" id="oCN-Ql-cKf"/>
-                                    </constraints>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="descLabel" destination="L5V-LQ-m7L" id="OB1-SU-LSB"/>
-                                    <outlet property="thumbnailImageView" destination="GPQ-uk-UDj" id="TZF-hc-grs"/>
-                                    <outlet property="titleLabel" destination="U3B-dQ-BEy" id="B7z-Xe-oYg"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -438,50 +260,32 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <segue destination="CDm-ga-NZr" kind="show" identifier="countySignDetail" id="sh5-8c-2g7"/>
+                        <segue destination="2LN-K4-OeU" kind="show" identifier="countySignDetail" id="sh5-8c-2g7"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vpR-TQ-J12" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3030" y="-1371"/>
         </scene>
-        <!--Browse Sign Details Controller-->
-        <scene sceneID="JXH-77-koS">
+        <!--UITableViewController-giy-LP-SRL-->
+        <scene sceneID="yai-Nf-Aeg">
             <objects>
-                <viewController id="CDm-ga-NZr" userLabel="Browse Sign Details Controller" customClass="BrowseSignViewController" customModule="RandomHighwaySign" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="kGT-8h-akV"/>
-                        <viewControllerLayoutGuide type="bottom" id="PBS-dL-EQj"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="0ql-v4-crC" customClass="SignImage" customModule="RandomHighwaySign" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </view>
-                    <toolbarItems>
-                        <barButtonItem title="Item" id="uzz-kJ-YIY">
-                            <connections>
-                                <segue destination="giy-LP-SRL" kind="show" identifier="showBrowseSignDetails" id="ILr-ro-Nls"/>
-                            </connections>
-                        </barButtonItem>
-                    </toolbarItems>
-                    <navigationItem key="navigationItem" title="Title" id="FvL-Yy-2aF"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="detailsButton" destination="uzz-kJ-YIY" id="6yP-uL-B8X"/>
-                        <outlet property="signImage" destination="0ql-v4-crC" id="Ujl-Rx-RbM"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tvq-jN-1Cu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="SignDetails" referencedIdentifier="UITableViewController-giy-LP-SRL" id="5T1-8d-rLU" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WwZ-rm-Zu6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4431" y="124"/>
+        </scene>
+        <!--UIViewController-CDm-ga-NZr-->
+        <scene sceneID="jfe-CJ-Z0h">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SignDetails" referencedIdentifier="UIViewController-CDm-ga-NZr" id="2LN-K4-OeU" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XRE-3M-grt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4266" y="-1371"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="US-20.png" width="50" height="50"/>
-    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="kqI-t3-df1"/>
-        <segue reference="5Mr-A8-HgE"/>
+        <segue reference="G8x-nJ-3iw"/>
     </inferredMetricsTieBreakers>
 </document>

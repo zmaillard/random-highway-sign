@@ -93,6 +93,7 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
         currentLocationButton.title = ""
         currentLocationButton.image = fact.createImage(for: .bullseye)
         
+        self.tableView.register(UINib(nibName: "SignTableViewCell", bundle: nil), forCellReuseIdentifier: "SignCell")
 
         navigationController?.setNavigationBarHidden(false, animated: true)
         

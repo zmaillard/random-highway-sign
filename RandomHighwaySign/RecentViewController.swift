@@ -35,7 +35,7 @@ class RecentViewController: SignListViewController, UrlRequestDelegate {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //performSegue(withIdentifier: "countySignDetail", sender: self)
+        performSegue(withIdentifier: "recentDetails", sender: self)
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -64,15 +64,15 @@ class RecentViewController: SignListViewController, UrlRequestDelegate {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    /*    if (segue.identifier == "countySignDetail"){
-            if let signViewController = segue.destination as? BrowseSignViewController{
+        if (segue.identifier == "recentDetails"){
+            if let signViewController = segue.destination as? SignImageViewController{
                 let indexPath = tableView.indexPathForSelectedRow
                 if let tableCell = tableView.cellForRow(at: indexPath!) as? ResultTableViewCell{
                     signViewController.sign = tableCell.sign
                 }
                 
             }
-        }*/
+        }
     }
     
     func setUrlRequestType() -> RandomRequestRouter{

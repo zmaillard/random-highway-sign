@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Sign Details View Controller-->
+        <scene sceneID="lX2-7e-iDP">
+            <objects>
+                <tableViewController storyboardIdentifier="UITableViewController-giy-LP-SRL" id="giy-LP-SRL" customClass="SignDetailsViewController" customModule="RandomHighwaySign" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="IE4-aQ-na9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="standard" selectionStyle="default" indentationWidth="10" reuseIdentifier="standard" textLabel="VBj-mC-jYd" style="IBUITableViewCellStyleDefault" id="JsJ-aP-JPS">
+                                <rect key="frame" x="0.0" y="86" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JsJ-aP-JPS" id="Esh-Ia-B0f">
+                                    <frame key="frameInset" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="VBj-mC-jYd">
+                                            <frame key="frameInset" minX="15" width="345" height="43"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" restorationIdentifier="desc" selectionStyle="default" indentationWidth="10" reuseIdentifier="desc" id="48v-UA-NKj" customClass="DescriptionTableViewCell" customModule="RandomHighwaySign" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="130" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="48v-UA-NKj" id="Est-8I-PeQ">
+                                    <frame key="frameInset" width="375" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O9G-XG-b9V">
+                                            <frame key="frameInset" minX="8" minY="11" width="578" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="O9G-XG-b9V" secondAttribute="bottom" constant="3" id="FRs-Z1-peB"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="O9G-XG-b9V" secondAttribute="trailing" constant="6" id="bXg-lp-cxl"/>
+                                        <constraint firstItem="O9G-XG-b9V" firstAttribute="leading" secondItem="Est-8I-PeQ" secondAttribute="leadingMargin" id="mSM-Sv-6nk"/>
+                                        <constraint firstItem="O9G-XG-b9V" firstAttribute="top" secondItem="Est-8I-PeQ" secondAttribute="topMargin" constant="3" id="siV-JS-ABP"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="descriptionLabel" destination="O9G-XG-b9V" id="yu9-xx-d4i"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="highway" textLabel="JI2-bi-DdK" imageView="C57-I5-sRr" rowHeight="75" style="IBUITableViewCellStyleDefault" id="kGH-Rb-6so" customClass="HighwayTableViewCell" customModule="RandomHighwaySign" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="174" width="375" height="75"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kGH-Rb-6so" id="daI-sR-yWQ">
+                                    <frame key="frameInset" width="375" height="74"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="JI2-bi-DdK">
+                                            <frame key="frameInset" minX="80" width="280" height="74"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="US-20.png" id="C57-I5-sRr">
+                                            <frame key="frameInset" minX="15" minY="12" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </imageView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="highwayImage" destination="C57-I5-sRr" id="r0Z-rV-SIk"/>
+                                    <outlet property="highwayText" destination="JI2-bi-DdK" id="XDO-Rt-a8e"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="map" rowHeight="201" id="grB-t6-Il5" customClass="MapTableViewCell" customModule="RandomHighwaySign" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="249" width="375" height="201"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="grB-t6-Il5" id="Wus-Af-rJh">
+                                    <frame key="frameInset" width="375" height="200"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="owY-TN-qxc">
+                                            <frame key="frameInset" minX="13" minY="13" width="584" height="184"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="184" id="bZE-F2-HcM"/>
+                                            </constraints>
+                                        </mapView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="owY-TN-qxc" firstAttribute="leading" secondItem="Wus-Af-rJh" secondAttribute="leadingMargin" constant="5" id="1t8-Gs-OMi"/>
+                                        <constraint firstItem="owY-TN-qxc" firstAttribute="bottom" secondItem="Wus-Af-rJh" secondAttribute="bottomMargin" constant="5" id="4LG-Zx-Tal"/>
+                                        <constraint firstItem="owY-TN-qxc" firstAttribute="trailing" secondItem="Wus-Af-rJh" secondAttribute="trailingMargin" constant="5" id="Mfx-ao-VOi"/>
+                                        <constraint firstItem="owY-TN-qxc" firstAttribute="top" secondItem="Wus-Af-rJh" secondAttribute="topMargin" constant="5" id="li9-o6-z8F"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="mapView" destination="owY-TN-qxc" id="bxa-G8-htZ"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <sections/>
+                        <connections>
+                            <outlet property="dataSource" destination="giy-LP-SRL" id="Lfa-ZP-kDL"/>
+                            <outlet property="delegate" destination="giy-LP-SRL" id="8zU-r1-Qtc"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="ZVL-xy-lsi"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h3g-W3-a8Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4431" y="124"/>
+        </scene>
+        <!--Browse Sign Details Controller-->
+        <scene sceneID="JXH-77-koS">
+            <objects>
+                <viewController storyboardIdentifier="UIViewController-CDm-ga-NZr" id="CDm-ga-NZr" userLabel="Browse Sign Details Controller" customClass="SignImageViewController" customModule="RandomHighwaySign" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="kGT-8h-akV"/>
+                        <viewControllerLayoutGuide type="bottom" id="PBS-dL-EQj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0ql-v4-crC" customClass="SignImage" customModule="RandomHighwaySign" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems>
+                        <barButtonItem title="Item" id="uzz-kJ-YIY">
+                            <connections>
+                                <segue destination="giy-LP-SRL" kind="show" identifier="showBrowseSignDetails" id="ILr-ro-Nls"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" title="Title" id="FvL-Yy-2aF"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="detailsButton" destination="uzz-kJ-YIY" id="6yP-uL-B8X"/>
+                        <outlet property="signImage" destination="0ql-v4-crC" id="Ujl-Rx-RbM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tvq-jN-1Cu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4266" y="-1371"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="US-20.png" width="50" height="50"/>
+    </resources>
+</document>

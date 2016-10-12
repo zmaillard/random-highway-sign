@@ -23,14 +23,14 @@ class BrowseCountyViewController: SignListViewController, UrlRequestDelegate {
     var state:String? = nil
     var county:String? = nil
     
-    
-    
+
 
     override func viewDidLoad() {
         
         self.urlRequestDelegate = self
         
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
+        self.tableView.register(UINib(nibName: "SignTableViewCell", bundle: nil), forCellReuseIdentifier: "SignCell")
         
         super.viewDidLoad()
     }
@@ -75,7 +75,7 @@ class BrowseCountyViewController: SignListViewController, UrlRequestDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "countySignDetail"){
-            if let signViewController = segue.destination as? BrowseSignViewController{
+            if let signViewController = segue.destination as? SignImageViewController{
                 let indexPath = tableView.indexPathForSelectedRow
                 if let tableCell = tableView.cellForRow(at: indexPath!) as? ResultTableViewCell{
                     signViewController.sign = tableCell.sign
