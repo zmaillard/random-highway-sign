@@ -9,11 +9,13 @@
 import UIKit
 import FontAwesomeIconFactory
 
+
 class SignImageViewController: UIViewController {
     var sign:Sign?
     
     @IBOutlet weak var detailsButton: UIBarButtonItem!
     @IBOutlet var signImage: SignImage!
+
     
     var loadingIndicatorView:LoadingIndicatorView!
     
@@ -24,28 +26,17 @@ class SignImageViewController: UIViewController {
         fact.colors = [self.view.tintColor]
         detailsButton.title = ""
         detailsButton.image = fact.createImage(for: .infoCircle)
+
         
         loadingIndicatorView = LoadingIndicatorView(frame:CGRect(x: 0, y: 0, width: 80, height: 80))
-        loadingIndicatorView.center = self.view.center        
+        loadingIndicatorView.center = self.view.center
+        
+        loadSign()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isToolbarHidden = false
     
-        loadSign()
-    }
-
-    func loadSign(){
-        self.view.addSubview(loadingIndicatorView)
-        self.loadingIndicatorView.showActivity()
-
-        self.title = self.sign!.title
-        self.signImage.loadSign(self.sign!)
-            
-
-        self.loadingIndicatorView.removeFromSuperview()
-        self.loadingIndicatorView.hideActivity()
-        
     }
 
     override func didReceiveMemoryWarning() {
@@ -64,6 +55,20 @@ class SignImageViewController: UIViewController {
                 identifyView.sign = self.sign
             }
         }
+    }
+    
+    func loadSign(){
+        
+        self.view.addSubview(loadingIndicatorView)
+        self.loadingIndicatorView.showActivity()
+        
+        self.title = self.sign!.title
+        self.signImage.loadSign(self.sign!)
+        
+        
+        self.loadingIndicatorView.removeFromSuperview()
+        self.loadingIndicatorView.hideActivity()
+        
     }
     
 

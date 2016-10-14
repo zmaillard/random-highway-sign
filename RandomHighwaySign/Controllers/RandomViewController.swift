@@ -11,14 +11,17 @@ import SwiftyJSON
 import QuartzCore
 import FontAwesomeIconFactory
 
-class ViewController: UIViewController {
 
+
+
+class RandomViewController: UIViewController {
+
+    var sign:Sign?
     @IBOutlet weak var navItem: UIBarButtonItem!
     @IBOutlet weak var detailsButton: UIBarButtonItem!
     @IBOutlet var signImage: SignImage!
     
     var loadingIndicatorView:LoadingIndicatorView!
-    var sign : Sign?
     
     
     override func viewDidLoad() {
@@ -26,28 +29,33 @@ class ViewController: UIViewController {
         
         let fact = NIKFontAwesomeIconFactory.barButtonItem()
         fact.colors = [self.view.tintColor]
+        detailsButton.title = ""
+        detailsButton.image = fact.createImage(for: .infoCircle)
         navItem.title = ""
         navItem.image = fact.createImage(for: .random)
         
-        detailsButton.title = ""
-        detailsButton.image = fact.createImage(for: .infoCircle)
-        
         loadingIndicatorView = LoadingIndicatorView(frame:CGRect(x: 0, y: 0, width: 80, height: 80))
         loadingIndicatorView.center = self.view.center
+        
+        loadSign()
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.isToolbarHidden = false
+        
     }
-
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    func randomSignRequest(){
+    
+    @IBAction func doneButtonClicked(_ sender : AnyObject){
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func loadSign(){
         self.view.addSubview(loadingIndicatorView)
         self.loadingIndicatorView.showActivity()
         DispatchQueue.global(qos: .background).async{
@@ -77,7 +85,7 @@ class ViewController: UIViewController {
     
     
     @IBAction func getDetailsTapped(_ sender : AnyObject) {
-        self.randomSignRequest()
+        self.loadSign()
     }
 
     

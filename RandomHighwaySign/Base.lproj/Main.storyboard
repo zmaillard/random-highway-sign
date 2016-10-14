@@ -67,7 +67,7 @@
         <!--Random Sign-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="randomSign" id="BYZ-38-t0r" userLabel="Random Sign" customClass="ViewController" customModule="RandomHighwaySign" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="randomSign" id="BYZ-38-t0r" userLabel="Random Sign" customClass="RandomViewController" customModule="RandomHighwaySign" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -101,6 +101,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2671" y="-720"/>
+        </scene>
+        <!--UIViewController-CDm-ga-NZr-->
+        <scene sceneID="E3h-eO-wtB">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SignDetails" referencedIdentifier="UIViewController-CDm-ga-NZr" id="tDH-TW-Fls" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Nj-JI-uk6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2829" y="-5"/>
         </scene>
         <!--Signs At Current Location-->
         <scene sceneID="qol-E2-SSo">
@@ -139,10 +147,10 @@
                     </navigationItem>
                     <connections>
                         <outlet property="currentLocationButton" destination="Z7Z-pO-HNH" id="I9I-86-ydQ"/>
-                        <segue destination="dl2-wm-MQ3" kind="show" identifier="OpenDetail" id="vCM-TB-aDp"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="randomSign" id="LIg-kN-XgN"/>
                         <segue destination="EKW-Jm-Bvs" kind="show" identifier="browse" id="kqI-t3-df1"/>
                         <segue destination="B92-gV-nRU" kind="show" identifier="recent" id="Tsa-LV-Wj3"/>
+                        <segue destination="tDH-TW-Fls" kind="show" identifier="OpenDetail" id="FJI-hb-in6"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ADb-Qh-gqv" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -197,41 +205,10 @@
             </objects>
             <point key="canvasLocation" x="-111" y="-270"/>
         </scene>
-        <!--Title-->
-        <scene sceneID="o6e-82-thV">
-            <objects>
-                <viewController id="dl2-wm-MQ3" customClass="SignImageViewController" customModule="RandomHighwaySign" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="NZW-cs-EUj"/>
-                        <viewControllerLayoutGuide type="bottom" id="4fC-Fz-abB"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Ww1-TA-zD4" customClass="SignImage" customModule="RandomHighwaySign" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
-                    <toolbarItems>
-                        <barButtonItem title="Item" id="eqT-CN-46k">
-                            <connections>
-                                <segue destination="5T1-8d-rLU" kind="show" identifier="signIdentify" id="G8x-nJ-3iw"/>
-                            </connections>
-                        </barButtonItem>
-                    </toolbarItems>
-                    <navigationItem key="navigationItem" title="Title" id="Hmb-VS-qj1"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="detailsButton" destination="eqT-CN-46k" id="5Ja-tf-QRy"/>
-                        <outlet property="signImage" destination="Ww1-TA-zD4" id="Xv0-a8-XYL"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CzB-Gr-hI1" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2947" y="136"/>
-        </scene>
-        <!--UITableViewController-giy-LP-SRL-->
+        <!--UIViewController-CDm-ga-NZr-->
         <scene sceneID="Apf-UO-vrF">
             <objects>
-                <viewControllerPlaceholder storyboardName="SignDetails" referencedIdentifier="UITableViewController-giy-LP-SRL" id="VuH-9H-72P" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="SignDetails" referencedIdentifier="UIViewController-CDm-ga-NZr" id="VuH-9H-72P" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Iu-oy-Fr1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2079" y="667"/>
@@ -273,7 +250,7 @@
                 <viewControllerPlaceholder storyboardName="SignDetails" referencedIdentifier="UITableViewController-giy-LP-SRL" id="5T1-8d-rLU" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WwZ-rm-Zu6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4431" y="124"/>
+            <point key="canvasLocation" x="4831" y="-721"/>
         </scene>
         <!--UIViewController-CDm-ga-NZr-->
         <scene sceneID="jfe-CJ-Z0h">
@@ -286,6 +263,5 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="kqI-t3-df1"/>
-        <segue reference="G8x-nJ-3iw"/>
     </inferredMetricsTieBreakers>
 </document>

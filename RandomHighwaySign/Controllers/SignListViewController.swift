@@ -52,11 +52,20 @@ class SignListViewController: UITableViewController {
         }
         
         self.isLoading = true
-        Sign.fetchNext(nextUrl: self.nextPage!)
-        { (result: [Sign], next: String?) in
-            self.signs = self.signs + result
-            self.isLoading = false
-            self.nextPage = next
+        
+        DispatchQueue.global(qos: .background).async{
+        
+            Sign.fetchNext(nextUrl: self.nextPage!)
+            {
+                (result: [Sign], next: String?) in
+                self.signs = self.signs + result
+                
+                self.nextPage = next
+            }
+            
+            DispatchQueue.main.async(execute: {
+                self.isLoading = false
+            })
         }
     }
     
@@ -72,11 +81,18 @@ class SignListViewController: UITableViewController {
             
             isLoading = true
             
-            Sign.fetch(type: urlReq){
-                (result: [Sign], next: String?) in
-                self.signs = result
-                self.isLoading = false
-                self.nextPage = next
+            
+            DispatchQueue.global(qos: .background).async{
+
+                Sign.fetch(type: urlReq){
+                    (result: [Sign], next: String?) in
+                    self.signs = result
+                    self.nextPage = next
+                }
+                
+                DispatchQueue.main.async(execute: {
+                    self.isLoading = false
+                })
             }
         }
         

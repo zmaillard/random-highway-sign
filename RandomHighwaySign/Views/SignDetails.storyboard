@@ -137,7 +137,7 @@
                     <toolbarItems>
                         <barButtonItem title="Item" id="uzz-kJ-YIY">
                             <connections>
-                                <segue destination="giy-LP-SRL" kind="show" identifier="showBrowseSignDetails" id="ILr-ro-Nls"/>
+                                <segue destination="giy-LP-SRL" kind="show" identifier="signIdentify" id="ILr-ro-Nls"/>
                             </connections>
                         </barButtonItem>
                     </toolbarItems>

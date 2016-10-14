@@ -347,10 +347,6 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
              if let browseCountry = segue.destination as? BrowseCountryTableView{
                 browseCountry.browse = self.browseItems
              }
-        }else if (segue.identifier == "randomSign"){
-            if let randomSign = segue.destination as? ViewController{
-                randomSign.randomSignRequest()
-            }
         }
 
     }
