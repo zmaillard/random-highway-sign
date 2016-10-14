@@ -133,9 +133,10 @@
 		5213D3801DB05472003C74DA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				5209C18C1AE5C6870078D43A /* Sign.swift */,
 				52EAF8BC1D9C98390079DDF3 /* Browse.swift */,
 			);
-			name = Models;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		5213D3811DB0547F003C74DA /* Views */ = {
@@ -219,7 +220,6 @@
 				5228AB421AE4574800A664D4 /* Images.xcassets */,
 				5228AB3A1AE4574800A664D4 /* RandomHighwaySign.xcdatamodeld */,
 				5228AB361AE4574800A664D4 /* Supporting Files */,
-				5209C18C1AE5C6870078D43A /* Sign.swift */,
 				52246BD61B4414EC0099A9C5 /* ApiKeys.swift */,
 				523512C51B59F90300925C4C /* LaunchScreen.storyboard */,
 				523512C71B5C3E1F00925C4C /* Settings.bundle */,
