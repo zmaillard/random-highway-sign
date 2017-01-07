@@ -86,7 +86,7 @@ enum BrowseRequestRouter : URLRequestConvertible{
     case states(country:String)
     case counties(state:String)
     
-    static let baseUrl = "http://www.sagebrushgis.com/"
+    static let baseUrl = "https://sagebrushgis.com/"
     
     func asURLRequest() throws -> URLRequest {
         let result: (path:String, parameters: Parameters)  = {
