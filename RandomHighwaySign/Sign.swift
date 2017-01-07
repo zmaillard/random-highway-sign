@@ -94,7 +94,7 @@ enum RandomRequestRouter : URLRequestConvertible{
     case county(state:String, county:String)
     case next(nextUrl:String)
     
-    static let baseUrl = "http://www.sagebrushgis.com/"
+    static let baseUrl = "https://sagebrushgis.com/"
     
     func asURLRequest() throws -> URLRequest {
         let result: (path:String, parameters: Parameters)  = {
@@ -125,7 +125,7 @@ final class Highway : NSObject, ResponseObjectSerializable, ResponseCollectionSe
     var highway : String = ""
     var highwaySlug : String = ""
     var milepost : Double = 0.0
-    var sort : Int = 0
+    var sort : String = ""
     var type : String = ""
     var typeSlug : String = ""
     var url : String = ""
@@ -135,11 +135,11 @@ final class Highway : NSObject, ResponseObjectSerializable, ResponseCollectionSe
         
         self.highway = representation.value(forKeyPath: "Highway") as! String
         self.highwaySlug = representation.value(forKeyPath: "HighwaySlug") as! String
-        self.milepost = representation.value(forKeyPath: "Milepost") as! Double
-        self.sort = representation.value(forKeyPath: "StateSort") as! Int
+        self.sort = representation.value(forKeyPath: "Sort") as! String
         self.type = representation.value(forKeyPath: "Type") as! String
         self.typeSlug = representation.value(forKeyPath: "TypeSlug") as! String
         self.url = representation.value(forKeyPath: "Url") as! String
+    
     }
 
  
