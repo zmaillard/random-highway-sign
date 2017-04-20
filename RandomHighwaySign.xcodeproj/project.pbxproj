@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		222EB714F6A64EF5BAC5CA82 /* Pods_RandomHighwaySign.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9F7C259C5E8C418118D2198 /* Pods_RandomHighwaySign.framework */; };
 		5209C18D1AE5C6870078D43A /* Sign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5209C18C1AE5C6870078D43A /* Sign.swift */; };
 		521B29B61B0021CB00A003AE /* GetCurrentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521B29B51B0021CB00A003AE /* GetCurrentController.swift */; };
 		52246BD31B3C2F0F0099A9C5 /* US-20.png in Resources */ = {isa = PBXBuildFile; fileRef = 52246BD21B3C2F0F0099A9C5 /* US-20.png */; };
@@ -32,6 +31,14 @@
 		52BD624C1DA0003900DBC94B /* BrowseCountyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BD624B1DA0003900DBC94B /* BrowseCountyViewController.swift */; };
 		52EAF8BB1D9C8BF90079DDF3 /* BrowseCountry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EAF8BA1D9C8BF90079DDF3 /* BrowseCountry.swift */; };
 		52EAF8BD1D9C98390079DDF3 /* Browse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EAF8BC1D9C98390079DDF3 /* Browse.swift */; };
+		52F4E5E31EA858370034EF21 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52F4E5DF1EA858370034EF21 /* Alamofire.framework */; };
+		52F4E5E41EA858370034EF21 /* AlamofireImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52F4E5E01EA858370034EF21 /* AlamofireImage.framework */; };
+		52F4E5E51EA858370034EF21 /* FontAwesomeIconFactory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52F4E5E11EA858370034EF21 /* FontAwesomeIconFactory.framework */; };
+		52F4E5E61EA858370034EF21 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52F4E5E21EA858370034EF21 /* SwiftyJSON.framework */; };
+		52F4E5E91EA85B9B0034EF21 /* ReactiveSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52F4E5E71EA85B9B0034EF21 /* ReactiveSwift.framework */; };
+		52F4E5EA1EA85B9B0034EF21 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52F4E5E81EA85B9B0034EF21 /* Result.framework */; };
+		52F4E5ED1EA85BCC0034EF21 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F4E5EC1EA85BCC0034EF21 /* Networking.swift */; };
+		52F4E5EF1EA85C320034EF21 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F4E5EE1EA85C320034EF21 /* Network.swift */; };
 		52FDF0471B3742E600AEF5B0 /* HighwayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDF0461B3742E600AEF5B0 /* HighwayTableViewCell.swift */; };
 		52FDF04A1B37B46D00AEF5B0 /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDF0491B37B46D00AEF5B0 /* MapTableViewCell.swift */; };
 		52FDF04C1B37B5A900AEF5B0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52FDF04B1B37B5A900AEF5B0 /* MapKit.framework */; };
@@ -87,21 +94,20 @@
 		52BD62471D9F29BC00DBC94B /* SignTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignTableViewCell.swift; sourceTree = "<group>"; };
 		52BD62481D9F29BC00DBC94B /* SignTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignTableViewCell.xib; sourceTree = "<group>"; };
 		52BD624B1DA0003900DBC94B /* BrowseCountyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowseCountyViewController.swift; sourceTree = "<group>"; };
-		52BF230A1C191D3F00161545 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = "Pods/../build/Debug-iphoneos/Alamofire.framework"; sourceTree = "<group>"; };
-		52BF230B1C191D3F00161545 /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = "Pods/../build/Debug-iphoneos/AlamofireImage.framework"; sourceTree = "<group>"; };
-		52BF230C1C191D3F00161545 /* FontAwesomeIconFactory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FontAwesomeIconFactory.framework; path = "Pods/../build/Debug-iphoneos/FontAwesomeIconFactory.framework"; sourceTree = "<group>"; };
-		52BF230D1C191D3F00161545 /* GooglePlacesAutocomplete.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GooglePlacesAutocomplete.framework; path = "Pods/../build/Debug-iphoneos/GooglePlacesAutocomplete.framework"; sourceTree = "<group>"; };
-		52BF230E1C191D3F00161545 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Debug-iphoneos/SwiftyJSON.framework"; sourceTree = "<group>"; };
 		52EAF8BA1D9C8BF90079DDF3 /* BrowseCountry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowseCountry.swift; sourceTree = "<group>"; };
 		52EAF8BC1D9C98390079DDF3 /* Browse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Browse.swift; sourceTree = "<group>"; };
+		52F4E5DF1EA858370034EF21 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		52F4E5E01EA858370034EF21 /* AlamofireImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AlamofireImage.framework; path = Carthage/Build/iOS/AlamofireImage.framework; sourceTree = "<group>"; };
+		52F4E5E11EA858370034EF21 /* FontAwesomeIconFactory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FontAwesomeIconFactory.framework; path = Carthage/Build/iOS/FontAwesomeIconFactory.framework; sourceTree = "<group>"; };
+		52F4E5E21EA858370034EF21 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
+		52F4E5E71EA85B9B0034EF21 /* ReactiveSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ReactiveSwift.framework; path = Carthage/Build/iOS/ReactiveSwift.framework; sourceTree = "<group>"; };
+		52F4E5E81EA85B9B0034EF21 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
+		52F4E5EC1EA85BCC0034EF21 /* Networking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		52F4E5EE1EA85C320034EF21 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		52FDF0461B3742E600AEF5B0 /* HighwayTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HighwayTableViewCell.swift; path = RandomHighwaySign/HighwayTableViewCell.swift; sourceTree = "<group>"; };
 		52FDF0491B37B46D00AEF5B0 /* MapTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapTableViewCell.swift; path = RandomHighwaySign/MapTableViewCell.swift; sourceTree = "<group>"; };
 		52FDF04B1B37B5A900AEF5B0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		52FDF04D1B39888E00AEF5B0 /* DescriptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DescriptionTableViewCell.swift; path = RandomHighwaySign/DescriptionTableViewCell.swift; sourceTree = "<group>"; };
-		6FF973186E078D92DD5A02A3 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A9F7C259C5E8C418118D2198 /* Pods_RandomHighwaySign.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RandomHighwaySign.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CB56268A6A511697914B393F /* Pods-RandomHighwaySign.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RandomHighwaySign.release.xcconfig"; path = "Pods/Target Support Files/Pods-RandomHighwaySign/Pods-RandomHighwaySign.release.xcconfig"; sourceTree = "<group>"; };
-		EF6167349228FD1042C876E9 /* Pods-RandomHighwaySign.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RandomHighwaySign.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RandomHighwaySign/Pods-RandomHighwaySign.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,7 +116,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				52FDF04C1B37B5A900AEF5B0 /* MapKit.framework in Frameworks */,
-				222EB714F6A64EF5BAC5CA82 /* Pods_RandomHighwaySign.framework in Frameworks */,
+				52F4E5E91EA85B9B0034EF21 /* ReactiveSwift.framework in Frameworks */,
+				52F4E5EA1EA85B9B0034EF21 /* Result.framework in Frameworks */,
+				52F4E5E31EA858370034EF21 /* Alamofire.framework in Frameworks */,
+				52F4E5E41EA858370034EF21 /* AlamofireImage.framework in Frameworks */,
+				52F4E5E51EA858370034EF21 /* FontAwesomeIconFactory.framework in Frameworks */,
+				52F4E5E61EA858370034EF21 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,7 +151,6 @@
 				5228AB4E1AE4574800A664D4 /* RandomHighwaySignTests */,
 				5228AB341AE4574800A664D4 /* Products */,
 				60F1A6E0C6E236C5EFF14CD8 /* Frameworks */,
-				6AF535AD91F43D72ED7BAE49 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -156,6 +166,7 @@
 		5228AB351AE4574800A664D4 /* RandomHighwaySign */ = {
 			isa = PBXGroup;
 			children = (
+				52F4E5EB1EA85BA80034EF21 /* Models */,
 				52EAF8B91D9C8BE00079DDF3 /* BrowseView */,
 				52BAA4241B53EC3D000F1FB2 /* ActivityView */,
 				52C6C9D41B4EA2F70076B328 /* MainTableView */,
@@ -240,6 +251,15 @@
 			name = BrowseView;
 			sourceTree = "<group>";
 		};
+		52F4E5EB1EA85BA80034EF21 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				52F4E5EC1EA85BCC0034EF21 /* Networking.swift */,
+				52F4E5EE1EA85C320034EF21 /* Network.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		52FDF0481B37B44200AEF5B0 /* SignDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -255,25 +275,15 @@
 		60F1A6E0C6E236C5EFF14CD8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				52BF230A1C191D3F00161545 /* Alamofire.framework */,
-				52BF230B1C191D3F00161545 /* AlamofireImage.framework */,
-				52BF230C1C191D3F00161545 /* FontAwesomeIconFactory.framework */,
-				52BF230D1C191D3F00161545 /* GooglePlacesAutocomplete.framework */,
-				52BF230E1C191D3F00161545 /* SwiftyJSON.framework */,
+				52F4E5E71EA85B9B0034EF21 /* ReactiveSwift.framework */,
+				52F4E5E81EA85B9B0034EF21 /* Result.framework */,
+				52F4E5DF1EA858370034EF21 /* Alamofire.framework */,
+				52F4E5E01EA858370034EF21 /* AlamofireImage.framework */,
+				52F4E5E11EA858370034EF21 /* FontAwesomeIconFactory.framework */,
+				52F4E5E21EA858370034EF21 /* SwiftyJSON.framework */,
 				52FDF04B1B37B5A900AEF5B0 /* MapKit.framework */,
-				6FF973186E078D92DD5A02A3 /* Pods.framework */,
-				A9F7C259C5E8C418118D2198 /* Pods_RandomHighwaySign.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		6AF535AD91F43D72ED7BAE49 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				EF6167349228FD1042C876E9 /* Pods-RandomHighwaySign.debug.xcconfig */,
-				CB56268A6A511697914B393F /* Pods-RandomHighwaySign.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -283,13 +293,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5228AB551AE4574800A664D4 /* Build configuration list for PBXNativeTarget "RandomHighwaySign" */;
 			buildPhases = (
-				D86120FD38EE6F5C1B1FFA3D /* [CP] Check Pods Manifest.lock */,
 				5228AB2F1AE4574800A664D4 /* Sources */,
 				5228AB301AE4574800A664D4 /* Frameworks */,
 				5228AB311AE4574800A664D4 /* Resources */,
 				52BF23141C191D9B00161545 /* CopyFiles */,
-				3F91590F2E9983A3845D24DE /* [CP] Embed Pods Frameworks */,
-				73AD773F8DB64D3A038662CB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -385,59 +392,12 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		3F91590F2E9983A3845D24DE /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RandomHighwaySign/Pods-RandomHighwaySign-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		73AD773F8DB64D3A038662CB /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RandomHighwaySign/Pods-RandomHighwaySign-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D86120FD38EE6F5C1B1FFA3D /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		5228AB2F1AE4574800A664D4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52F4E5ED1EA85BCC0034EF21 /* Networking.swift in Sources */,
 				527CEC561B33B49A00A2BBD6 /* SignImageViewController.swift in Sources */,
 				522C78261AF1C7CA0001121F /* SignDetailsViewController.swift in Sources */,
 				5228AB3E1AE4574800A664D4 /* ViewController.swift in Sources */,
@@ -447,6 +407,7 @@
 				52FDF04E1B39888E00AEF5B0 /* DescriptionTableViewCell.swift in Sources */,
 				52BD62491D9F29BC00DBC94B /* SignTableViewCell.swift in Sources */,
 				5209C18D1AE5C6870078D43A /* Sign.swift in Sources */,
+				52F4E5EF1EA85C320034EF21 /* Network.swift in Sources */,
 				52FDF04A1B37B46D00AEF5B0 /* MapTableViewCell.swift in Sources */,
 				52BD624C1DA0003900DBC94B /* BrowseCountyViewController.swift in Sources */,
 				52246BD71B4414EC0099A9C5 /* ApiKeys.swift in Sources */,
@@ -583,7 +544,6 @@
 		};
 		5228AB561AE4574800A664D4 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EF6167349228FD1042C876E9 /* Pods-RandomHighwaySign.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -592,6 +552,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = RandomHighwaySign/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -605,7 +566,6 @@
 		};
 		5228AB571AE4574800A664D4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CB56268A6A511697914B393F /* Pods-RandomHighwaySign.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -614,6 +574,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = RandomHighwaySign/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;

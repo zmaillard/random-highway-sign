@@ -12,7 +12,6 @@ import Alamofire
 import AlamofireImage
 import SwiftyJSON
 import FontAwesomeIconFactory
-import GooglePlacesAutocomplete
 
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
@@ -57,10 +56,11 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     
     var browseItems = [Browse]();
     
+    /*
     let gpaViewController = GooglePlacesAutocomplete(
         apiKey: valueForApiKey(keyName:  "PLACES"),
         placeType: .cities
-    )
+    )*/
     
     var loadingIndicatorView:LoadingIndicatorView!
 
@@ -150,14 +150,14 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     
 
     @IBAction func searchClicked(sender: AnyObject) {
-        present(gpaViewController, animated: true, completion: nil)
+        //present(gpaViewController, animated: true, completion: nil)
     }
     
     
     override func viewDidAppear(_ animated: Bool) {
         //Hide empty rows
         self.tableView.tableFooterView  =  UIView(frame: CGRect.zero)
-        gpaViewController.placeDelegate = self
+        //gpaViewController.placeDelegate = self
     }
     
     func refresh(){
@@ -350,6 +350,7 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     }
 }
 
+/*
 extension GetCurrentController : GooglePlacesAutocompleteDelegate{
     func placeSelected(_ place: Place) {
         place.getDetails(){
@@ -389,7 +390,7 @@ extension GetCurrentController : GooglePlacesAutocompleteDelegate{
     }
     
 
-}
+}*/
 
 
 class ResultTableViewCell : UITableViewCell{
