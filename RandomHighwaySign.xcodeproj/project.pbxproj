@@ -25,6 +25,8 @@
 		527CEC501B33A80A00A2BBD6 /* SignImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 527CEC4F1B33A80A00A2BBD6 /* SignImage.xib */; };
 		527CEC521B33A85200A2BBD6 /* SignImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527CEC511B33A85200A2BBD6 /* SignImage.swift */; };
 		527CEC561B33B49A00A2BBD6 /* SignImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527CEC551B33B49A00A2BBD6 /* SignImageViewController.swift */; };
+		52A77B191EA99CB500BF754A /* SignStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A77B181EA99CB500BF754A /* SignStore.swift */; };
+		52A77B1B1EA99E3B00BF754A /* RemoteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A77B1A1EA99E3B00BF754A /* RemoteStore.swift */; };
 		52B0C1301DA1CB7B00EB30A9 /* BrowseSignViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B0C12F1DA1CB7B00EB30A9 /* BrowseSignViewController.swift */; };
 		52BAA4261B53EC66000F1FB2 /* LoadingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BAA4251B53EC66000F1FB2 /* LoadingIndicatorView.swift */; };
 		52BD62491D9F29BC00DBC94B /* SignTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BD62471D9F29BC00DBC94B /* SignTableViewCell.swift */; };
@@ -32,6 +34,8 @@
 		52BD624C1DA0003900DBC94B /* BrowseCountyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52BD624B1DA0003900DBC94B /* BrowseCountyViewController.swift */; };
 		52EAF8BB1D9C8BF90079DDF3 /* BrowseCountry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EAF8BA1D9C8BF90079DDF3 /* BrowseCountry.swift */; };
 		52EAF8BD1D9C98390079DDF3 /* Browse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EAF8BC1D9C98390079DDF3 /* Browse.swift */; };
+		52F1ADB81EAA35CD00530DC7 /* RoadSign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F1ADB71EAA35CD00530DC7 /* RoadSign.swift */; };
+		52F1ADBA1EAA36E900530DC7 /* HighwaySorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52F1ADB91EAA36E900530DC7 /* HighwaySorting.swift */; };
 		52FDF0471B3742E600AEF5B0 /* HighwayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDF0461B3742E600AEF5B0 /* HighwayTableViewCell.swift */; };
 		52FDF04A1B37B46D00AEF5B0 /* MapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FDF0491B37B46D00AEF5B0 /* MapTableViewCell.swift */; };
 		52FDF04C1B37B5A900AEF5B0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52FDF04B1B37B5A900AEF5B0 /* MapKit.framework */; };
@@ -82,6 +86,8 @@
 		527CEC4F1B33A80A00A2BBD6 /* SignImage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignImage.xib; sourceTree = "<group>"; };
 		527CEC511B33A85200A2BBD6 /* SignImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignImage.swift; sourceTree = "<group>"; };
 		527CEC551B33B49A00A2BBD6 /* SignImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignImageViewController.swift; sourceTree = "<group>"; };
+		52A77B181EA99CB500BF754A /* SignStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignStore.swift; sourceTree = "<group>"; };
+		52A77B1A1EA99E3B00BF754A /* RemoteStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteStore.swift; sourceTree = "<group>"; };
 		52B0C12F1DA1CB7B00EB30A9 /* BrowseSignViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowseSignViewController.swift; sourceTree = "<group>"; };
 		52BAA4251B53EC66000F1FB2 /* LoadingIndicatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorView.swift; sourceTree = "<group>"; };
 		52BD62471D9F29BC00DBC94B /* SignTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignTableViewCell.swift; sourceTree = "<group>"; };
@@ -94,6 +100,8 @@
 		52BF230E1C191D3F00161545 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = "Pods/../build/Debug-iphoneos/SwiftyJSON.framework"; sourceTree = "<group>"; };
 		52EAF8BA1D9C8BF90079DDF3 /* BrowseCountry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowseCountry.swift; sourceTree = "<group>"; };
 		52EAF8BC1D9C98390079DDF3 /* Browse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Browse.swift; sourceTree = "<group>"; };
+		52F1ADB71EAA35CD00530DC7 /* RoadSign.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoadSign.swift; sourceTree = "<group>"; };
+		52F1ADB91EAA36E900530DC7 /* HighwaySorting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighwaySorting.swift; sourceTree = "<group>"; };
 		52FDF0461B3742E600AEF5B0 /* HighwayTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HighwayTableViewCell.swift; path = RandomHighwaySign/HighwayTableViewCell.swift; sourceTree = "<group>"; };
 		52FDF0491B37B46D00AEF5B0 /* MapTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapTableViewCell.swift; path = RandomHighwaySign/MapTableViewCell.swift; sourceTree = "<group>"; };
 		52FDF04B1B37B5A900AEF5B0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -156,6 +164,8 @@
 		5228AB351AE4574800A664D4 /* RandomHighwaySign */ = {
 			isa = PBXGroup;
 			children = (
+				52F1ADB61EAA35B200530DC7 /* Models */,
+				52A77B171EA99C8900BF754A /* Stores */,
 				52EAF8B91D9C8BE00079DDF3 /* BrowseView */,
 				52BAA4241B53EC3D000F1FB2 /* ActivityView */,
 				52C6C9D41B4EA2F70076B328 /* MainTableView */,
@@ -204,6 +214,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		52A77B171EA99C8900BF754A /* Stores */ = {
+			isa = PBXGroup;
+			children = (
+				52A77B181EA99CB500BF754A /* SignStore.swift */,
+				52A77B1A1EA99E3B00BF754A /* RemoteStore.swift */,
+			);
+			name = Stores;
+			sourceTree = "<group>";
+		};
 		52BAA4241B53EC3D000F1FB2 /* ActivityView */ = {
 			isa = PBXGroup;
 			children = (
@@ -238,6 +257,15 @@
 				52B0C12F1DA1CB7B00EB30A9 /* BrowseSignViewController.swift */,
 			);
 			name = BrowseView;
+			sourceTree = "<group>";
+		};
+		52F1ADB61EAA35B200530DC7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				52F1ADB71EAA35CD00530DC7 /* RoadSign.swift */,
+				52F1ADB91EAA36E900530DC7 /* HighwaySorting.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		52FDF0481B37B44200AEF5B0 /* SignDetails */ = {
@@ -331,7 +359,7 @@
 				TargetAttributes = {
 					5228AB321AE4574800A664D4 = {
 						CreatedOnToolsVersion = 6.3;
-						DevelopmentTeam = 66YLYEUCDM;
+						DevelopmentTeam = KJ5EK7M4FC;
 						LastSwiftMigration = 0800;
 					};
 					5228AB4A1AE4574800A664D4 = {
@@ -439,15 +467,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				527CEC561B33B49A00A2BBD6 /* SignImageViewController.swift in Sources */,
+				52F1ADB81EAA35CD00530DC7 /* RoadSign.swift in Sources */,
 				522C78261AF1C7CA0001121F /* SignDetailsViewController.swift in Sources */,
 				5228AB3E1AE4574800A664D4 /* ViewController.swift in Sources */,
 				52B0C1301DA1CB7B00EB30A9 /* BrowseSignViewController.swift in Sources */,
 				52FDF0471B3742E600AEF5B0 /* HighwayTableViewCell.swift in Sources */,
+				52A77B1B1EA99E3B00BF754A /* RemoteStore.swift in Sources */,
 				52EAF8BB1D9C8BF90079DDF3 /* BrowseCountry.swift in Sources */,
 				52FDF04E1B39888E00AEF5B0 /* DescriptionTableViewCell.swift in Sources */,
 				52BD62491D9F29BC00DBC94B /* SignTableViewCell.swift in Sources */,
 				5209C18D1AE5C6870078D43A /* Sign.swift in Sources */,
 				52FDF04A1B37B46D00AEF5B0 /* MapTableViewCell.swift in Sources */,
+				52F1ADBA1EAA36E900530DC7 /* HighwaySorting.swift in Sources */,
+				52A77B191EA99CB500BF754A /* SignStore.swift in Sources */,
 				52BD624C1DA0003900DBC94B /* BrowseCountyViewController.swift in Sources */,
 				52246BD71B4414EC0099A9C5 /* ApiKeys.swift in Sources */,
 				5228AB391AE4574800A664D4 /* AppDelegate.swift in Sources */,
@@ -589,6 +621,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = KJ5EK7M4FC;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
@@ -611,6 +644,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = KJ5EK7M4FC;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",

@@ -2,33 +2,45 @@ PODS:
   - Alamofire (4.0.1)
   - AlamofireImage (3.0.0):
     - Alamofire (~> 4.0)
+  - Argo (4.1.2):
+    - Runes (>= 4.0.0)
   - FontAwesomeIconFactory (2.1.1)
-  - GooglePlacesAutocomplete (0.3.0)
+  - GoogleMaps/Base (2.2.0)
+  - GooglePlaces (2.2.0):
+    - GoogleMaps/Base (= 2.2.0)
+  - ReactiveCocoa (5.0.3):
+    - ReactiveSwift (~> 1.1)
+  - ReactiveSwift (1.1.1):
+    - Result (~> 3.2)
+  - Result (3.2.1)
+  - Runes (4.0.1)
   - SwiftyJSON (3.1.0)
+  - Swinject (2.1.0)
 
 DEPENDENCIES:
   - Alamofire (= 4.0.1)
   - AlamofireImage (= 3.0.0)
+  - Argo
   - FontAwesomeIconFactory
-  - GooglePlacesAutocomplete (from `https://github.com/samscam/ios_google_places_autocomplete.git`)
+  - GooglePlaces
+  - ReactiveCocoa (= 5.0.3)
   - SwiftyJSON (= 3.1.0)
-
-EXTERNAL SOURCES:
-  GooglePlacesAutocomplete:
-    :git: https://github.com/samscam/ios_google_places_autocomplete.git
-
-CHECKOUT OPTIONS:
-  GooglePlacesAutocomplete:
-    :commit: ec39d32060c02e5901143f23dfc8eb02b5d39370
-    :git: https://github.com/samscam/ios_google_places_autocomplete.git
+  - Swinject (= 2.1.0)
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
   AlamofireImage: 6594aa1139a67dcd36cde6da79ea4e5b318e60fb
+  Argo: 5db06502fc1222d83011f574243089dab25202ff
   FontAwesomeIconFactory: bb9ce26d3dd13044854a82d380023c8e7d3ebf1a
-  GooglePlacesAutocomplete: f8058281fb25a8792b8940142b7c76e85518d82f
+  GoogleMaps: 104c418d61ab8a05dff06ed0784c25ea9d37da45
+  GooglePlaces: bca867d5e9da15384c794b945e4226848bc6e9d9
+  ReactiveCocoa: 066a855f613fb72f68258771095805fdb10312d2
+  ReactiveSwift: 2489549e3231a6ff68ec99f3d320bb264f10ba0a
+  Result: 2453a22e5c5b11c0c3a478736e82cd02f763b781
+  Runes: ff20f163b478ac2c0e18158d6086fd5b1997f983
   SwiftyJSON: 29b9f2a64f118c07e691667c2ba1efe536acfe0b
+  Swinject: 85e468ac75c5c2d234076f98c591d57d56bc64bc
 
-PODFILE CHECKSUM: df6d064c75e15dfbb5b5aab484e6e1880cbd56b0
+PODFILE CHECKSUM: acbb981ab2ca5cdb85a442be1fb533fbe84bbd16
 
 COCOAPODS: 1.1.0.rc.2

@@ -7,5 +7,8 @@ target 'RandomHighwaySign' do
   pod 'AlamofireImage', '3.0.0'
   pod "SwiftyJSON", '3.1.0'
   pod 'FontAwesomeIconFactory'
-  pod 'GooglePlacesAutocomplete', :git => 'https://github.com/samscam/ios_google_places_autocomplete.git'
+  pod 'GooglePlaces'
+  pod 'ReactiveCocoa', '5.0.3'
+  pod 'Swinject', '2.1.0'
+  pod 'Argo'
 end

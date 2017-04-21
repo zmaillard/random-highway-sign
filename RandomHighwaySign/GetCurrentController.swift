@@ -12,7 +12,7 @@ import Alamofire
 import AlamofireImage
 import SwiftyJSON
 import FontAwesomeIconFactory
-import GooglePlacesAutocomplete
+import GooglePlaces
 
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   switch (lhs, rhs) {
@@ -56,12 +56,7 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     var noLocation = false
     
     var browseItems = [Browse]();
-    
-    let gpaViewController = GooglePlacesAutocomplete(
-        apiKey: valueForApiKey(keyName:  "PLACES"),
-        placeType: .cities
-    )
-    
+
     var loadingIndicatorView:LoadingIndicatorView!
 
     deinit{
@@ -150,14 +145,15 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     
 
     @IBAction func searchClicked(sender: AnyObject) {
-        present(gpaViewController, animated: true, completion: nil)
+        let autocompleteController = GMSAutocompleteViewController()
+        autocompleteController.delegate = self
+        present(autocompleteController, animated: true, completion: nil)
     }
     
     
     override func viewDidAppear(_ animated: Bool) {
         //Hide empty rows
         self.tableView.tableFooterView  =  UIView(frame: CGRect.zero)
-        gpaViewController.placeDelegate = self
     }
     
     func refresh(){
@@ -350,12 +346,10 @@ class GetCurrentController: UITableViewController, CLLocationManagerDelegate, UI
     }
 }
 
-extension GetCurrentController : GooglePlacesAutocompleteDelegate{
-    func placeSelected(_ place: Place) {
-        place.getDetails(){
-            (result:PlaceDetails) in
-            self.latitude = result.latitude
-            self.longitude = result.longitude
+extension GetCurrentController : GMSAutocompleteViewControllerDelegate{
+    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+        self.latitude = place.coordinate.latitude
+        self.longitude = place.coordinate.longitude
             
             CLGeocoder().reverseGeocodeLocation(CLLocation(latitude: self.latitude, longitude: self.longitude)){
                 (placemarks, error) in
@@ -377,17 +371,18 @@ extension GetCurrentController : GooglePlacesAutocompleteDelegate{
             self.signs = [Sign]()
             self.dismiss(animated: true, completion: nil)
             self.makeRequest()
-        }
     }
     
-    func placesFound(_ places: [Place]) {
-        
+    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+        // TODO: handle the error.
+        print("Error: ", error.localizedDescription)
     }
     
-    func placeViewClosed() {
+    // User canceled the operation.
+    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
         dismiss(animated: true, completion: nil)
     }
-    
+
 
 }
 
